@@ -14,13 +14,20 @@
 		<tr style="background-color: grey;">
 			<th style="border: 1px solid black;">Kode Mapel</th>
 			<th style="border: 1px solid black;">Mapel</th>
+			<th style="border: 1px solid black;">Action</th>
 		</tr>
 		<?php foreach ($data as $value) { ?>
 		<tr>
 				<td><?php echo $value['mapel_id']; ?></td>
 				<td><?php echo $value['mapelname']; ?></td>
+				<td align="center">
+					<a href="#">Edit</a>
+					||
+					<a href="#">Delete</a>
+				</td>
 		</tr>
 		<?php } ?>		
 	</table>
+	<a href="<?php echo base_url()?>index.php/crud/add_data">Tambah Data</a>
 </body>
 </html>
