@@ -15,8 +15,17 @@ class Crud extends CI_Controller {
 	}
 
 	public function do_insert(){
-		echo "<pre>";
-		print_r ($_POST);
-		echo "</pre>";
+		$mapel_id = $_POST['mapel_id'];
+		$mapelname = $_POST['mapelname'];
+		$data_insert = array(
+			'mapel_id' => $mapel_id,
+			'mapelname' => $mapelname,
+		);
+		$res = $this->Mapel_model->insertData('mapel', $data_insert);
+		if ($res>=1){
+			redirect('index.php/crud/index','refresh');
+		}else{
+			echo "<h3>Insert data gagal</h3>";
+		}
 	}
 }
