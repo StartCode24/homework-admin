@@ -23,7 +23,7 @@
 				<td align="center">
 					<a href="#">Edit</a>
 					||
-					<a href="#">Delete</a>
+					<a href="<?php echo base_url()."index.php/crud/do_delete/".$value['mapel_id'];?>">Delete</a>
 				</td>
 		</tr>
 		<?php } ?>		

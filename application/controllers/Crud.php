@@ -28,4 +28,14 @@ class Crud extends CI_Controller {
 			echo "<h3>Insert data gagal</h3>";
 		}
 	}
+
+	public function do_delete($mapel_id) {
+		$where = array('mapel_id' => $mapel_id );
+		$res = $this->Mapel_model->deleteData('mapel', $where);
+		if ($res>=1){
+			redirect('index.php/crud/index','refresh');
+		}else{
+			echo "<h3>Delte data gagal</h3>";
+		}	
+	}
 }
