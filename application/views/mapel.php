@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Mapel</title>
-	<link rel="stylesheet" href="">
-	<style>
-		
-	</style>
-</head>
-<body>
+
 	<?php echo"<h1>". $this->session->flashdata('pesan') . "</h1>"; ?>
 	<table style="border-collapse: collapse; width: 50%;" border="1">
 		<tr style="background-color: grey;">
@@ -30,5 +19,3 @@
 		<?php } ?>		
 	</table>
 	<a href="<?php echo base_url()?>index.php/crud/add_data">Tambah Data</a>
-</body>
-</html>

@@ -5,14 +5,13 @@ class Mapel extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-        $this->load->library(array('session','form_validation', 'user_agent', 'Telegram'));
+        $this->load->library(array('session','form_validation', 'user_agent'));
         $this->load->helper(array('url','form','security','tgl_indo','global'));
 		$this->load->database();
 
 	}	
 
-	public function index()
-	{
+	public function index()	{
 		$data = $this->Mapel_model->getMapel();
 		//debug_array($data);
 		$this->load->view('mapel', array('data' => $data ));

@@ -58,9 +58,9 @@
 	                    </a>
 	                </li>
 	                <li>
-	                    <a href="#">
+	                    <a href="index.php/mapel/">
 	                        <i class="material-icons">content_paste</i>
-	                        <p>Table List</p>
+	                        <p>Mata Pelajaran</p>
 	                    </a>
 	                </li>
 	                <li>
