@@ -7,7 +7,9 @@ class Dashboard extends CI_Controller {
 		$this->load->helper('url');
 		$this->load->helper('form');
 		$this->load->library('session');
-
+		if (empty($this->session->userdata('status'))) {
+			redirect('auth/index');
+		}
 
 	}
 
@@ -20,6 +22,6 @@ class Dashboard extends CI_Controller {
 	public function mapel() {
 		$this->load->view('nav_content/header.php');
 		$this->load->view('mapel.php');
-		$this->load->view('nav_content/footer.php');	
+		$this->load->view('nav_content/footer.php');
 	}
 }
