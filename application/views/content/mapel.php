@@ -24,7 +24,7 @@
 				<td class="">
 					<a href="<?php echo base_url()."Mapel/edit_data/".$value['mapel_id'];?>">Edit</a>
 					||
-					<a href="<?php echo base_url()."Mapel/do_delete/".$value['mapel_id'];?>">Delete</a>
+					<a href="<?php echo base_url()."Mapel/do_delete/".$value['mapel_id'];?>" onClick="doconfirm()">Delete</a>
 				</td>
 		</tr>
 		<?php } ?>		
@@ -41,3 +41,26 @@
     </div>
   </div>
 </div>
+
+<script>
+function doconfirm()
+{
+	swal({
+	  title: 'Are you sure?',
+	  text: "You won't be able to revert this!",
+	  type: 'warning',
+	  showCancelButton: true,
+	  confirmButtonColor: '#3085d6',
+	  cancelButtonColor: '#d33',
+	  confirmButtonText: 'Yes, delete it!'
+	}).then((result) => {
+	  if (result.value) {
+	    swal(
+	      'Deleted!',
+	      'Your file has been deleted.',
+	      'success'
+	    )
+	  }
+	})
+}
+</script>

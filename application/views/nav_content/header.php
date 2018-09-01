@@ -26,8 +26,8 @@
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
     
     <!--     Sweetalert2     -->
-    <script src="sweetalert2.min.js"></script>
-	<link rel="stylesheet" href="sweetalert2.min.css">
+    <script src=<?php echo base_url("assets/js/sweetalert2.min.js");?>></script>
+	<link href=<?php echo base_url("assets/css/sweetalert2.min.css");?>  rel="stylesheet">
 </head>
 
 <body>
