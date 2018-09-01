@@ -10,7 +10,7 @@
 	</style>
 </head>
 <body>
-	<form method="POST" action="<?php echo base_url()?>index.php/crud/do_update">
+	<form method="POST" action="<?php echo base_url()?>Mapel/do_update">
 		<table>
 			<tr>
 				<td>Kode Mapel</td>
