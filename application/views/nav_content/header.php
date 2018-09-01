@@ -42,8 +42,8 @@
 		    -->
 
 			<div class="logo">
-				<a href="http://www.creative-tim.com" class="simple-text">
-					Creative Tim
+				<a href="#" class="simple-text">
+					Welcome, Admin!
 				</a>
 			</div>
 
@@ -102,6 +102,9 @@
 	 							   <i class="material-icons">person</i>
 	 							   <p class="hidden-lg hidden-md">Profile</p>
 		 						</a>
+								<ul class="dropdown-menu">
+									<li><a href="<?php echo base_url()."Auth/logout"; ?>">Log Out</a></li>
+								</ul>		 						
 							</li>
 						</ul>
 
