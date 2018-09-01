@@ -5,26 +5,33 @@
         <div class="card card-stats">
           <div class="card-content">
             <p class="category">Mata Pelajaran</p>
-            <a href="<?php echo base_url()?>Mapel/add_data"><i class="fa fa-plus-circle"></i><h3 class="title">Tambah Data</h3></a>
-            
-	<table style="border-collapse: collapse; text-align: center;" class="table">
-		<tr style="text-align: center;">
+            <a href="<?php echo base_url()?>Mapel/add_data"><h3 class="title"><i class="fa fa-plus-circle"></i>Tambah Data</h3></a>
+            <div class="card-body">
+       <div class="table-responsive">     
+	<table class="table">
+		<thead class=" text-primary">
+		<tr>
 			<th>Kode Mapel</th>
 			<th>Mapel</th>
 			<th>Action</th>
 		</tr>
+		</thead>
+		<tbody>
 		<?php foreach ($data as $value) { ?>
 		<tr>
-				<td><?php echo $value['mapel_id']; ?></td>
-				<td><?php echo $value['mapelname']; ?></td>
-				<td align="center">
+				<td class=""><?php echo $value['mapel_id']; ?></td>
+				<td class=""><?php echo $value['mapelname']; ?></td>
+				<td class="">
 					<a href="<?php echo base_url()."Mapel/edit_data/".$value['mapel_id'];?>">Edit</a>
 					||
 					<a href="<?php echo base_url()."Mapel/do_delete/".$value['mapel_id'];?>">Delete</a>
 				</td>
 		</tr>
 		<?php } ?>		
+		</tbody>
 	</table>
+</div>
+</div>
           </div>
           <div class="card-footer">
 
