@@ -2357,6 +2357,8 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 .table > tfoot > tr > td {
   padding: 12px 8px;
   vertical-align: middle;
+  text-align: center;
+  border:  1px solid silver;  
 }
 .table > thead > tr > th {
   padding-bottom: 4px;

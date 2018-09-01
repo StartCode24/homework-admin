@@ -20,8 +20,11 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function mapel() {
-		$this->load->view('nav_content/header.php');
-		$this->load->view('mapel.php');
+		$data = $this->Mapel_model->getMapel();
+		//debug_array($data);
+		
+		$this->load->view('nav_content/header.php', array('data' => $data ));
+		$this->load->view('content/mapel', array('data' => $data ));
 		$this->load->view('nav_content/footer.php');
 	}
 }

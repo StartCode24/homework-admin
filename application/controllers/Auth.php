@@ -26,7 +26,7 @@ class auth extends CI_Controller {
           $this->session->set_userdata('status',$rows->status);
 
           if($this->session->userdata('status')=='admin'){
-            redirect('Dashboard/Dashboard/index');
+            redirect('Dashboard/index');
           }else if($this->session->userdata('status')=='member'){
             redirect('member/index');
           }

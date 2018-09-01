@@ -58,7 +58,7 @@
 	                    </a>
 	                </li>
 	                <li>
-	                    <a href="index.php/mapel/">
+	                    <a href="<?php echo base_url()."Dashboard/mapel/"?>">
 	                        <i class="material-icons">content_paste</i>
 	                        <p>Mata Pelajaran</p>
 	                    </a>
