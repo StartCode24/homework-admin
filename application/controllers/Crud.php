@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Mapel extends CI_Controller {
+class Crud extends CI_Controller {
 
 	public function index()
 	{
@@ -24,7 +24,7 @@ class Mapel extends CI_Controller {
 		$res = $this->Mapel_model->insertData('mapel', $data_insert);
 		if ($res>=1){
 			$this->session->set_flashdata('pesan', 'Tambah data sukses');
-			redirect('Dashboard/mapel');
+			redirect('index.php/crud/index');
 		}else{
 			echo "<h3>Insert data gagal</h3>";
 		}
@@ -49,7 +49,7 @@ class Mapel extends CI_Controller {
 		$res = $this->Mapel_model->updateData('mapel', $data_update, $where);
 		if ($res>=1){
 			$this->session->set_flashdata('pesan', 'Update data sukses');
-			redirect('Dashboard/mapel');
+			redirect('index.php/crud/index');
 		}else{
 			echo "<h3>Update data gagal</h3>";
 		}
@@ -60,7 +60,7 @@ class Mapel extends CI_Controller {
 		$res = $this->Mapel_model->deleteData('mapel', $where);
 		if ($res>=1){
 			$this->session->set_flashdata('pesan', 'Delete data sukses');
-			redirect('Dashboard/mapel');
+			redirect('index.php/crud/index');
 		}else{
 			echo "<h3>Delete data gagal</h3>";
 		}	
