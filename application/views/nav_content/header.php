@@ -24,6 +24,10 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
+    
+    <!--     Sweetalert2     -->
+    <script src="sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="sweetalert2.min.css">
 </head>
 
 <body>
@@ -53,10 +57,16 @@
 	                </li>
 	                <li>
 	                    <a href="#">
-	                        <i class="material-icons">person</i>
-	                        <p>User Profile</p>
+	                        <i class="material-icons">notifications</i>
+	                        <p>Skejul</p>
 	                    </a>
-	                </li>
+	                </li>		                
+	                <li>
+	                    <a href="#">
+	                        <i class="material-icons">people</i>
+	                        <p>Guru</p>
+	                    </a>
+	                </li>                
 	                <li>
 	                    <a href="<?php echo base_url()."Dashboard/mapel/"?>">
 	                        <i class="material-icons">content_paste</i>
@@ -65,32 +75,8 @@
 	                </li>
 	                <li>
 	                    <a href="#">
-	                        <i class="material-icons">library_books</i>
-	                        <p>Typography</p>
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="#">
-	                        <i class="material-icons">bubble_chart</i>
-	                        <p>Icons</p>
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="#">
-	                        <i class="material-icons">location_on</i>
-	                        <p>Maps</p>
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="#">
-	                        <i class="material-icons text-gray">notifications</i>
-	                        <p>Notifications</p>
-	                    </a>
-	                </li>
-					<li class="active-pro">
-	                    <a href="#">
-	                        <i class="material-icons">unarchive</i>
-	                        <p>Upgrade to PRO</p>
+	                        <i class="material-icons">room</i>
+	                        <p>Ruang Kelas</p>
 	                    </a>
 	                </li>
 	            </ul>
@@ -111,26 +97,6 @@
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
-							<li>
-								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="material-icons">dashboard</i>
-									<p class="hidden-lg hidden-md">Dashboard</p>
-								</a>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="material-icons">notifications</i>
-									<span class="notification">5</span>
-									<p class="hidden-lg hidden-md">Notifications</p>
-								</a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Mike John responded to your email</a></li>
-									<li><a href="#">You have 5 new tasks</a></li>
-									<li><a href="#">You're now friend with Andrew</a></li>
-									<li><a href="#">Another Notification</a></li>
-									<li><a href="#">Another One</a></li>
-								</ul>
-							</li>
 							<li>
 								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
 	 							   <i class="material-icons">person</i>
