@@ -33,8 +33,8 @@ class Crud extends CI_Controller {
 	public function edit_data($mapel_id){
 		$mapel = $this->Mapel_model->getMapel("where mapel_id = '$mapel_id'");
 		$data = array(
-			'mapel_id' => $mapel[0]['mapel_id'], 
-			'mapelname' => $mapel[0]['mapelname'] 
+			'mapel_id' => $mapel[0]['mapel_id'],
+			'mapelname' => $mapel[0]['mapelname']
 		);
 		$this->load->view('form_edit', $data);
 	}
@@ -55,7 +55,8 @@ class Crud extends CI_Controller {
 		}
 	}
 
-	public function do_delete($mapel_id) {
+	public function do_delete() {
+		$mapel_id=$this->input->post('mapel_id');
 		$where = array('mapel_id' => $mapel_id );
 		$res = $this->Mapel_model->deleteData('mapel', $where);
 		if ($res>=1){
@@ -63,6 +64,6 @@ class Crud extends CI_Controller {
 			redirect('index.php/crud/index');
 		}else{
 			echo "<h3>Delete data gagal</h3>";
-		}	
+		}
 	}
 }
