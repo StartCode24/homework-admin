@@ -39,6 +39,8 @@
 <script src=<?php echo base_url("assets/js/bootstrap.min.js");?> type="text/javascript"></script>
 <script src=<?php echo base_url("assets/js/material.min.js");?> type="text/javascript"></script>
 
+<script src="<?php echo base_url("assets/js/sweetalert.min.js"); ?>"></script>
+
 <!--  Charts Plugin -->
 <script src=<?php echo base_url("assets/js/chartist.min.js");?>></script>
 
@@ -51,9 +53,12 @@
 <!-- Material Dashboard javascript methods -->
 <script src=<?php echo base_url("assets/js/material-dashboard.js");?>></script>
 
+
+
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src=<?php echo base_url("assets/js/demo.js");?>></script>
-
+<script src=<?php echo base_url("assets/js/crud_mapel.min.js");?> type="text/javascript"></script>
+<!-- <script src=<?php echo base_url("assets/js/sweetalert2.min.js"); ?>></script> -->
 <script type="text/javascript">
 $(document).ready(function(){
 

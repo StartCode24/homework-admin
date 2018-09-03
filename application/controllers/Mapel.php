@@ -55,7 +55,8 @@ class Mapel extends CI_Controller {
 		}
 	}
 
-	public function do_delete($mapel_id) {
+	public function do_delete() {
+		$mapel_id=$this->input->post('mapel_id');
 		$where = array('mapel_id' => $mapel_id );
 		$res = $this->Mapel_model->deleteData('mapel', $where);
 		if ($res>=1){
@@ -63,6 +64,6 @@ class Mapel extends CI_Controller {
 			redirect('Dashboard/mapel');
 		}else{
 			echo "<h3>Delete data gagal</h3>";
-		}	
+		}
 	}
 }

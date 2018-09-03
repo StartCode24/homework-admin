@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Crud extends CI_Controller {
+class Room extends CI_Controller {
 
 	public function index()
 	{
@@ -15,54 +15,55 @@ class Crud extends CI_Controller {
 	}
 
 	public function do_insert(){
-		$mapel_id = $_POST['mapel_id'];
-		$mapelname = $_POST['mapelname'];
+		$room_id = $_POST['room_id'];
+		$roomname = $_POST['roomname'];
 		$data_insert = array(
-			'mapel_id' => $mapel_id,
-			'mapelname' => $mapelname,
+			'room_id' => $room_id,
+			'roomname' => $roomname,
 		);
 		$res = $this->Mapel_model->insertData('mapel', $data_insert);
 		if ($res>=1){
 			$this->session->set_flashdata('pesan', 'Tambah data sukses');
-			redirect('index.php/crud/index');
+			redirect('Dashboard/mapel');
 		}else{
 			echo "<h3>Insert data gagal</h3>";
 		}
 	}
 
-	public function edit_data($mapel_id){
-		$mapel = $this->Mapel_model->getMapel("where mapel_id = '$mapel_id'");
+	public function edit_data($room_id){
+		$mapel = $this->Mapel_model->getMapel("where room_id = '$room_id'");
 		$data = array(
-			'mapel_id' => $mapel[0]['mapel_id'], 
-			'mapelname' => $mapel[0]['mapelname'] 
+			'room_id' => $mapel[0]['room_id'], 
+			'roomname' => $mapel[0]['roomname'] 
 		);
 		$this->load->view('form_edit', $data);
 	}
 
 	public function do_update(){
-		$mapel_id = $_POST['mapel_id'];
-		$mapelname = $_POST['mapelname'];
+		$room_id = $_POST['room_id'];
+		$roomname = $_POST['roomname'];
 		$data_update = array(
-			'mapelname' => $mapelname,
+			'roomname' => $roomname,
 		);
-		$where = array('mapel_id' => $mapel_id);
+		$where = array('room_id' => $room_id);
 		$res = $this->Mapel_model->updateData('mapel', $data_update, $where);
 		if ($res>=1){
 			$this->session->set_flashdata('pesan', 'Update data sukses');
-			redirect('index.php/crud/index');
+			redirect('Dashboard/mapel');
 		}else{
 			echo "<h3>Update data gagal</h3>";
 		}
 	}
 
-	public function do_delete($mapel_id) {
-		$where = array('mapel_id' => $mapel_id );
+	public function do_delete() {
+		$room_id=$this->input->post('room_id');
+		$where = array('room_id' => $room_id );
 		$res = $this->Mapel_model->deleteData('mapel', $where);
 		if ($res>=1){
 			$this->session->set_flashdata('pesan', 'Delete data sukses');
-			redirect('index.php/crud/index');
+			redirect('Dashboard/mapel');
 		}else{
 			echo "<h3>Delete data gagal</h3>";
-		}	
+		}
 	}
 }
