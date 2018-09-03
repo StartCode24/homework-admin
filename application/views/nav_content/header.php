@@ -24,10 +24,11 @@
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons" rel="stylesheet" type="text/css">
-    
+
     <!--     Sweetalert2     -->
-    <script src=<?php echo base_url("assets/js/sweetalert2.min.js");?>></script>
-	<link href=<?php echo base_url("assets/css/sweetalert2.min.css");?>  rel="stylesheet">
+<link rel="stylesheet" href="<?php echo base_url('assets/css/sweetalert.css'); ?>" >
+	<!-- <link rel="stylesheet" href=<?php echo base_url("assets/css/sweetalert2.min.css");?>> -->
+
 </head>
 
 <body>
@@ -49,31 +50,31 @@
 
 	    	<div class="sidebar-wrapper">
 	            <ul class="nav">
-	                <li class="active">
-	                    <a href="#">
+	                <li class="<?php echo $this->session->userdata('class0'); ?>">
+	                    <a href="<?php echo base_url()."Dashboard/index/"?>">
 	                        <i class="material-icons">dashboard</i>
 	                        <p>Dashboard</p>
 	                    </a>
 	                </li>
-	                <li>
-	                    <a href="#">
+	                <li class="<?php echo $this->session->userdata('class1'); ?>">
+	                    <a href="">
 	                        <i class="material-icons">notifications</i>
 	                        <p>Skejul</p>
 	                    </a>
-	                </li>		                
-	                <li>
+	                </li>
+	                <li class="<?php echo $this->session->userdata('class2'); ?>">
 	                    <a href="#">
 	                        <i class="material-icons">people</i>
 	                        <p>Guru</p>
 	                    </a>
-	                </li>                
-	                <li>
+	                </li>
+	                <li class="<?php echo $this->session->userdata('class3'); ?>">
 	                    <a href="<?php echo base_url()."Dashboard/mapel/"?>">
 	                        <i class="material-icons">content_paste</i>
 	                        <p>Mata Pelajaran</p>
 	                    </a>
 	                </li>
-	                <li>
+	                <li class="<?php echo $this->session->userdata('class4'); ?>">
 	                    <a href="#">
 	                        <i class="material-icons">room</i>
 	                        <p>Ruang Kelas</p>
@@ -82,6 +83,8 @@
 	            </ul>
 	    	</div>
 	    </div>
+			<!-- for base url js -->
+			<input type="hidden" id="base" value="<?php echo base_url(); ?>">
 
 	    <div class="main-panel">
 			<nav class="navbar navbar-transparent navbar-absolute">
@@ -104,7 +107,7 @@
 		 						</a>
 								<ul class="dropdown-menu">
 									<li><a href="<?php echo base_url()."Auth/logout"; ?>">Log Out</a></li>
-								</ul>		 						
+								</ul>
 							</li>
 						</ul>
 

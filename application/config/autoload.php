@@ -132,4 +132,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('Mapel_model', 'Cek_login');
+$autoload['model'] = array('Mapel_model', 'Cek_login','cek_session_nav');
