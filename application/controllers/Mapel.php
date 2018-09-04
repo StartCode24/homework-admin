@@ -5,13 +5,14 @@ class Mapel extends CI_Controller {
 
 	public function index()
 	{
-		$data = $this->Mapel_model->getMapel();
+		// $data = $this->Mapel_model->getMapel();
 		//debug_array($data);
-		$this->load->view('mapel', array('data' => $data ));
+		// $this->load->view('mapel/all_mapel_data', array('data' => $data ));
+		redirect('Dashboard/mapel/all_mapel_data');
 	}
 
 	public function add_data(){
-		$this->load->view('form_add');
+		$this->load->view('mapel/add_mapel');
 	}
 
 	public function do_insert(){
@@ -24,7 +25,7 @@ class Mapel extends CI_Controller {
 		$res = $this->Mapel_model->insertData('mapel', $data_insert);
 		if ($res>=1){
 			$this->session->set_flashdata('pesan', 'Tambah data sukses');
-			redirect('Dashboard/mapel');
+			redirect('Dashboard/mapel/all_mapel_data');
 		}else{
 			echo "<h3>Insert data gagal</h3>";
 		}
@@ -36,7 +37,7 @@ class Mapel extends CI_Controller {
 			'mapel_id' => $mapel[0]['mapel_id'], 
 			'mapelname' => $mapel[0]['mapelname'] 
 		);
-		$this->load->view('form_edit', $data);
+		$this->load->view('mapel/edit_mapel', $data);
 	}
 
 	public function do_update(){
@@ -49,7 +50,7 @@ class Mapel extends CI_Controller {
 		$res = $this->Mapel_model->updateData('mapel', $data_update, $where);
 		if ($res>=1){
 			$this->session->set_flashdata('pesan', 'Update data sukses');
-			redirect('Dashboard/mapel');
+			redirect('Dashboard/mapel/all_mapel_data');
 		}else{
 			echo "<h3>Update data gagal</h3>";
 		}
@@ -61,7 +62,7 @@ class Mapel extends CI_Controller {
 		$res = $this->Mapel_model->deleteData('mapel', $where);
 		if ($res>=1){
 			$this->session->set_flashdata('pesan', 'Delete data sukses');
-			redirect('Dashboard/mapel');
+			redirect('Dashboard/mapel/all_mapel_data');
 		}else{
 			echo "<h3>Delete data gagal</h3>";
 		}
