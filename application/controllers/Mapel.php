@@ -5,9 +5,10 @@ class Mapel extends CI_Controller {
 
 	public function index()
 	{
-		$data = $this->Mapel_model->getMapel();
+		// $data = $this->Mapel_model->getMapel();
 		//debug_array($data);
-		$this->load->view('mapel', array('data' => $data ));
+		// $this->load->view('mapel/all_mapel_data', array('data' => $data ));
+		redirect('Dashboard/mapel/all_mapel_data');
 	}
 
 	public function add_data(){
