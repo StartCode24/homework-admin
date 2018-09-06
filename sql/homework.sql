@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2018 at 07:56 AM
+-- Generation Time: Sep 06, 2018 at 08:25 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.34
 
@@ -50,9 +50,17 @@ INSERT INTO `admin` (`admin_id`, `username`, `password`, `status`) VALUES
 
 CREATE TABLE `guru` (
   `guru_id` int(255) NOT NULL,
-  `guruname` int(11) NOT NULL,
+  `guruname` varchar(255) NOT NULL,
   `guru_note` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `guru`
+--
+
+INSERT INTO `guru` (`guru_id`, `guruname`, `guru_note`) VALUES
+(9038, 'Wiro', 'umur 21'),
+(311321, 'Antara', '');
 
 -- --------------------------------------------------------
 
