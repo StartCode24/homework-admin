@@ -14,7 +14,7 @@ class Dashboard extends CI_Controller {
 	}
 
 	public function index()	{
-		$this->cek_session_nav->cek_session_dasboard();
+		$this->cek_session_nav->cek_session_dashboard();
 		$this->load->view('nav_content/header.php');
 		$this->load->view('content/dashboard.php');
 		$this->load->view('nav_content/footer.php');
@@ -29,4 +29,24 @@ class Dashboard extends CI_Controller {
 		$this->load->view('content/mapel', array('data' => $data ));
 		$this->load->view('nav_content/footer.php');
 	}
+
+	public function room() {
+		$this->cek_session_nav->cek_session_room();
+		$data = $this->Room_model->getRoom();
+		//debug_array($data);
+
+		$this->load->view('nav_content/header.php', array('data' => $data ));
+		$this->load->view('content/room', array('data' => $data ));
+		$this->load->view('nav_content/footer.php');
+	}	
+
+	public function guru() {
+		$this->cek_session_nav->cek_session_guru();
+		$data = $this->Guru_model->getGuru();
+		//debug_array($data);
+
+		$this->load->view('nav_content/header.php', array('data' => $data ));
+		$this->load->view('content/room', array('data' => $data ));
+		$this->load->view('nav_content/footer.php');
+	}	
 }

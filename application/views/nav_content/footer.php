@@ -58,6 +58,7 @@
 <!-- Material Dashboard DEMO methods, don't include it in your project! -->
 <script src=<?php echo base_url("assets/js/demo.js");?>></script>
 <script src=<?php echo base_url("assets/js/crud_mapel.min.js");?> type="text/javascript"></script>
+<script src=<?php echo base_url("assets/js/crud_room.min.js");?> type="text/javascript"></script>
 <!-- <script src=<?php echo base_url("assets/js/sweetalert2.min.js"); ?>></script> -->
 <script type="text/javascript">
 $(document).ready(function(){
