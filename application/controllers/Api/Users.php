@@ -50,7 +50,7 @@ class users extends CI_Controller {
 							 $token_data['admin_id'] = $output->admin_id;
 							 $token_data['username'] = $output->username;
 							 $token_data['status'] = $output->status;
-							 $token_data['auth_token'] = $output->auth_token;
+							// $token_data['auth_token'] = $output->auth_token;
 							 $token_data['time'] = time();
 
 							 $user_token = $this->authorization_token->generateToken($token_data);
