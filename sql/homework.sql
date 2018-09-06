@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2018 at 07:37 AM
+-- Generation Time: Sep 06, 2018 at 07:56 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 5.6.34
 
@@ -49,9 +49,9 @@ INSERT INTO `admin` (`admin_id`, `username`, `password`, `status`) VALUES
 --
 
 CREATE TABLE `guru` (
-  `teacher_id` int(255) NOT NULL,
-  `teachername` int(11) NOT NULL,
-  `teacher_note` text
+  `guru_id` int(255) NOT NULL,
+  `guruname` int(11) NOT NULL,
+  `guru_note` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -124,9 +124,9 @@ ALTER TABLE `admin`
 -- Indexes for table `guru`
 --
 ALTER TABLE `guru`
-  ADD PRIMARY KEY (`teacher_id`),
-  ADD KEY `teacher_id` (`teacher_id`),
-  ADD KEY `teacher_id_2` (`teacher_id`);
+  ADD PRIMARY KEY (`guru_id`),
+  ADD KEY `teacher_id` (`guru_id`),
+  ADD KEY `teacher_id_2` (`guru_id`);
 
 --
 -- Indexes for table `mapel`
@@ -158,7 +158,7 @@ ALTER TABLE `schedule`
 -- Constraints for table `schedule`
 --
 ALTER TABLE `schedule`
-  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `guru` (`teacher_id`),
+  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `guru` (`guru_id`),
   ADD CONSTRAINT `schedule_ibfk_2` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`),
   ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`mapel_id`) REFERENCES `mapel` (`mapel_id`);
 COMMIT;
