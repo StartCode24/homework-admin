@@ -63,7 +63,7 @@
 	                    </a>
 	                </li>
 	                <li class="<?php echo $this->session->userdata('class2'); ?>">
-	                    <a href="#">
+	                    <a href="<?php echo base_url()."Dashboard/guru/all_guru_data/"?>">
 	                        <i class="material-icons">people</i>
 	                        <p>Guru</p>
 	                    </a>
@@ -75,7 +75,7 @@
 	                    </a>
 	                </li>
 	                <li class="<?php echo $this->session->userdata('class4'); ?>">
-	                    <a href="#">
+	                    <a href="<?php echo base_url()."Dashboard/room/all_room_data/"?>">
 	                        <i class="material-icons">room</i>
 	                        <p>Ruang Kelas</p>
 	                    </a>
