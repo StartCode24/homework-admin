@@ -69,7 +69,7 @@
 	                    </a>
 	                </li>
 	                <li class="<?php echo $this->session->userdata('class3'); ?>">
-	                    <a href="<?php echo base_url()."Dashboard/mapel/all_mapel_data/"?>">
+	                    <a href="<?php echo base_url()."Dashboard/mapel/"?>">
 	                        <i class="material-icons">content_paste</i>
 	                        <p>Mata Pelajaran</p>
 	                    </a>
