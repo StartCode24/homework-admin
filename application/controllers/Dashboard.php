@@ -44,7 +44,7 @@ class Dashboard extends CI_Controller {
 		//debug_array($data);
 
 		$this->load->view('nav_content/header.php', array('data' => $data ));
-		$this->load->view('content/room', array('data' => $data ));
+		$this->load->view('content/room/all_room_data', array('data' => $data ));
 		$this->load->view('nav_content/footer.php');
 	}		
 }

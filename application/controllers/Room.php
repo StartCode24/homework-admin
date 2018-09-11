@@ -11,7 +11,7 @@ class Room extends CI_Controller {
 	}
 
 	public function add_data(){
-		$this->load->view('Room/add_room');
+		$this->load->view('content/room/add_room');
 	}
 
 	public function do_insert(){
@@ -36,9 +36,10 @@ class Room extends CI_Controller {
 		$room = $this->Room_model->getRoom("where room_id = '$room_id'");
 		$data = array(
 			'room_id' => $room[0]['room_id'], 
-			'roomname' => $room[0]['roomname'] 
+			'roomname' => $room[0]['roomname'],
+			'room_note' => $room[0]['room_note'],
 		);
-		$this->load->view('Room/edit_room', $data);
+		$this->load->view('content/room/edit_room', $data);
 	}
 
 	public function do_update(){
