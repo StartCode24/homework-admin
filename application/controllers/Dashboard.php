@@ -45,7 +45,7 @@ class Dashboard extends CI_Controller {
 		$data = $this->Guru_model->getGuru();
 		//debug_array($data);
 		$this->load->view('nav_content/header.php', array('data' => $data ));
-		$this->load->view('content/guru', array('data' => $data ));
+		$this->load->view('content/guru/all_guru_data', array('data' => $data ));
 		$this->load->view('nav_content/footer.php');
 	}	
 }

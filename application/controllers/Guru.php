@@ -11,7 +11,7 @@ class Guru extends CI_Controller {
 	}
 
 	public function add_data(){
-		$this->load->view('Guru/add_guru');
+		$this->load->view('content/guru/add_guru');
 	}
 
 	public function do_insert(){
@@ -38,7 +38,7 @@ class Guru extends CI_Controller {
 			'guru_id' => $guru[0]['guru_id'], 
 			'guruname' => $guru[0]['guruname'] 
 		);
-		$this->load->view('Guru/edit_guru', $data);
+		$this->load->view('content/guru/edit_guru', $data);
 	}
 
 	public function do_update(){

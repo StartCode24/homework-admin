@@ -20,7 +20,7 @@ class Guru_model extends CI_Model {
 	}
 
 	public function deleteData($guru, $where) {
-		$res = $this->db->delete($guru, $data);
+		$res = $this->db->delete($guru, $where);
 		return $res;
 	}
 }
