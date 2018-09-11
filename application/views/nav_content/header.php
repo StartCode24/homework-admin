@@ -77,7 +77,7 @@
 	                <li class="<?php echo $this->session->userdata('class4'); ?>">
 	                    <a href="<?php echo base_url()."Dashboard/room/all_room_data/"?>">
 	                        <i class="material-icons">room</i>
-	                        <p>Ruang Kelas</p>
+	                        <p>Ruangan</p>
 	                    </a>
 	                </li>
 	            </ul>

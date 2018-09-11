@@ -4,7 +4,7 @@
       <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="card card-stats">
           <div class="card-content">
-            <p class="category">Mata Pelajaran</p>
+            <p class="category">Ruangan</p>
             <a href="<?php echo base_url()?>Room/add_data"><h3 class="title"><i class="fa fa-plus-circle"></i>Tambah Data</h3></a>
             <div class="card-body">
        <div class="table-responsive">
