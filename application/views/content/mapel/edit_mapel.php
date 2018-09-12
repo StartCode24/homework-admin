@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Tambah Mapel</title>
+	<title>Edit Mapel</title>
 	<link rel="stylesheet" href="">
 	<style>
 		
@@ -19,6 +19,10 @@
 			<tr>
 				<td>Nama Mapel</td>
 				<td><input type="text" name="mapelname" value="<?php echo $mapelname; ?>"></td>
+			</tr>
+			<tr>
+				<td>Note Mapel</td>
+				<td><textarea name="mapel_note" value="<?php echo $mapel_note; ?>"></textarea></td>
 			</tr>
 			<tr>
 				<td></td>

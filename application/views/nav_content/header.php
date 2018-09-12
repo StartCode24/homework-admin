@@ -63,13 +63,13 @@
 	                    </a>
 	                </li>
 	                <li class="<?php echo $this->session->userdata('class2'); ?>">
-	                    <a href="<?php echo base_url()."Dashboard/guru/all_guru_data/"?>">
+	                    <a href="<?php echo base_url()."Dashboard/guru/"?>">
 	                        <i class="material-icons">people</i>
 	                        <p>Guru</p>
 	                    </a>
 	                </li>
 	                <li class="<?php echo $this->session->userdata('class3'); ?>">
-	                    <a href="<?php echo base_url()."Dashboard/mapel/all_mapel_data/"?>">
+	                    <a href="<?php echo base_url()."Dashboard/mapel/"?>">
 	                        <i class="material-icons">content_paste</i>
 	                        <p>Mata Pelajaran</p>
 	                    </a>
@@ -77,7 +77,7 @@
 	                <li class="<?php echo $this->session->userdata('class4'); ?>">
 	                    <a href="<?php echo base_url()."Dashboard/room/all_room_data/"?>">
 	                        <i class="material-icons">room</i>
-	                        <p>Ruang Kelas</p>
+	                        <p>Ruangan</p>
 	                    </a>
 	                </li>
 	            </ul>
