@@ -54,6 +54,8 @@ class users extends CI_Controller {
 							 $token_data['time'] = time();
 
 							 $user_token = $this->authorization_token->generateToken($token_data);
+
+							 
 							 $return_data = [
 									 'admin_id' => $output->admin_id,
 									 'username' => $output->username,
@@ -81,6 +83,10 @@ class users extends CI_Controller {
 							 echo json_encode($message);
 					 }
 			 }
+	 }
+
+	 public function profile(){
+
 	 }
 
 }
