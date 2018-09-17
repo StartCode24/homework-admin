@@ -17,7 +17,7 @@ class users extends CI_Controller {
 	 /**
 		* User Login API
 		*/
-	 public function login_post()
+	 public function LoginPost()
 	 {
 			 header("Access-Control-Allow-Origin: *");
 			 # XSS Filtering
@@ -55,7 +55,7 @@ class users extends CI_Controller {
 
 							 $user_token = $this->authorization_token->generateToken($token_data);
 
-							 
+
 							 $return_data = [
 									 'admin_id' => $output->admin_id,
 									 'username' => $output->username,
@@ -85,7 +85,19 @@ class users extends CI_Controller {
 			 }
 	 }
 
-	 public function profile(){
+	 public function GetProfile(){
+		 // header('Content-Type:multipart/form-data');
+		 $receive_token=$this->input->request_headers('Authorization');
+		 try {
+		 	$jwtData=$this->authorization_token->decodeToken($receive_token['Authorization']);
+			echo json_encode($jwtData);
+		 } catch (Exception $e) {
+		 	http_response_code('401');
+			echo json_encode(array('status'=>false, 'message'=>$e->getMessage()));
+			exit;
+		 }
+
+
 
 	 }
 
