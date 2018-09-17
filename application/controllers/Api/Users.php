@@ -65,20 +65,20 @@ class users extends CI_Controller {
 
 							 ];
 							 // Login Success
-							 $message = [
-									 'status' => true,
+							 $message =['response'=> [
+									 'status' => 200,
 									 'data' => $return_data,
 									 'message' => "User login successful"
-							 ];
+							 ]];
 							// $this->response($message, REST_Controller::HTTP_OK);
 							echo json_encode($message);
 					 } else
 					 {
 							 // Login Error
-							 $message = [
+							 $message = ['response'=> [
 									 'status' => FALSE,
 									 'message' => "Invalid Username or Password"
-							 ];
+							 ]];
 							 //$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 							 echo json_encode($message);
 					 }
@@ -90,7 +90,12 @@ class users extends CI_Controller {
 		 $receive_token=$this->input->request_headers('Authorization');
 		 try {
 		 	$jwtData=$this->authorization_token->decodeToken($receive_token['Authorization']);
-			echo json_encode($jwtData);
+			$message =['response'=> [
+					'status' => 200,
+					'data' => $jwtData,
+					'message' => "Data User"
+			]];
+			echo json_encode($message);
 		 } catch (Exception $e) {
 		 	http_response_code('401');
 			echo json_encode(array('status'=>false, 'message'=>$e->getMessage()));
