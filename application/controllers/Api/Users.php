@@ -98,7 +98,11 @@ class users extends CI_Controller {
 			echo json_encode($message);
 		 } catch (Exception $e) {
 		 	http_response_code('401');
-			echo json_encode(array('status'=>false, 'message'=>$e->getMessage()));
+			$message =['response'=> [
+					'status' => false,
+					'message' => $e->getMessage()
+			]];
+			echo json_encode($message);
 			exit;
 		 }
 
