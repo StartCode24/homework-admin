@@ -24,7 +24,7 @@ class users extends CI_Controller {
 			 $_POST = $this->security->xss_clean($_POST);
 
 			 # Form Validation
-			 $this->form_validation->set_rules('username', 'Username', 'trim|required');
+			 $this->form_validation->set_rules('nik', 'nik', 'trim|required');
 			 $this->form_validation->set_rules('password', 'Password', 'trim|required|max_length[100]');
 			 if ($this->form_validation->run() == FALSE)
 			 {
@@ -40,16 +40,19 @@ class users extends CI_Controller {
 			 else
 			 {
 					 // Load Login Function
-					 $output = $this->cek_login->cekLogin($this->input->post('username'), $this->input->post('password'));
+					 $output = $this->cek_login->cekLoginSiswa($this->input->post('nik'), $this->input->post('password'));
 					 if (!empty($output) AND $output != FALSE)
 					 {
 							 // Load Authorization Token Library
 
 							 // Generate Token
 							   foreach ($output as $output) ;
-							 $token_data['admin_id'] = $output->admin_id;
-							 $token_data['username'] = $output->username;
-							 $token_data['status'] = $output->status;
+							 $token_data['id_siswa'] = $output->id_siswa;
+							 $token_data['nik'] = $output->nik;
+							 $token_data['nama'] = $output->nama;
+							 $token_data['jurusan'] = $output->jurusan;
+							 $token_data['kelas'] = $output->kelas;
+							 $token_data['alamat'] = $output->alamat;
 							// $token_data['auth_token'] = $output->auth_token;
 							 $token_data['time'] = time();
 
