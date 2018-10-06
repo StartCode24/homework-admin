@@ -17,7 +17,7 @@ class users extends CI_Controller {
 	 /**
 		* User Login API
 		*/
-	 public function login_post()
+	 public function LoginPost()
 	 {
 			 header("Access-Control-Allow-Origin: *");
 			 # XSS Filtering
@@ -55,7 +55,7 @@ class users extends CI_Controller {
 
 							 $user_token = $this->authorization_token->generateToken($token_data);
 
-							 
+
 							 $return_data = [
 									 'admin_id' => $output->admin_id,
 									 'username' => $output->username,
@@ -65,27 +65,48 @@ class users extends CI_Controller {
 
 							 ];
 							 // Login Success
-							 $message = [
-									 'status' => true,
+							 $message =['response'=> [
+									 'status' => 200,
 									 'data' => $return_data,
 									 'message' => "User login successful"
-							 ];
+							 ]];
 							// $this->response($message, REST_Controller::HTTP_OK);
 							echo json_encode($message);
 					 } else
 					 {
 							 // Login Error
-							 $message = [
+							 $message = ['response'=> [
 									 'status' => FALSE,
 									 'message' => "Invalid Username or Password"
-							 ];
+							 ]];
 							 //$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 							 echo json_encode($message);
 					 }
 			 }
 	 }
 
-	 public function profile(){
+	 public function GetProfile(){
+		 // header('Content-Type:multipart/form-data');
+		 $receive_token=$this->input->request_headers('Authorization');
+		 try {
+		 	$jwtData=$this->authorization_token->decodeToken($receive_token['Authorization']);
+			$message =['response'=> [
+					'status' => 200,
+					'data' => $jwtData,
+					'message' => "Data User"
+			]];
+			echo json_encode($message);
+		 } catch (Exception $e) {
+		 	http_response_code('401');
+			$message =['response'=> [
+					'status' => false,
+					'message' => $e->getMessage()
+			]];
+			echo json_encode($message);
+			exit;
+		 }
+
+
 
 	 }
 

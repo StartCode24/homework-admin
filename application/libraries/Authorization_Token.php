@@ -59,6 +59,11 @@ class Authorization_Token
             return 'Message: ' .$e->getMessage();
         }
     }
+    public function decodeToken($token){
+      $decoded= JWT::decode($token,$this->token_key,array('HS256'));
+      $decodedData=(array) $decoded;
+      return $decodedData;
+    }
     /**
      * Validate Token with Header
      * @return : user informations
