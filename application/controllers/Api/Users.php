@@ -57,12 +57,7 @@ class users extends CI_Controller {
 
 
 							 $return_data = [
-									 'admin_id' => $output->admin_id,
-									 'username' => $output->username,
-									 'status' => $output->status,
 									 'auth_token' => $user_token,
-
-
 							 ];
 							 // Login Success
 							 $message =['response'=> [
@@ -86,7 +81,8 @@ class users extends CI_Controller {
 	 }
 
 	 public function GetProfile(){
-		 // header('Content-Type:multipart/form-data');
+		 header('Content-Type:multipart/form-data');
+		 header('Accept:application/json');
 		 $receive_token=$this->input->request_headers('Authorization');
 		 try {
 		 	$jwtData=$this->authorization_token->decodeToken($receive_token['Authorization']);
