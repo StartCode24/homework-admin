@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 06, 2018 at 08:25 AM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 5.6.34
+-- Generation Time: Oct 20, 2018 at 09:34 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 5.6.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -65,20 +65,55 @@ INSERT INTO `guru` (`guru_id`, `guruname`, `guru_note`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `jurusan`
+--
+
+CREATE TABLE `jurusan` (
+  `jurusan_id` int(11) NOT NULL,
+  `jurusan_name` varchar(200) NOT NULL,
+  `jurusan_jumlah_kelas` int(2) DEFAULT NULL,
+  `jurusan_kepala` varchar(100) DEFAULT NULL,
+  `jurusan_note` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jurusan`
+--
+
+INSERT INTO `jurusan` (`jurusan_id`, `jurusan_name`, `jurusan_jumlah_kelas`, `jurusan_kepala`, `jurusan_note`) VALUES
+(1, 'Teknik konstruksi gedung, sanitasi dan perawatan', 1, NULL, NULL),
+(2, 'Teknik Komputer Dan Jaringan', 1, NULL, NULL),
+(3, 'Teknik Sistem Informasi, Jaringan Dan Aplikasi', 1, NULL, NULL),
+(4, 'Teknik Desain Pemodelan Dan Informasi Bangunan', 1, NULL, NULL),
+(5, 'Teknik Elektronika Daya Dan Komunikasi', 1, NULL, NULL),
+(6, 'Teknik Audio Video', 1, NULL, NULL),
+(7, 'Teknik Otomasi Industri', 1, NULL, NULL),
+(8, 'Teknik Manajemen Dan Perawatan Otomotif', 1, NULL, NULL),
+(9, 'Teknik Bodi Otomotif', 1, NULL, NULL),
+(10, 'Teknik Fabrikasi Logam Dan Manufaktur', 1, NULL, NULL),
+(11, 'Kimia Industri', 1, NULL, NULL),
+(12, 'Kimia Analis', 1, NULL, NULL),
+(13, 'Geologi Pertambangan', 1, NULL, NULL),
+(14, 'Teknik Pengolahan Migas Dan Petrokimia', 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `mapel`
 --
 
 CREATE TABLE `mapel` (
   `mapel_id` int(255) NOT NULL,
-  `mapelname` varchar(255) NOT NULL
+  `mapelname` varchar(255) NOT NULL,
+  `mapel_note` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `mapel`
 --
 
-INSERT INTO `mapel` (`mapel_id`, `mapelname`) VALUES
-(3432432, 'Bahasa Jawa');
+INSERT INTO `mapel` (`mapel_id`, `mapelname`, `mapel_note`) VALUES
+(3432432, 'Bahasa Jawa', '');
 
 -- --------------------------------------------------------
 
@@ -117,6 +152,29 @@ CREATE TABLE `schedule` (
   `room_id` int(11) NOT NULL,
   `mapel_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `siswa`
+--
+
+CREATE TABLE `siswa` (
+  `id_siswa` varchar(50) NOT NULL,
+  `nik` varchar(50) NOT NULL,
+  `nama` varchar(50) NOT NULL,
+  `alamat` varchar(50) NOT NULL,
+  `kelas` varchar(50) NOT NULL,
+  `jurusan` varchar(50) NOT NULL,
+  `password` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `siswa`
+--
+
+INSERT INTO `siswa` (`id_siswa`, `nik`, `nama`, `alamat`, `kelas`, `jurusan`, `password`) VALUES
+('001', '5140411151', 'nunung', 'sleman', '7B', 'otomotif', '5140411151');
 
 --
 -- Indexes for dumped tables
@@ -157,6 +215,12 @@ ALTER TABLE `schedule`
   ADD KEY `teacher_id` (`teacher_id`),
   ADD KEY `room_id` (`room_id`),
   ADD KEY `mapel_id` (`mapel_id`);
+
+--
+-- Indexes for table `siswa`
+--
+ALTER TABLE `siswa`
+  ADD PRIMARY KEY (`id_siswa`);
 
 --
 -- Constraints for dumped tables
