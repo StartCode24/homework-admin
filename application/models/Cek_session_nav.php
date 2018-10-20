@@ -197,5 +197,52 @@ class Cek_session_nav extends CI_Model {
 		}
 	}
 
+	function cek_session_jurusan(){
+		if ($this->session->set_userdata('class5')=='') {
+			$this->session->set_userdata('class5','active');
+			$this->session->unset_userdata('class0');
+			$this->session->unset_userdata('class1');
+			$this->session->unset_userdata('class2');
+			$this->session->unset_userdata('class3');
+			$this->session->unset_userdata('class4');
+		}elseif ($this->session->set_userdata('class0')=='active') {
+			$this->session->unset_userdata('class1');
+			$this->session->unset_userdata('class2');
+			$this->session->unset_userdata('class3');
+			$this->session->unset_userdata('class4');
+			$this->session->unset_userdata('class5');
+			$this->session->set_userdata('class4','active');
+		}elseif ($this->session->set_userdata('class1')=='active') {
+			$this->session->unset_userdata('class0');
+			$this->session->unset_userdata('class1');
+			$this->session->unset_userdata('class2');
+			$this->session->unset_userdata('class4');
+			$this->session->unset_userdata('class5');
+			$this->session->set_userdata('class4','active');
+		}elseif ($this->session->set_userdata('class2')=='active') {
+			$this->session->unset_userdata('class0');
+			$this->session->unset_userdata('class1');
+			$this->session->unset_userdata('class2');
+			$this->session->unset_userdata('class4');
+			$this->session->unset_userdata('class5');
+			$this->session->set_userdata('class4','active');
+		}elseif ($this->session->set_userdata('class3')=='active') {
+			$this->session->unset_userdata('class0');
+			$this->session->unset_userdata('class1');
+			$this->session->unset_userdata('class2');
+			$this->session->unset_userdata('class4');
+			$this->session->unset_userdata('class5');
+			$this->session->set_userdata('class4','active');
+		}
+		elseif ($this->session->set_userdata('class5')=='active') {
+			$this->session->unset_userdata('class0');
+			$this->session->unset_userdata('class1');
+			$this->session->unset_userdata('class2');
+			$this->session->unset_userdata('class4');
+			$this->session->unset_userdata('class5');
+			$this->session->set_userdata('class4','active');
+		}
+	}	
+
 			
 }
