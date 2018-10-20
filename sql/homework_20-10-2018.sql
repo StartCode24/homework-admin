@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2018 at 09:19 AM
+-- Generation Time: Oct 20, 2018 at 09:34 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -81,7 +81,20 @@ CREATE TABLE `jurusan` (
 --
 
 INSERT INTO `jurusan` (`jurusan_id`, `jurusan_name`, `jurusan_jumlah_kelas`, `jurusan_kepala`, `jurusan_note`) VALUES
-(1, 'Teknik konstruksi gedung, sanitasi dan perawatan', 1, NULL, NULL);
+(1, 'Teknik konstruksi gedung, sanitasi dan perawatan', 1, NULL, NULL),
+(2, 'Teknik Komputer Dan Jaringan', 1, NULL, NULL),
+(3, 'Teknik Sistem Informasi, Jaringan Dan Aplikasi', 1, NULL, NULL),
+(4, 'Teknik Desain Pemodelan Dan Informasi Bangunan', 1, NULL, NULL),
+(5, 'Teknik Elektronika Daya Dan Komunikasi', 1, NULL, NULL),
+(6, 'Teknik Audio Video', 1, NULL, NULL),
+(7, 'Teknik Otomasi Industri', 1, NULL, NULL),
+(8, 'Teknik Manajemen Dan Perawatan Otomotif', 1, NULL, NULL),
+(9, 'Teknik Bodi Otomotif', 1, NULL, NULL),
+(10, 'Teknik Fabrikasi Logam Dan Manufaktur', 1, NULL, NULL),
+(11, 'Kimia Industri', 1, NULL, NULL),
+(12, 'Kimia Analis', 1, NULL, NULL),
+(13, 'Geologi Pertambangan', 1, NULL, NULL),
+(14, 'Teknik Pengolahan Migas Dan Petrokimia', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
