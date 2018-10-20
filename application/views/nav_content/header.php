@@ -80,6 +80,12 @@
 	                        <p>Ruangan</p>
 	                    </a>
 	                </li>
+	                <li class="<?php echo $this->session->userdata('class5'); ?>">
+	                    <a href="<?php echo base_url()."Dashboard/jurusan/"?>">
+	                        <i class="material-icons">content_paste</i>
+	                        <p>Jurusan</p>
+	                    </a>
+	                </li>	                
 	            </ul>
 	    	</div>
 	    </div>

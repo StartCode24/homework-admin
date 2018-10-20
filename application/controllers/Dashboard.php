@@ -46,5 +46,14 @@ class Dashboard extends CI_Controller {
 		$this->load->view('nav_content/header.php', array('data' => $data ));
 		$this->load->view('content/room/all_room_data', array('data' => $data ));
 		$this->load->view('nav_content/footer.php');
-	}		
+	}
+
+	public function jurusan() {
+		$this->cek_session_nav->cek_session_jurusan();
+		$data = $this->Jurusan_model->getJurusan();
+		//debug_array($data);
+		$this->load->view('nav_content/header.php', array('data' => $data ));
+		$this->load->view('content/jurusan/all_jurusan_data', array('data' => $data ));
+		$this->load->view('nav_content/footer.php');
+	}			
 }
