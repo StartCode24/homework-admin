@@ -85,7 +85,13 @@
 	                        <i class="material-icons">content_paste</i>
 	                        <p>Jurusan</p>
 	                    </a>
-	                </li>	                
+	                </li>
+	                <li class="<?php echo $this->session->userdata('class6'); ?>">
+	                    <a href="<?php echo base_url()."Dashboard/siswa/"?>">
+	                        <i class="material-icons">content_paste</i>
+	                        <p>Siswa</p>
+	                    </a>
+	                </li>		                
 	            </ul>
 	    	</div>
 	    </div>
