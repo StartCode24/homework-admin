@@ -55,5 +55,14 @@ class Dashboard extends CI_Controller {
 		$this->load->view('nav_content/header.php', array('data' => $data ));
 		$this->load->view('content/jurusan/all_jurusan_data', array('data' => $data ));
 		$this->load->view('nav_content/footer.php');
-	}			
+	}
+
+	public function siswa() {
+		$this->cek_session_nav->cek_session_siswa();
+		$data = $this->Siswa_model->getSiswa();
+		//debug_array($data);
+		$this->load->view('nav_content/header.php', array('data' => $data ));
+		$this->load->view('content/siswa/all_siswa_data', array('data' => $data ));
+		$this->load->view('nav_content/footer.php');
+	}				
 }
