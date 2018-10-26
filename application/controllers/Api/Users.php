@@ -48,12 +48,12 @@ class users extends CI_Controller {
 
 							 // Generate Token
 							   foreach ($output as $output) ;
-							 $token_data['id_siswa'] = $output->id_siswa;
-							 $token_data['NIK'] = $output->nik;
-							 $token_data['nama'] = $output->nama;
-							 $token_data['jurusan'] = $output->jurusan;
-							 $token_data['kelas'] = $output->kelas;
-							 $token_data['alamat'] = $output->alamat;
+							 $token_data['siswa_id'] = $output->siswa_id;
+							 $token_data['siswa_nik'] = $output->siswa_nik;
+							 $token_data['siswa_name'] = $output->siswa_name;
+							 $token_data['siswa_jurusan'] = $output->jurusan;
+							 $token_data['siswa_kelas'] = $output->siswa_kelas;
+							 $token_data['siswa_alamat'] = $output->siswa_alamat;
 							// $token_data['auth_token'] = $output->auth_token;
 							 $token_data['time'] = time();
 
