@@ -62,7 +62,8 @@
 <script src=<?php echo base_url("assets/js/crud_guru.min.js");?> type="text/javascript"></script>
 <script src=<?php echo base_url("assets/js/crud_siswa.min.js");?> type="text/javascript"></script>
 <script src=<?php echo base_url("assets/js/crud_jurusan.min.js");?> type="text/javascript"></script>
-<!-- <script src=<?php echo base_url("assets/js/sweetalert2.min.js"); ?>></script> -->
+
+
 <script type="text/javascript">
 $(document).ready(function(){
 
