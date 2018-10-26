@@ -37,7 +37,7 @@ class Dashboard extends CI_Controller {
 				}
 				if ($this->session->userdata('EditPesan')=='berhasil') {
 					$this->load->view('content/guru/sweet-alert-edit');
-					$this->session->unset_userdata('editPegawai');
+					$this->session->unset_userdata('EditPesan');
 				}
 	}
 

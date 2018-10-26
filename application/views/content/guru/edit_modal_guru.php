@@ -6,7 +6,7 @@
 				<!-- heading modal -->
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" onclick="closeModal()">&times;</button>
-					<h4 class="modal-title">Edit Data Pegawai</h4>
+					<h4 class="modal-title">Edit Data Guru</h4>
 
 				</div>
 				<!-- body modal -->
