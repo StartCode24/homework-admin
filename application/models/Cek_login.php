@@ -29,8 +29,8 @@ class Cek_login extends CI_Model {
 	 $password=$this->db->escape_like_str($pass);
 	 $this->db->select('*');
 	 $this->db->from('siswa');
-	 $this->db->where('nik',$NIK);
-	 $this->db->where('password',$password);
+	 $this->db->where('siswa_nik',$NIK);
+	 $this->db->where('siswa_password',$password);
 	 $this->db->limit(1);
 
 	 $query=$this->db->get();

@@ -19,13 +19,14 @@ class users extends CI_Controller {
 		*/
 	 public function LoginPost()
 	 {
-			 header("Access-Control-Allow-Origin: *");
+		 header('Content-Type:application/json');
+		 header('Accept:application/json');
 			 # XSS Filtering
 			 $_POST = $this->security->xss_clean($_POST);
 
 			 # Form Validation
-			 $this->form_validation->set_rules('nik', 'nik', 'trim|required');
-			 $this->form_validation->set_rules('password', 'Password', 'trim|required|max_length[100]');
+			 $this->form_validation->set_rules('NIK', 'NIK', 'trim|required');
+			 $this->form_validation->set_rules('Password', 'Password', 'trim|required|max_length[100]');
 			 if ($this->form_validation->run() == FALSE)
 			 {
 					 // Form Validation Errors
@@ -40,19 +41,19 @@ class users extends CI_Controller {
 			 else
 			 {
 					 // Load Login Function
-					 $output = $this->cek_login->cekLoginSiswa($this->input->post('nik'), $this->input->post('password'));
+					 $output = $this->cek_login->cekLoginSiswa($this->input->post('NIK'), $this->input->post('Password'));
 					 if (!empty($output) AND $output != FALSE)
 					 {
 							 // Load Authorization Token Library
 
 							 // Generate Token
 							   foreach ($output as $output) ;
-							 $token_data['id_siswa'] = $output->id_siswa;
-							 $token_data['nik'] = $output->nik;
-							 $token_data['nama'] = $output->nama;
-							 $token_data['jurusan'] = $output->jurusan;
-							 $token_data['kelas'] = $output->kelas;
-							 $token_data['alamat'] = $output->alamat;
+							 $token_data['siswa_id'] = $output->siswa_id;
+							 $token_data['siswa_nik'] = $output->siswa_nik;
+							 $token_data['siswa_name'] = $output->siswa_name;
+							 $token_data['siswa_jurusan'] = $output->jurusan;
+							 $token_data['siswa_kelas'] = $output->siswa_kelas;
+							 $token_data['siswa_alamat'] = $output->siswa_alamat;
 							// $token_data['auth_token'] = $output->auth_token;
 							 $token_data['time'] = time();
 
@@ -63,7 +64,7 @@ class users extends CI_Controller {
 									 'auth_token' => $user_token,
 							 ];
 							 // Login Success
-							 $message =['response'=> [
+							 $message =['auth_login'=> [
 									 'status' => 200,
 									 'data' => $return_data,
 									 'message' => "User login successful"
@@ -73,7 +74,7 @@ class users extends CI_Controller {
 					 } else
 					 {
 							 // Login Error
-							 $message = ['response'=> [
+							 $message = ['auth_login'=> [
 									 'status' => FALSE,
 									 'message' => "Invalid Username or Password"
 							 ]];
@@ -84,12 +85,12 @@ class users extends CI_Controller {
 	 }
 
 	 public function GetProfile(){
-		 header('Content-Type:multipart/form-data');
+		 header('Content-Type:application/json');
 		 header('Accept:application/json');
 		 $receive_token=$this->input->request_headers('Authorization');
 		 try {
 		 	$jwtData=$this->authorization_token->decodeToken($receive_token['Authorization']);
-			$message =['response'=> [
+			$message =['auth_user'=> [
 					'status' => 200,
 					'data' => $jwtData,
 					'message' => "Data User"
@@ -97,7 +98,7 @@ class users extends CI_Controller {
 			echo json_encode($message);
 		 } catch (Exception $e) {
 		 	http_response_code('401');
-			$message =['response'=> [
+			$message =['auth_user'=> [
 					'status' => false,
 					'message' => $e->getMessage()
 			]];
