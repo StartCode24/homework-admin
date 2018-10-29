@@ -23,10 +23,22 @@ class Dashboard extends CI_Controller {
 	public function guru() {
 		$this->cek_session_nav->cek_session_guru();
 		$data = $this->Guru_model->getGuru();
+		$kodeunik= $this->Cek_kodeUnik->cari_kode_guru();
 		//debug_array($data);
 		$this->load->view('nav_content/header.php', array('data' => $data ));
 		$this->load->view('content/guru/all_guru_data', array('data' => $data ));
 		$this->load->view('nav_content/footer.php');
+		$this->load->view('content/guru/add_modal_guru',array('kode_unik' => $kodeunik ));
+
+		// untuk mengecek pesan konfirmasi input berhasil
+				if ($this->session->userdata('pesan')=='berhasil') {
+					$this->load->view('content/guru/sweet-alert-input');
+					$this->session->unset_userdata('pesan');
+				}
+				if ($this->session->userdata('EditPesan')=='berhasil') {
+					$this->load->view('content/guru/sweet-alert-edit');
+					$this->session->unset_userdata('EditPesan');
+				}
 	}
 
 	public function mapel() {
@@ -64,5 +76,5 @@ class Dashboard extends CI_Controller {
 		$this->load->view('nav_content/header.php', array('data' => $data ));
 		$this->load->view('content/siswa/all_siswa_data', array('data' => $data ));
 		$this->load->view('nav_content/footer.php');
-	}				
+	}
 }
