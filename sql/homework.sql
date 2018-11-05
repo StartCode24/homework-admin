@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 20, 2018 at 09:34 AM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 5.6.38
+-- Generation Time: Oct 26, 2018 at 07:49 PM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.1.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -160,20 +160,20 @@ CREATE TABLE `schedule` (
 --
 
 CREATE TABLE `siswa` (
-  `id_siswa` varchar(50) NOT NULL,
-  `nik` varchar(50) NOT NULL,
-  `nama` varchar(50) NOT NULL,
-  `alamat` varchar(50) NOT NULL,
-  `kelas` varchar(50) NOT NULL,
-  `jurusan` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `siswa_id` varchar(50) NOT NULL,
+  `siswa_nik` varchar(50) NOT NULL,
+  `siswa_name` varchar(50) NOT NULL,
+  `siswa_alamat` varchar(50) NOT NULL,
+  `siswa_kelas` varchar(50) NOT NULL,
+  `siswa_jurusan` varchar(50) NOT NULL,
+  `siswa_password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id_siswa`, `nik`, `nama`, `alamat`, `kelas`, `jurusan`, `password`) VALUES
+INSERT INTO `siswa` (`siswa_id`, `siswa_nik`, `siswa_name`, `siswa_alamat`, `siswa_kelas`, `siswa_jurusan`, `siswa_password`) VALUES
 ('001', '5140411151', 'nunung', 'sleman', '7B', 'otomotif', '5140411151');
 
 --
@@ -220,7 +220,7 @@ ALTER TABLE `schedule`
 -- Indexes for table `siswa`
 --
 ALTER TABLE `siswa`
-  ADD PRIMARY KEY (`id_siswa`);
+  ADD PRIMARY KEY (`siswa_id`);
 
 --
 -- Constraints for dumped tables

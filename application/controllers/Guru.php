@@ -25,20 +25,23 @@ class Guru extends CI_Controller {
 		);
 		$res = $this->Guru_model->insertData('guru', $data_insert);
 		if ($res>=1){
-			$this->session->set_flashdata('pesan', 'Tambah data sukses');
+			//$this->session->set_flashdata('pesan', 'Tambah data sukses');
+			$this->session->set_userdata('pesan','berhasil');
 			redirect('Dashboard/guru');
 		}else{
 			echo "<h3>Insert data gagal</h3>";
 		}
 	}
 
-	public function edit_data($guru_id){
+	public function edit_data(){
+		$guru_id=$this->input->post('guru_id');
 		$guru = $this->Guru_model->getGuru("where guru_id = '$guru_id'");
 		$data = array(
-			'guru_id' => $guru[0]['guru_id'], 
-			'guruname' => $guru[0]['guruname'] 
+			'guru_id' => $guru[0]['guru_id'],
+			'guruname' => $guru[0]['guruname']
 		);
-		$this->load->view('content/guru/edit_guru', $data);
+		//$this->load->view('content/guru/edit_guru', $data);
+		$this->load->view('content/guru/edit_modal_guru', $data);
 	}
 
 	public function do_update(){
@@ -52,7 +55,8 @@ class Guru extends CI_Controller {
 		$where = array('guru_id' => $guru_id);
 		$res = $this->Guru_model->updateData('guru', $data_update, $where);
 		if ($res>=1){
-			$this->session->set_flashdata('pesan', 'Update data sukses');
+			// $this->session->set_flashdata('pesan', 'Update data sukses');
+			$this->session->set_userdata('EditPesan','berhasil');
 			redirect('Dashboard/guru');
 		}else{
 			echo "<h3>Update data gagal</h3>";
