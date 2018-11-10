@@ -54,7 +54,9 @@ class users extends CI_Controller {
 							 $token_data['siswa_jurusan'] = $output->siswa_jurusan;
 							 $token_data['siswa_kelas'] = $output->siswa_kelas;
 							 $token_data['siswa_alamat'] = $output->siswa_alamat;
-							// $token_data['auth_token'] = $output->auth_token;
+							 $token_data['siswa_password'] = $output->siswa_password;
+							 $token_data['siswa_note'] = $output->siswa_note;
+							 //$token_data['auth_token'] = $output->auth_token;
 							 $token_data['time'] = time();
 
 							 $user_token = $this->authorization_token->generateToken($token_data);
