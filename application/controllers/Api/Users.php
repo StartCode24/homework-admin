@@ -112,35 +112,6 @@ class users extends CI_Controller {
 
 	
 
-	public function do_update(){
-		$siswa_id = $_POST['siswa_id'];
-		$siswa_nik = $_POST['siswa_nik'];
-		$siswa_name = $_POST['siswa_name'];
-		$siswa_alamat = $_POST['siswa_alamat'];
-		$siswa_kelas = $_POST['siswa_kelas'];
-		$siswa_jurusan = $_POST['siswa_jurusan'];
-		$siswa_password = $_POST['siswa_password'];
-		$siswa_note = $_POST['siswa_note'];
-		$data_update = array(
-			'siswa_id' => $siswa_id,
-			'siswa_nik' => $siswa_nik,
-			'siswa_name' => $siswa_name,
-			'siswa_alamat' => $siswa_alamat,
-			'siswa_kelas' => $siswa_kelas,
-			'siswa_jurusan' => $siswa_jurusan,
-			'siswa_password' => $siswa_password,
-			'siswa_note' => $siswa_note
-		);
-		$where = array('siswa_id' => $siswa_id);
-		$res = $this->Siswa_model->updateData('siswa', $data_update, $where);
-		if ($res>=1){
-			$this->session->set_flashdata('pesan', 'Update data sukses');
-			redirect('Dashboard/siswa');
-		}else{
-			echo "<h3>Update data gagal</h3>";
-		}
-	}
-
 	 public function EditProfile(){
 		header('Content-Type:application/json');
 		header('Accept:application/json');
