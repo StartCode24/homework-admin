@@ -20,4 +20,9 @@ class content extends CI_Controller {
 
 	}
 
+	public function GetNote(){
+
+	}
+	
+
 }
