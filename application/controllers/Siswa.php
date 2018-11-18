@@ -19,8 +19,8 @@ class Siswa extends CI_Controller {
 		$siswa_nik = $_POST['siswa_nik'];
 		$siswa_name = $_POST['siswa_name'];
 		$siswa_alamat = $_POST['siswa_alamat'];
-		$siswa_kelas = $_POST['siswa_kelas'];
-		$siswa_jurusan = $_POST['siswa_jurusan'];
+		$kelas_id = $_POST['kelas_id'];
+		$jurusan_id = $_POST['jurusan_id'];
 		$siswa_password = $_POST['siswa_password'];
 		$siswa_note = $_POST['siswa_note'];
 		$data_insert = array(
@@ -28,8 +28,8 @@ class Siswa extends CI_Controller {
 			'siswa_nik' => $siswa_nik,
 			'siswa_name' => $siswa_name,
 			'siswa_alamat' => $siswa_alamat,
-			'siswa_kelas' => $siswa_kelas,
-			'siswa_jurusan' => $siswa_jurusan,
+			'kelas_id' => $kelas_id,
+			'jurusan_id' => $jurusan_id,
 			'siswa_password' => $siswa_password,
 			'siswa_note' => $siswa_note
 		);
@@ -49,8 +49,8 @@ class Siswa extends CI_Controller {
 			'siswa_nik' => $siswa[0]['siswa_nik'],
 			'siswa_name' => $siswa[0]['siswa_name'],
 			'siswa_alamat' => $siswa[0]['siswa_alamat'],
-			'siswa_kelas' => $siswa[0]['siswa_kelas'],
-			'siswa_jurusan' => $siswa[0]['siswa_jurusan'],
+			'kelas_id' => $siswa[0]['kelas_id'],
+			'jurusan_id' => $siswa[0]['jurusan_id'],
 			'siswa_password' => $siswa[0]['siswa_password'],
 			'siswa_note' => $siswa[0]['siswa_note']		 
 		);
@@ -62,8 +62,8 @@ class Siswa extends CI_Controller {
 		$siswa_nik = $_POST['siswa_nik'];
 		$siswa_name = $_POST['siswa_name'];
 		$siswa_alamat = $_POST['siswa_alamat'];
-		$siswa_kelas = $_POST['siswa_kelas'];
-		$siswa_jurusan = $_POST['siswa_jurusan'];
+		$kelas_id = $_POST['kelas_id'];
+		$jurusan_id = $_POST['jurusan_id'];
 		$siswa_password = $_POST['siswa_password'];
 		$siswa_note = $_POST['siswa_note'];
 		$data_update = array(
@@ -71,8 +71,8 @@ class Siswa extends CI_Controller {
 			'siswa_nik' => $siswa_nik,
 			'siswa_name' => $siswa_name,
 			'siswa_alamat' => $siswa_alamat,
-			'siswa_kelas' => $siswa_kelas,
-			'siswa_jurusan' => $siswa_jurusan,
+			'kelas_id' => $kelas_id,
+			'jurusan_id' => $jurusan_id,
 			'siswa_password' => $siswa_password,
 			'siswa_note' => $siswa_note
 		);
