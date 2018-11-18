@@ -93,17 +93,19 @@ class users extends CI_Controller {
 		 $receive_token=$this->input->request_headers('Authorization');
 		 try {
 			 $jwtData=$this->authorization_token->decodeToken($receive_token['Authorization']);
+			 $siswa_id=$jwtData['siswa_id'];
+			 $siswa = $this->Siswa_model->getSiswa("where siswa_id = '$siswa_id'");
 			 $jurusan_id=$jwtData['jurusan_id'];
 			 $jurusan=$this->Jurusan_model->getJurusan("where jurusan_id = '$jurusan_id'");
 			 $kelas_id=$jwtData['kelas_id'];
 			 $kelas=$this->Kelas_model->getKelas("where kelas_id = '$kelas_id'");
 			 $data=array(
-				 'siswa_id'=>$jwtData['siswa_id'],
-				 'siswa_nik'=>$jwtData['siswa_nik'],
-				 'siswa_name'=>$jwtData['siswa_name'],
-				 'siswa_alamat'=>$jwtData['siswa_alamat'],
-				 'siswa_password'=>$jwtData['siswa_password'],
-				 'siswa_note'=>$jwtData['siswa_note'],
+				 'siswa_id'=>$siswa[0]['siswa_id'],
+				 'siswa_nik'=>$siswa[0]['siswa_nik'],
+				 'siswa_name'=>$siswa[0]['siswa_name'],
+				 'siswa_alamat'=>$siswa[0]['siswa_alamat'],
+				 'siswa_password'=>$siswa[0]['siswa_password'],
+				 'siswa_note'=>$siswa[0]['siswa_note'],
 				 'siswa_jurusan'=>$jurusan[0]['jurusan_name'],
 				 'siswa_kelas'=>$kelas[0]['kelas_name'],
 				 'kelas_id'=>$jwtData['kelas_id'],
@@ -141,8 +143,8 @@ class users extends CI_Controller {
 			$this->form_validation->set_rules('siswa_nik', 'siswa_nik', 'trim|required');
 			$this->form_validation->set_rules('siswa_name', 'siswa_name', 'trim|required');
 			$this->form_validation->set_rules('siswa_alamat', 'siswa_alamat', 'trim|required');
-			$this->form_validation->set_rules('siswa_kelas', 'siswa_kelas', 'trim|required');
-			$this->form_validation->set_rules('siswa_jurusan', 'siswa_jurusan', 'trim|required');
+			$this->form_validation->set_rules('kelas_id', 'kelas_id', 'trim|required');
+			$this->form_validation->set_rules('jurusan_id', 'jurusan_id', 'trim|required');
 			$this->form_validation->set_rules('siswa_password', 'siswa_password', 'trim|required');
 			$this->form_validation->set_rules('siswa_note', 'siswa_note', 'trim|required');
 			if ($this->form_validation->run() == FALSE)
@@ -162,8 +164,8 @@ class users extends CI_Controller {
 					$siswa_nik = $_POST['siswa_nik'];
 					$siswa_name = $_POST['siswa_name'];
 					$siswa_alamat = $_POST['siswa_alamat'];
-					$siswa_kelas = $_POST['siswa_kelas'];
-					$siswa_jurusan = $_POST['siswa_jurusan'];
+					$kelas_id= $_POST['kelas_id'];
+					$jurusan_id = $_POST['jurusan_id'];
 					$siswa_password = $_POST['siswa_password'];
 					$siswa_note = $_POST['siswa_note'];
 					$data_update = array(
@@ -171,8 +173,8 @@ class users extends CI_Controller {
 						'siswa_nik' => $siswa_nik,
 						'siswa_name' => $siswa_name,
 						'siswa_alamat' => $siswa_alamat,
-						'siswa_kelas' => $siswa_kelas,
-						'siswa_jurusan' => $siswa_jurusan,
+						'kelas_id' => $kelas_id,
+						'jurusan_id' => $jurusan_id,
 						'siswa_password' => $siswa_password,
 						'siswa_note' => $siswa_note
 					);
