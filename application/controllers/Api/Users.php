@@ -7,7 +7,7 @@ class users extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->helper('form');
-    $this->load->library('session');
+    	$this->load->library('session');
 		$this->load->library('Authorization_Token');
 		$this->load->library('form_validation');
 		$this->load->model('cek_login');
@@ -30,11 +30,11 @@ class users extends CI_Controller {
 			 if ($this->form_validation->run() == FALSE)
 			 {
 					 // Form Validation Errors
-					 $message = array(
+					 $message =array('auth_login'=> array(
 							 'status' => false,
 							 'error' => $this->form_validation->error_array(),
 							 'message' => validation_errors()
-					 );
+					 ));
 					 //$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 					 echo json_encode($message);
 			 }
@@ -51,8 +51,8 @@ class users extends CI_Controller {
 							 $token_data['siswa_id'] = $output->siswa_id;
 							 $token_data['siswa_nik'] = $output->siswa_nik;
 							 $token_data['siswa_name'] = $output->siswa_name;
-							 $token_data['siswa_jurusan'] = $output->siswa_jurusan;
-							 $token_data['siswa_kelas'] = $output->siswa_kelas;
+							 $token_data['jurusan_id'] = $output->jurusan_id;
+							 $token_data['kelas_id'] = $output->kelas_id;
 							 $token_data['siswa_alamat'] = $output->siswa_alamat;
 							 $token_data['siswa_password'] = $output->siswa_password;
 							 $token_data['siswa_note'] = $output->siswa_note;
@@ -86,15 +86,32 @@ class users extends CI_Controller {
 			 }
 	 }
 
-	 public function GetProfile(){
+	 public function GetProfile()
+	 {
 		 header('Content-Type:application/json');
 		 header('Accept:application/json');
 		 $receive_token=$this->input->request_headers('Authorization');
 		 try {
-		 	$jwtData=$this->authorization_token->decodeToken($receive_token['Authorization']);
+			 $jwtData=$this->authorization_token->decodeToken($receive_token['Authorization']);
+			 $jurusan_id=$jwtData['jurusan_id'];
+			 $jurusan=$this->Jurusan_model->getJurusan("where jurusan_id = '$jurusan_id'");
+			 $kelas_id=$jwtData['kelas_id'];
+			 $kelas=$this->Kelas_model->getKelas("where kelas_id = '$kelas_id'");
+			 $data=array(
+				 'siswa_id'=>$jwtData['siswa_id'],
+				 'siswa_nik'=>$jwtData['siswa_nik'],
+				 'siswa_name'=>$jwtData['siswa_name'],
+				 'siswa_alamat'=>$jwtData['siswa_alamat'],
+				 'siswa_password'=>$jwtData['siswa_password'],
+				 'siswa_note'=>$jwtData['siswa_note'],
+				 'siswa_jurusan'=>$jurusan[0]['jurusan_name'],
+				 'siswa_kelas'=>$kelas[0]['kelas_name'],
+				 'kelas_id'=>$jwtData['kelas_id'],
+				 'jurusan_id'=>$jwtData['jurusan_id']
+			 );
 			$message =['auth_user'=> [
 					'status' => 200,
-					'data' => $jwtData,
+					'data' => $data,
 					'message' => "Data User"
 			]];
 			echo json_encode($message);
@@ -112,9 +129,8 @@ class users extends CI_Controller {
 
 	 }
 
-	
-
-	 public function EditProfile(){
+	 public function EditProfile()
+	 {
 		header('Content-Type:application/json');
 		header('Accept:application/json');
 			# XSS Filtering
@@ -132,11 +148,11 @@ class users extends CI_Controller {
 			if ($this->form_validation->run() == FALSE)
 			{
 					// Form Validation Errors
-					$message = array(
+					$message =array('auth_update_siswa'=> array(
 							'status' => false,
 							'error' => $this->form_validation->error_array(),
 							'message' => validation_errors()
-					);
+					));
 					//$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 					echo json_encode($message);
 			}
@@ -186,5 +202,8 @@ class users extends CI_Controller {
 					}
 			}
 	 }
+
+
+
 
 }
