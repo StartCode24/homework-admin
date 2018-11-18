@@ -13,4 +13,11 @@ class content extends CI_Controller {
 
 	}
 
+	public function GetSchedule(){
+
+	}
+	public function AddNote(){
+
+	}
+
 }
