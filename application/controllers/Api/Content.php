@@ -77,7 +77,7 @@ class content extends CI_Controller {
 							 // Login Error
 							 $message = ['auth_Schedule'=> [
 									 'status' => FALSE,
-									 'message' => "Invalid Username or Password"
+									 'message' => "Invalid Get Schedule"
 							 ]];
 							 //$this->response($message, REST_Controller::HTTP_NOT_FOUND);
 							 echo json_encode($message);
