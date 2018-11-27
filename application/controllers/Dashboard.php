@@ -67,6 +67,17 @@ class Dashboard extends CI_Controller {
 		$this->load->view('nav_content/header.php', array('data' => $data ));
 		$this->load->view('content/jurusan/all_jurusan_data', array('data' => $data ));
 		$this->load->view('nav_content/footer.php');
+		$this->load->view('content/jurusan/add_modal_jurusan',array('kode_unik' => $kodeunik ));
+
+		// untuk mengecek pesan konfirmasi input berhasil
+				if ($this->session->userdata('pesan')=='berhasil') {
+					$this->load->view('content/jurusan/sweet-alert-input');
+					$this->session->unset_userdata('pesan');
+				}
+				if ($this->session->userdata('EditPesan')=='berhasil') {
+					$this->load->view('content/jurusan/sweet-alert-edit');
+					$this->session->unset_userdata('EditPesan');
+				}
 	}
 
 	public function siswa() {
