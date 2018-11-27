@@ -5,7 +5,11 @@
         <div class="card card-stats">
           <div class="card-content">
             <p class="category">Jurusan</p>
-            <a href="<?php echo base_url()?>Jurusan/add_data"><h3 class="title"><i class="fa fa-plus-circle"></i>Tambah Data</h3></a>
+            <!-- <a href="<?php echo base_url()?>Jurusan/add_data"><h3 class="title"><i class="fa fa-plus-circle"></i>Tambah Data</h3></a> -->
+            <a href="" class="btn btn-primary btn-fill" data-toggle="modal" data-target="#myModal">
+              <span class="fa fa-plus-circle"></span>
+              <b>Tambah Data</b>
+              </a>
             <div class="card-body">
        <div class="table-responsive">
 	<table class="table">
@@ -28,8 +32,10 @@
 				<td class=""><?php echo $value['jurusan_kepala']; ?></td>
 				<td class=""><?php echo $value['jurusan_note']; ?></td>
 				<td class="">
-					<a href="<?php echo base_url()."Jurusan/edit_data/".$value['jurusan_id'];?>">Edit</a>
-					||
+          <button class="btn btn-warning btn-fill" onclick="_edit_guru('<?php echo $value['jurusan_id'];?>')">
+               Edit
+             </button>
+             		||
 					<button class="btn btn-danger" onclick="Swall_Delete_Jurusan('<?php echo $value['jurusan_id'];?> ')">Delete</button>
 				</td>
 		</tr>
