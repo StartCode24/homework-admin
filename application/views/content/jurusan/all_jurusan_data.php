@@ -17,7 +17,6 @@
 		<tr>
 			<th>Kode Jurusan</th>
 			<th>Nama Jurusan</th>
-			<th>Jumlah Kelas Jurusan</th>
 			<th>Kepala Jurusan</th>
 			<th>Note</th>
 			<th>Action</th>
@@ -28,7 +27,6 @@
 		<tr>
 				<td class=""><?php echo $value['jurusan_id']; ?></td>
 				<td class=""><?php echo $value['jurusan_name']; ?></td>
-				<td class=""><?php echo $value['jurusan_jumlah_kelas']; ?></td>
 				<td class=""><?php echo $value['jurusan_kepala']; ?></td>
 				<td class=""><?php echo $value['jurusan_note']; ?></td>
 				<td class="">

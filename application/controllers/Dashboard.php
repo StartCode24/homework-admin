@@ -63,6 +63,7 @@ class Dashboard extends CI_Controller {
 	public function jurusan() {
 		$this->cek_session_nav->cek_session_jurusan();
 		$data = $this->Jurusan_model->getJurusan();
+		$kodeunik= $this->Cek_kodeUnik->cari_kode_jurusan();
 		//debug_array($data);
 		$this->load->view('nav_content/header.php', array('data' => $data ));
 		$this->load->view('content/jurusan/all_jurusan_data', array('data' => $data ));
