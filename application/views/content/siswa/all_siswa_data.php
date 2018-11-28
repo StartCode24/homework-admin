@@ -5,7 +5,11 @@
         <div class="card card-stats">
           <div class="card-content">
             <p class="category">Siswa</p>
-            <a href="<?php echo base_url()?>Siswa/add_data"><h3 class="title"><i class="fa fa-plus-circle"></i>Tambah Data</h3></a>
+            <!-- <a href="<?php echo base_url()?>Siswa/add_data"><h3 class="title"><i class="fa fa-plus-circle"></i>Tambah Data</h3></a> -->
+            <a href="" class="btn btn-primary btn-fill" data-toggle="modal" data-target="#myModal">
+              <span class="fa fa-plus-circle"></span>
+              <b>Tambah Data</b>
+            </a>
             <div class="card-body">
        <div class="table-responsive">
 	<table class="table">
@@ -24,17 +28,21 @@
 		</thead>
 		<tbody>
 		<?php foreach ($data as $value) { ?>
+			<?php // debug_array($value) ?>
 		<tr>
 				<td class=""><?php echo $value['siswa_id']; ?></td>
 				<td class=""><?php echo $value['siswa_nik']; ?></td>
 				<td class=""><?php echo $value['siswa_name']; ?></td>
 				<td class=""><?php echo $value['siswa_alamat']; ?></td>
-				<td class=""><?php echo $value['siswa_kelas']; ?></td>
-				<td class=""><?php echo $value['siswa_jurusan']; ?></td>
+				<td class=""><?php echo $value['kelas_id']; ?></td>
+				<td class=""><?php echo $value['jurusan_id']; ?></td>
 				<td class=""><?php echo $value['siswa_password']; ?></td>
+				<td class=""><?php echo $value['siswa_note']; ?></td>
 				<!-- <td class=""><?php// echo $value['siswa_note']; ?></td> -->
 				<td class="">
-					<a href="<?php echo base_url()."Siswa/edit_data/".$value['siswa_id'];?>">Edit</a>
+					<button class="btn btn-warning btn-fill" onclick="_edit_siswa('<?php echo $value['siswa_id'];?>')">
+               Edit
+             </button>
 					||
 					<button class="btn btn-danger" onclick="Swall_Delete_Siswa('<?php echo $value['siswa_id'];?> ')">Delete</button>
 				</td>
