@@ -32,14 +32,15 @@ class Room extends CI_Controller {
 		}
 	}
 
-	public function edit_data($room_id){
+	public function edit_data(){
+		$room_id=$this->input->post('room_id');
 		$room = $this->Room_model->getRoom("where room_id = '$room_id'");
 		$data = array(
 			'room_id' => $room[0]['room_id'], 
 			'roomname' => $room[0]['roomname'],
 			'room_note' => $room[0]['room_note'],
 		);
-		$this->load->view('content/room/edit_room', $data);
+		$this->load->view('content/room/edit_modal_room', $data);
 	}
 
 	public function do_update(){
@@ -65,7 +66,7 @@ class Room extends CI_Controller {
 		$where = array('room_id' => $room_id );
 		$res = $this->Room_model->deleteData('room', $where);
 		if ($res>=1){
-			$this->session->set_flashdata('pesan', 'Delete data sukses');
+			$this->session->set_userdata('EditPesan','berhasil');
 			redirect('Dashboard/room');
 		}else{
 			echo "<h3>Delete data gagal</h3>";
