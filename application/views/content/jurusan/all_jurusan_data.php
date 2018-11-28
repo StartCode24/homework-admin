@@ -30,7 +30,7 @@
 				<td class=""><?php echo $value['jurusan_kepala']; ?></td>
 				<td class=""><?php echo $value['jurusan_note']; ?></td>
 				<td class="">
-          <button class="btn btn-warning btn-fill" onclick="_edit_guru('<?php echo $value['jurusan_id'];?>')">
+          <button class="btn btn-warning btn-fill" onclick="_edit_jurusan('<?php echo $value['jurusan_id'];?>')">
                Edit
              </button>
              		||

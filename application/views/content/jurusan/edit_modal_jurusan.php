@@ -1,5 +1,5 @@
 <!-- Modal -->
-	<div id="myModal" class="modal fade" role="dialog">
+	<div id="myModaledit" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<!-- konten modal-->
 			<div class="modal-content">
@@ -16,13 +16,13 @@
                       <div class="col-md-4">
                           <div class="form-group">
                               <label>Kode Jurusan</label>
-                              <input type="text" class="form-control border-input" readonly placeholder="kode" value="<?php echo $kode_unik; ?>" name="jurusan_id">
+                              <input type="text" class="form-control border-input" readonly placeholder="kode" value="<?php echo $jurusan_id; ?>" name="jurusan_id">
                           </div>
                       </div>
                       <div class="col-md-8">
                         <div class="form-group">
                             <label>Nama Jurusan</label>
-                            <input type="text" required class="form-control border-input" placeholder="nama jurusan" name="jurusan_name">
+                            <input type="text" required class="form-control border-input" placeholder="nama jurusan" value="<?php echo $jurusan_name ?>" name="jurusan_name">
                         </div>
                       </div>
                   </div>
@@ -30,7 +30,7 @@
                       <div class="col-md-8">
                         <div class="form-group">
                             <label>Jurusan Kepala</label>
-                            <input type="text" required class="form-control border-input" placeholder="nama kepala jurusan" name="jurusan_kepala">
+                            <input type="text" required class="form-control border-input" placeholder="nama kepala jurusan" value="<?php echo $jurusan_kepala ?>" name="jurusan_kepala">
                         </div>
                       </div>
                       <div class="col-md-8">

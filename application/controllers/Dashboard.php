@@ -53,11 +53,23 @@ class Dashboard extends CI_Controller {
 	public function room() {
 		$this->cek_session_nav->cek_session_room();
 		$data = $this->Room_model->getRoom();
+		$kodeunik= $this->Cek_kodeUnik->cari_kode_room();
 		//debug_array($data);
 
 		$this->load->view('nav_content/header.php', array('data' => $data ));
 		$this->load->view('content/room/all_room_data', array('data' => $data ));
 		$this->load->view('nav_content/footer.php');
+		$this->load->view('content/room/add_modal_room',array('kode_unik' => $kodeunik ));
+
+		// untuk mengecek pesan konfirmasi input berhasil
+				if ($this->session->userdata('pesan')=='berhasil') {
+					$this->load->view('content/room/sweet-alert-input');
+					$this->session->unset_userdata('pesan');
+				}
+				if ($this->session->userdata('EditPesan')=='berhasil') {
+					$this->load->view('content/room/sweet-alert-edit');
+					$this->session->unset_userdata('EditPesan');
+				}
 	}
 
 	public function jurusan() {
