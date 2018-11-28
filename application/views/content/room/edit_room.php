@@ -22,7 +22,7 @@
 			</tr>
 			<tr>
 				<td>Note Room</td>
-				<td><textarea name="room_note"></textarea></td>
+				<td><textarea name="room_note" value="<?php echo $room_note; ?>"></textarea></td>
 			</tr>
 			<tr>
 				<td></td>

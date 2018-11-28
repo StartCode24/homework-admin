@@ -21,6 +21,10 @@
 				<td><input type="text" name="mapelname"></td>
 			</tr>
 			<tr>
+				<td>Note Mapel</td>
+				<td><textarea name="mapel_note"></textarea></td>
+			</tr>
+			<tr>
 				<td></td>
 				<td><input type="submit" name="btnSubmit" value="Simpan"></td>
 			</tr>
