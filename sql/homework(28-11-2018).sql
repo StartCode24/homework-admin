@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2018 at 12:53 AM
+-- Generation Time: Nov 28, 2018 at 05:37 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -132,7 +132,7 @@ CREATE TABLE `jurusan` (
 --
 
 INSERT INTO `jurusan` (`jurusan_id`, `jurusan_name`, `jurusan_kepala`, `jurusan_note`) VALUES
-('1', 'Teknik konstruksi gedung, sanitasi dan perawatan', NULL, NULL),
+('1', 'Teknik konstruksi gedung, sanitasi dan perawatan', 'Bahri', 'tes'),
 ('10', 'Teknik Fabrikasi Logam Dan Manufaktur', NULL, NULL),
 ('11', 'Kimia Industri', NULL, NULL),
 ('12', 'Kimia Analis', NULL, NULL),
@@ -164,7 +164,9 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`kelas_id`, `kelas_name`, `kelas_jurusan`) VALUES
-('31', 'Kimia Organik', 'Kimia');
+('122', 'Teknik Otomotif Dasar', 'Teknik Otomotif'),
+('31', 'Kimia Organik', 'Kimia'),
+('51', 'Elektronika Dasar', 'Teknik Komputer Dan Jaringan');
 
 -- --------------------------------------------------------
 
@@ -183,6 +185,10 @@ CREATE TABLE `mapel` (
 --
 
 INSERT INTO `mapel` (`mapel_id`, `mapelname`, `mapel_note`) VALUES
+('1', 'IPA', ''),
+('2', 'IPS', ''),
+('3', 'Bimbingan Konseling', ''),
+('4', 'Bahasa Inggris', ''),
 ('9', 'Bahasa Jawa', '');
 
 -- --------------------------------------------------------
@@ -202,7 +208,9 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`room_id`, `roomname`, `room_note`) VALUES
-('1', 'Ruang AVI', NULL),
+('1', 'Ruang AVI 1', 'tes'),
+('2', 'Ruang Teori 1', NULL),
+('3', 'Ruang Teori 2', NULL),
 ('829', 'Lab Kimia', 'Di samping ruang kelas 11 IPS 4');
 
 -- --------------------------------------------------------
@@ -230,7 +238,16 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`schedule_id`, `schedule_date`, `start_time`, `finish_time`, `day`, `note`, `guru_id`, `mapel_id`, `kelas_id`, `jurusan_id`, `room_id`) VALUES
-('3213213', '2018-11-24', '06:00:00', '08:00:00', 'Sabtu', NULL, '1006974173', '9', '31', '9', '1');
+('212334', '2018-12-04', '08:00:00', '09:00:00', 'Selasa', NULL, '893488650', '4', '51', '11', '2'),
+('3213213', '2018-11-24', '06:00:00', '08:00:00', 'Sabtu', NULL, '1006974173', '9', '31', '9', '1'),
+('3213214', '2018-11-24', '06:00:00', '08:00:00', 'Sabtu', NULL, '1006974173', '9', '31', '9', '1'),
+('3213215', '2018-11-24', '06:00:00', '08:00:00', 'Sabtu', NULL, '1006974173', '9', '31', '9', '1'),
+('34211177', '2018-11-29', '10:00:00', '12:00:00', 'Kamis', NULL, '1018780774', '3', '31', '2', '2'),
+('356671', '2018-12-03', '09:00:00', '10:00:00', 'Senin', NULL, '415656947', '4', '122', '5', '3'),
+('432432', '2018-11-30', '09:00:00', '10:00:00', 'Jumat', NULL, '287521762', '3', '51', '12', '3'),
+('634643', '2018-12-05', '11:00:00', '13:00:00', 'Rabu', NULL, '746952542', '4', '51', '14', '2'),
+('6346432', '2018-12-05', '11:00:00', '13:00:00', 'Rabu', NULL, '746952542', '4', '51', '14', '2'),
+('856852', '2018-12-06', '07:00:00', '08:00:00', 'Kamis', NULL, '1389049999', '2', '31', '8', '3');
 
 -- --------------------------------------------------------
 
