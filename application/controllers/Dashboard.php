@@ -48,6 +48,22 @@ class Dashboard extends CI_Controller {
 		$this->load->view('nav_content/header.php', array('data' => $data ));
 		$this->load->view('content/mapel/all_mapel_data', array('data' => $data ));
 		$this->load->view('nav_content/footer.php');
+		$kodeunik= $this->Cek_kodeUnik->cari_kode_mapel();
+
+		$this->load->view('nav_content/header.php', array('data' => $data ));
+		$this->load->view('content/mapel/all_mapel_data', array('data' => $data ));
+		$this->load->view('nav_content/footer.php');
+		$this->load->view('content/mapel/add_modal_mapel',array('kode_unik' => $kodeunik ));
+
+		// untuk mengecek pesan konfirmasi input berhasil
+				if ($this->session->userdata('pesan')=='berhasil') {
+					$this->load->view('content/mapel/sweet-alert-input');
+					$this->session->unset_userdata('pesan');
+				}
+				if ($this->session->userdata('EditPesan')=='berhasil') {
+					$this->load->view('content/mapel/sweet-alert-edit');
+					$this->session->unset_userdata('EditPesan');
+				}
 	}
 
 	public function room() {
