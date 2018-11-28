@@ -41,7 +41,6 @@ class Jurusan extends CI_Controller {
 		$data = array(
 			'jurusan_id' => $jurusan[0]['jurusan_id'], 
 			'jurusan_name' => $jurusan[0]['jurusan_name'],
-			'jurusan_jumlah_kelas' => $jurusan[0]['jurusan_jumlah_kelas'],
 			'jurusan_kepala' => $jurusan[0]['jurusan_kepala'],
 			'jurusan_note' => $jurusan[0]['jurusan_note']
 		);
@@ -52,13 +51,11 @@ class Jurusan extends CI_Controller {
 	public function do_update(){
 		$jurusan_id = $_POST['jurusan_id'];
 		$jurusan_name = $_POST['jurusan_name'];
-		$jurusan_jumlah_kelas = $_POST['jurusan_jumlah_kelas'];
 		$jurusan_kepala = $_POST['jurusan_kepala'];
 		$jurusan_note = $_POST['jurusan_note'];
 		$data_update = array(
 			'jurusan_id' => $jurusan_id,
 			'jurusan_name' => $jurusan_name,
-			'jurusan_jumlah_kelas' => $jurusan_jumlah_kelas,
 			'jurusan_kepala' => $jurusan_kepala,						
 			'jurusan_note' => $jurusan_note,
 		);
