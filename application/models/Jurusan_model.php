@@ -5,7 +5,7 @@ class Jurusan_model extends CI_Model {
 
 	public function getJurusan($where="")
 	{
-		$data = $this->db->query('select * from Jurusan '.$where);
+		$data = $this->db->query('select * from jurusan '.$where);
 		return $data->result_array();
 	}
 

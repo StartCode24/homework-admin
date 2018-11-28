@@ -32,7 +32,7 @@
 				<td class=""><?php echo $value['siswa_kelas']; ?></td>
 				<td class=""><?php echo $value['siswa_jurusan']; ?></td>
 				<td class=""><?php echo $value['siswa_password']; ?></td>
-				<td class=""><?php echo $value['siswa_note']; ?></td>
+				<!-- <td class=""><?php// echo $value['siswa_note']; ?></td> -->
 				<td class="">
 					<a href="<?php echo base_url()."Siswa/edit_data/".$value['siswa_id'];?>">Edit</a>
 					||
