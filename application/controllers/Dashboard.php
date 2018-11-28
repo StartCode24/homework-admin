@@ -112,9 +112,21 @@ class Dashboard extends CI_Controller {
 	public function siswa() {
 		$this->cek_session_nav->cek_session_siswa();
 		$data = $this->Siswa_model->getSiswa();
+		$kodeunik= $this->Cek_kodeUnik->cari_kode_siswa();
 		//debug_array($data);
 		$this->load->view('nav_content/header.php', array('data' => $data ));
 		$this->load->view('content/siswa/all_siswa_data', array('data' => $data ));
 		$this->load->view('nav_content/footer.php');
+		$this->load->view('content/siswa/add_modal_siswa',array('kode_unik' => $kodeunik ));
+
+		// untuk mengecek pesan konfirmasi input berhasil
+				if ($this->session->userdata('pesan')=='berhasil') {
+					$this->load->view('content/siswa/sweet-alert-input');
+					$this->session->unset_userdata('pesan');
+				}
+				if ($this->session->userdata('EditPesan')=='berhasil') {
+					$this->load->view('content/siswa/sweet-alert-edit');
+					$this->session->unset_userdata('EditPesan');
+				}
 	}
 }

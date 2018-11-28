@@ -5,9 +5,10 @@ class Siswa extends CI_Controller {
 
 	public function index()
 	{
-		$data = $this->Siswa_model->getSiswa();
-		//debug_array($data);
-		$this->load->view('siswa', array('data' => $data ));
+		// $data = $this->Siswa_model->getSiswa();
+		// //debug_array($data);
+		// $this->load->view('siswa', array('data' => $data ));
+		redirect('Dashboard/siswa');
 	}
 
 	public function add_data(){
@@ -42,7 +43,8 @@ class Siswa extends CI_Controller {
 		}
 	}
 
-	public function edit_data($siswa_id){
+	public function edit_data(){
+		$siswa_id=$this->input->post('siswa_id');
 		$siswa = $this->Siswa_model->getSiswa("where siswa_id = '$siswa_id'");
 		$data = array(
 			'siswa_id' => $siswa[0]['siswa_id'], 
@@ -54,7 +56,7 @@ class Siswa extends CI_Controller {
 			'siswa_password' => $siswa[0]['siswa_password'],
 			'siswa_note' => $siswa[0]['siswa_note']		 
 		);
-		$this->load->view('content/siswa/edit_siswa', $data);
+		$this->load->view('content/siswa/edit_modal_siswa', $data);
 	}
 
 	public function do_update(){
