@@ -8,6 +8,11 @@ class Room_model extends CI_Model {
 		$data = $this->db->query('select * from room '.$where);
 		return $data->result_array();
 	}
+	public function getRoom2($where="")
+	{
+		$data = $this->db->query('select * from room '.$where);
+		return $data;
+	}
 
 	public function insertData($room, $data){
 		$res = $this->db->insert($room, $data);
