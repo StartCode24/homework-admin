@@ -81,15 +81,15 @@ class content extends CI_Controller {
 									'day'=>$schedule->day,
 									'note'=>$schedule->note,
 									'guru_id'=>$schedule->guru_id,
-									'guruname'=>$nama_guru,
+									'guru_name'=>$nama_guru,
 									'mapel_id'=>$schedule->mapel_id,
-									'nama_mapel'=>$nama_mapel,
+									'mapel_name'=>$nama_mapel,
 									'kelas_id'=>$schedule->kelas_id,
-									'nama_kelas'=>$nama_kelas,
+									'kelas_name'=>$nama_kelas,
 									'jurusan_id'=>$schedule->jurusan_id,
-									'nama_jurusan'=>$nama_jurusan,
+									'jurusan_name'=>$nama_jurusan,
 									'room_id'=>$schedule->room_id,
-									'nama_room'=>$nama_room
+									'room_name'=>$nama_room
 								);
 							// print_r($schedule);
 							}
