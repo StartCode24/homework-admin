@@ -8,6 +8,12 @@ class Guru_model extends CI_Model {
 		$data = $this->db->query('select * from guru '.$where);
 		return $data->result_array();
 	}
+	public function getGuru2($where="")
+	{
+		$data = $this->db->query('select * from guru '.$where);
+		return $data;
+	}
+
 
 	public function insertData($guru, $data) {
 		$res = $this->db->insert($guru, $data);

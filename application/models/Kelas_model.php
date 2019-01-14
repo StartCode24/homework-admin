@@ -8,6 +8,11 @@ class Kelas_model extends CI_Model {
 		$data = $this->db->query('select * from kelas '.$where);
 		return $data->result_array();
 	}
+	public function getKelas2($where="")
+	{
+		$data = $this->db->query('select * from kelas '.$where);
+		return $data;
+	}
 
 	public function insertData($kelas, $data){
 		$res = $this->db->insert($kelas, $data);

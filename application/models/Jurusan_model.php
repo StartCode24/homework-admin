@@ -8,6 +8,11 @@ class Jurusan_model extends CI_Model {
 		$data = $this->db->query('select * from jurusan '.$where);
 		return $data->result_array();
 	}
+	public function getJurusan2($where="")
+	{
+		$data = $this->db->query('select * from jurusan '.$where);
+		return $data;
+	}
 
 	public function insertData($Jurusan, $data){
 		$res = $this->db->insert($Jurusan, $data);

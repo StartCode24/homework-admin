@@ -45,8 +45,34 @@ class content extends CI_Controller {
 					 $Schedule = $this->Schedule_model->getSchedule("where kelas_id = '$kelas_id' and jurusan_id='$jurusan_id'")->result();
 					 if (!empty($Schedule) AND $Schedule != FALSE)
 					 {
-							 
+						 
+							 $nama_guru='';
+							 $nama_mapel='';
+							 $nama_kelas='';
+							 $nama_jurusan='';
+							 $nama_room='';
+							 $day=0;
 							 foreach ($Schedule as $schedule) {
+								$Guru =$this->Guru_model->getGuru2("where guru_id='$schedule->guru_id'")->result();
+								foreach($Guru as $guru){
+									$nama_guru=$guru->guruname;	
+								}
+								$Mapel=$this->Mapel_model->getMapel2("where mapel_id='$schedule->mapel_id'")->result();
+								foreach($Mapel as $mapel){
+									$nama_mapel=$mapel->mapelname;
+								}
+								$Kelas=$this->Kelas_model->getKelas2("where kelas_id='$schedule->kelas_id'")->result();
+								foreach($Kelas as $kelas){
+									$nama_kelas=$kelas->kelas_name;
+								}
+								$Jurusan=$this->Jurusan_model->getJurusan2("where jurusan_id='$schedule->jurusan_id'")->result();
+								foreach($Jurusan as $jurusan){
+									$nama_jurusan=$jurusan->jurusan_name;
+								}
+								$Room=$this->Room_model->getRoom2("where room_id='$schedule->room_id'")->result();
+								foreach($Room as $room){
+									$nama_room=$room->roomname;
+								}
 								$data[]=array(
 									'schedule_id'=>$schedule->schedule_id,
 									'schedule_date'=>$schedule->schedule_date,
@@ -55,10 +81,15 @@ class content extends CI_Controller {
 									'day'=>$schedule->day,
 									'note'=>$schedule->note,
 									'guru_id'=>$schedule->guru_id,
+									'guru_name'=>$nama_guru,
 									'mapel_id'=>$schedule->mapel_id,
+									'mapel_name'=>$nama_mapel,
 									'kelas_id'=>$schedule->kelas_id,
+									'kelas_name'=>$nama_kelas,
 									'jurusan_id'=>$schedule->jurusan_id,
-									'room_id'=>$schedule->room_id
+									'jurusan_name'=>$nama_jurusan,
+									'room_id'=>$schedule->room_id,
+									'room_name'=>$nama_room
 								);
 							// print_r($schedule);
 							}
