@@ -7,7 +7,7 @@
 	<link rel="icon" type="image/png" href=<?php echo base_url("assets/img/favicon.png");?> />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Material Dashboard by Creative Tim</title>
+	<title>Scheduling Systems Web Admin</title>
 
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <meta name="viewport" content="width=device-width" />
@@ -59,12 +59,12 @@
 	                <li class="<?php echo $this->session->userdata('class1'); ?>">
 	                    <a href="">
 	                        <i class="material-icons">notifications</i>
-	                        <p>Skejul</p>
+	                        <p>Schedule</p>
 	                    </a>
 	                </li>
 	                <li class="<?php echo $this->session->userdata('class2'); ?>">
 	                    <a href="<?php echo base_url()."Dashboard/guru/"?>">
-	                        <i class="material-icons">people</i>
+	                        <i class="material-icons">person</i>
 	                        <p>Guru</p>
 	                    </a>
 	                </li>
@@ -88,7 +88,7 @@
 	                </li>
 	                <li class="<?php echo $this->session->userdata('class6'); ?>">
 	                    <a href="<?php echo base_url()."Dashboard/siswa/"?>">
-	                        <i class="material-icons">content_paste</i>
+	                        <i class="material-icons">people</i>
 	                        <p>Siswa</p>
 	                    </a>
 	                </li>		                
