@@ -28,4 +28,9 @@ class Jurusan_model extends CI_Model {
 		$res = $this->db->delete($Jurusan, $where);
 		return $res;	
 	}
+	public function getAllJurusan()
+	{
+		$data = $this->db->query('select * from jurusan');
+		return $data;
+	}
 }

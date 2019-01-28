@@ -20,9 +20,6 @@ class Cek_login extends CI_Model {
 		}else {
 			return false;
 		}
-
-
-
 	}
 	function cekLoginSiswa($nik,$pass){
 	 $NIK=$this->db->escape_like_str($nik);
@@ -40,6 +37,8 @@ class Cek_login extends CI_Model {
 	 }else {
 		 return false;
 	 }
+
+	 
 
 
 

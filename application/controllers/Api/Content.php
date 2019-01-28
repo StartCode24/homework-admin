@@ -15,6 +15,95 @@ class content extends CI_Controller {
 
 	}
 
+	public function GetJurusan(){
+		header('Content-Type:application/json');
+		header('Accept:application/json');
+		$_POST = $this->security->xss_clean($_POST);
+
+		$Alljurusan=$this->Jurusan_model->getAllJurusan()->result();
+		$data=array();
+		if (!empty($Alljurusan) AND $Alljurusan != FALSE)
+		{
+			foreach ($Alljurusan as $allJurusan) {
+				$data[]=array(
+					'jurusan_id'=>$allJurusan->jurusan_id,
+					'jurusan_name'=>$allJurusan->jurusan_name,
+					'jurusan_kepala'=>$allJurusan->jurusan_kepala,
+					'jurusan_note'=>$allJurusan->jurusan_note
+				);
+			
+			// print_r($schedule);
+			}
+			 $message =['auth_Jurusan'=> [
+					 'status' => 200,
+					 'data' =>array( 
+						 'jurusan'=>$data,
+					 ),
+					 'message' => "get Jurusan successful"
+			 ]];
+			
+			// $this->response($message, REST_Controller::HTTP_OK);
+			echo json_encode($message);
+		}else{
+			$message =['auth_Jurusan'=> [
+				'status' => 404,
+				'data' =>array( 
+					'jurusan'=>$data,
+				),
+				'message' => "get Jurusan Not Found"
+		]];
+	   
+	   // $this->response($message, REST_Controller::HTTP_OK);
+	   echo json_encode($message);
+		}
+
+	}
+
+	public function GetKelas(){
+		header('Content-Type:application/json');
+		header('Accept:application/json');
+		$_POST = $this->security->xss_clean($_POST);
+
+		$AllKelas=$this->Kelas_model->getAllKelas()->result();
+		$data=array();
+		if (!empty($AllKelas) AND $AllKelas != FALSE)
+		{
+			foreach ($AllKelas as $allKelas) {
+				$data[]=array(
+					'kelas_id'=>$allKelas->kelas_id,
+					'kelas_name'=>$allKelas->kelas_name,
+					'kelas_jurusan'=>$allKelas->kelas_jurusan,
+				);
+			
+			// print_r($schedule);
+			}
+			 $message =['auth_Kelas'=> [
+					 'status' => 200,
+					 'data' =>array( 
+						 'kelas'=>$data,
+					 ),
+					 'message' => "get Jurusan successful"
+			 ]];
+			
+			// $this->response($message, REST_Controller::HTTP_OK);
+			echo json_encode($message);
+		}else{
+			$message =['auth_Kelas'=> [
+				'status' => 404,
+				'data' =>array( 
+					'kelas'=>$data,
+				),
+				'message' => "get Kelas Not Found"
+		]];
+	   
+	   // $this->response($message, REST_Controller::HTTP_OK);
+	   echo json_encode($message);
+		}
+
+		
+
+	}
+
 	public function GetSchedule(){
 
 			header('Content-Type:application/json');
@@ -51,8 +140,12 @@ class content extends CI_Controller {
 							 $nama_kelas='';
 							 $nama_jurusan='';
 							 $nama_room='';
-							 $day=0;
+							 
+							 
 							 foreach ($Schedule as $schedule) {
+								$day=$schedule->day;
+								$day_of_week=substr($schedule->schedule_date,-2);
+								
 								$Guru =$this->Guru_model->getGuru2("where guru_id='$schedule->guru_id'")->result();
 								foreach($Guru as $guru){
 									$nama_guru=$guru->guruname;	
@@ -73,12 +166,18 @@ class content extends CI_Controller {
 								foreach($Room as $room){
 									$nama_room=$room->roomname;
 								}
+								$bulan=date("m");
+								$tahun=date("Y");
+								$schedule_dateYear=substr($schedule->schedule_date,0,4);
+								$schedule_dateMont=substr($schedule->schedule_date,5,-3);
+								if($tahun==$schedule_dateYear&&$bulan==$schedule_dateMont){
 								$data[]=array(
 									'schedule_id'=>$schedule->schedule_id,
 									'schedule_date'=>$schedule->schedule_date,
+									'tahun'=>$schedule_dateMont,
 									'start_time'=>$schedule->start_time,
 									'finish_time'=>$schedule->finish_time,
-									'day'=>$schedule->day,
+									'day'=>$day_of_week,
 									'note'=>$schedule->note,
 									'guru_id'=>$schedule->guru_id,
 									'guru_name'=>$nama_guru,
@@ -91,6 +190,7 @@ class content extends CI_Controller {
 									'room_id'=>$schedule->room_id,
 									'room_name'=>$nama_room
 								);
+							}
 							// print_r($schedule);
 							}
 							 $message =['auth_Schedule'=> [

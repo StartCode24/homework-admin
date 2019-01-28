@@ -28,4 +28,10 @@ class Kelas_model extends CI_Model {
 		$res = $this->db->delete($kelas, $where);
 		return $res;	
 	}
+
+	public function getAllKelas()
+	{
+		$data = $this->db->query('select * from kelas ');
+		return $data;
+	}
 }
