@@ -14,6 +14,8 @@ class Jurusan_model extends CI_Model {
 		return $data;
 	}
 
+	
+
 	public function insertData($Jurusan, $data){
 		$res = $this->db->insert($Jurusan, $data);
 		return $res;
