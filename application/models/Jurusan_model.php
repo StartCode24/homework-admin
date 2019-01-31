@@ -14,6 +14,8 @@ class Jurusan_model extends CI_Model {
 		return $data;
 	}
 
+	
+
 	public function insertData($Jurusan, $data){
 		$res = $this->db->insert($Jurusan, $data);
 		return $res;
@@ -27,5 +29,10 @@ class Jurusan_model extends CI_Model {
 	public function deleteData($Jurusan, $where){
 		$res = $this->db->delete($Jurusan, $where);
 		return $res;	
+	}
+	public function getAllJurusan()
+	{
+		$data = $this->db->query('select * from jurusan');
+		return $data;
 	}
 }

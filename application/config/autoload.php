@@ -132,4 +132,5 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('Mapel_model', 'Room_model', 'Guru_model', 'Siswa_model', 'Jurusan_model', 'Kelas_model','Schedule_model', 'Cek_login','cek_session_nav','Cek_kodeUnik');
+$autoload['model'] = array('Mapel_model', 'Room_model', 'Guru_model', 'Siswa_model', 
+'Jurusan_model', 'Kelas_model','Schedule_model', 'Cek_login','cek_session_nav','Cek_kodeUnik','HomeWork_model');

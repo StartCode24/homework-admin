@@ -17,6 +17,91 @@ class users extends CI_Controller {
 	 /**
 		* User Login API
 		*/
+
+	 public function SignUpUser()
+	 {
+	  	 header('Content-Type:application/json');
+		 header('Accept:application/json');
+
+		 $_POST = $this->security->xss_clean($_POST);
+		 $this->form_validation->set_rules('NIS', 'NIS', 'trim|required');
+		 $this->form_validation->set_rules('siswa_name', 'siswa_name', 'trim|required');
+		 $this->form_validation->set_rules('siswa_alamat', 'siswa_alamat', 'trim|required');
+		 $this->form_validation->set_rules('kelas_nama', 'kelas_nama', 'trim|required');
+		 $this->form_validation->set_rules('jurusan_nama', 'jurusan_nama', 'trim|required');
+		 $this->form_validation->set_rules('password_1', 'password_1', 'trim|required');
+		 $this->form_validation->set_rules('password_2', 'password_2', 'trim|required');
+		 if ($this->form_validation->run() == FALSE)
+		 {
+			$message =array('auth_SignUp'=> array(
+				'status' => false,
+				'error' =>201,
+				'message' =>  $this->form_validation->error_array()
+			));
+			echo json_encode($message);
+		 }else{
+			$output = $this->Siswa_model->cekNISSiswa($this->input->post('NIS'));
+			if (!empty($output) AND $output != FALSE)
+			{
+				$message =array('auth_SignUp'=> array(
+					'status' => false,
+					'error'=>204,
+					'message' => 'User already available'
+				));
+			//$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+			echo json_encode($message);
+			}else{
+				$kelas_nama= $this->input->post('kelas_nama');
+				$kelas=$this->Kelas_model->getKelas2("where kelas_name='$kelas_nama'")->result();
+				foreach($kelas as $kelas){
+					$id_kelas=$kelas->kelas_id;
+				}
+				$jurusan_nama=$this->input->post('jurusan_nama');
+				$Jurusan=$this->Jurusan_model->getJurusan2("where jurusan_name='$jurusan_nama'")->result();
+				foreach($Jurusan as $jurusan){
+					$id_jurusan=$jurusan->jurusan_id;
+				}
+				// print_r($id_jurusan);exit;
+				if($this->input->post('password_1')==$this->input->post('password_2')){
+					$data_insert = array(
+						'siswa_id' => $this->Siswa_model->cari_kode_idSiswa(),
+						'siswa_nik' => $this->input->post('NIS'),
+						'siswa_name' => $this->input->post('siswa_name'),
+						'siswa_alamat' => $this->input->post('siswa_alamat'),
+						'kelas_id' =>$id_kelas,
+						'jurusan_id' => $id_jurusan,
+						'siswa_password' => $this->input->post('password_1'),
+						'siswa_note' => ''
+					);
+					$res = $this->Siswa_model->insertData('siswa', $data_insert);
+					if ($res>=1){
+						$message =array('auth_SignUp'=> array(
+							'status' => true,
+							'error'=>200,
+							'message' => 'Success'
+						));
+						echo json_encode($message);
+					}else{
+						$message =array('auth_SignUp'=> array(
+							'status' => false,
+							'error'=>205,
+							'message' => 'Not Success'
+						));
+						echo json_encode($message);
+					}
+				}else{
+					$message =array('auth_SignUp'=> array(
+						'status' => false,
+						'error'=>203,
+						'message' => 'Password Not Same'
+					));
+					echo json_encode($message);
+				}
+			}
+		 }
+
+	 }
+	 	
 	 public function LoginPost()
 	 {
 		 header('Content-Type:application/json');
