@@ -390,16 +390,6 @@ class content extends CI_Controller {
 			echo json_encode($message);
 		 }else{
 			
-				$kelas_nama= $this->input->post('kelas_nama');
-				$kelas=$this->Kelas_model->getKelas2("where kelas_name='$kelas_nama'")->result();
-				foreach($kelas as $kelas){
-					$id_kelas=$kelas->kelas_id;
-				}
-				$jurusan_nama=$this->input->post('jurusan_nama');
-				$Jurusan=$this->Jurusan_model->getJurusan2("where jurusan_name='$jurusan_nama'")->result();
-				foreach($Jurusan as $jurusan){
-					$id_jurusan=$jurusan->jurusan_id;
-				}
 				// print_r($id_jurusan);exit;
 				if($this->input->post('password_1')==$this->input->post('password_2')){
 					$data_insert = array(
@@ -418,7 +408,7 @@ class content extends CI_Controller {
 						'siswa_id' => '',
 
 					);
-					$res = $this->Siswa_model->insertData('siswa', $data_insert);
+					$res = $this->HomeWork_model->insertData('homework', $data_insert);
 					if ($res>=1){
 						$message =array('auth_AddHomework'=> array(
 							'status' => true,
