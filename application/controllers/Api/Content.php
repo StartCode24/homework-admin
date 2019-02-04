@@ -105,7 +105,15 @@ class content extends CI_Controller {
 	}
 
 	public function GetSchedule(){
-
+		
+		date_default_timezone_set('Asia/Jakarta');
+		$bulan=date("m");
+		$tahun=date("Y");
+		$date=date('Y-m');
+		// print_r($date);exit;
+		$dayofweek = date('w', strtotime($bulan));
+		// print_r($dayofweek);exit;
+		
 			header('Content-Type:application/json');
 			header('Accept:application/json');
 			 # XSS Filtering
@@ -166,30 +174,56 @@ class content extends CI_Controller {
 								foreach($Room as $room){
 									$nama_room=$room->roomname;
 								}
-								$bulan=date("m");
-								$tahun=date("Y");
+								
 								$schedule_dateYear=substr($schedule->schedule_date,0,4);
 								$schedule_dateMont=substr($schedule->schedule_date,5,-3);
+								
+									//  print_r($dayofweek );exit;
+									$dayName=$schedule->day;
+									if($dayName=='Senin'){
+										$dayName="Monday";
+									}if($dayName=='Selasa'){
+										$dayName="Tuesday";
+									}if($dayName=='Rabu'){
+										$dayName="Wednesday";
+									}if($dayName=='Kamis'){
+										$dayName="Thursday";
+									}if($dayName=='Jumat'){
+										$dayName="Friday";
+									}if($dayName=='Sabtu'){
+										$dayName="Saturday";
+									}if($dayName=='Minggu'){
+										$dayName="Sunday";
+									}
+									// for($i=1;$i<=$dayofweek;$i++){
+									// 	$dayDate[]= date('d', strtotime(($dayofweek - ($dayofweek-$i)).'Friday', strtotime($date)));
+									// }
+									// print_r($dayDate);exit;
+								
 								if($tahun==$schedule_dateYear&&$bulan==$schedule_dateMont){
-								$data[]=array(
-									'schedule_id'=>$schedule->schedule_id,
-									'schedule_date'=>$schedule->schedule_date,
-									'tahun'=>$schedule_dateMont,
-									'start_time'=>$schedule->start_time,
-									'finish_time'=>$schedule->finish_time,
-									'day'=>$day_of_week,
-									'note'=>$schedule->note,
-									'guru_id'=>$schedule->guru_id,
-									'guru_name'=>$nama_guru,
-									'mapel_id'=>$schedule->mapel_id,
-									'mapel_name'=>$nama_mapel,
-									'kelas_id'=>$schedule->kelas_id,
-									'kelas_name'=>$nama_kelas,
-									'jurusan_id'=>$schedule->jurusan_id,
-									'jurusan_name'=>$nama_jurusan,
-									'room_id'=>$schedule->room_id,
-									'room_name'=>$nama_room
-								);
+									for($i=1;$i<=$dayofweek;$i++){
+										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($date)));
+										
+									$data[]=array(
+										'schedule_id'=>$schedule->schedule_id,
+										'month'=>$schedule_dateMont,
+										'start_time'=>$schedule->start_time,
+										'finish_time'=>$schedule->finish_time,
+										'day_name'=>$dayName,
+										'day_date'=>$dayDate,
+										'note'=>$schedule->note,
+										'guru_id'=>$schedule->guru_id,
+										'guru_name'=>$nama_guru,
+										'mapel_id'=>$schedule->mapel_id,
+										'mapel_name'=>$nama_mapel,
+										'kelas_id'=>$schedule->kelas_id,
+										'kelas_name'=>$nama_kelas,
+										'jurusan_id'=>$schedule->jurusan_id,
+										'jurusan_name'=>$nama_jurusan,
+										'room_id'=>$schedule->room_id,
+										'room_name'=>$nama_room
+									);
+							}
 							}
 							// print_r($schedule);
 							}
@@ -219,6 +253,7 @@ class content extends CI_Controller {
 	}
 
 	public function GetHomeWork(){
+		date_default_timezone_set('Asia/Jakarta');
 		header('Content-Type:application/json');
 			header('Accept:application/json');
 			 # XSS Filtering
@@ -328,8 +363,87 @@ class content extends CI_Controller {
 					 }
 			 }
 	}
-	public function AddNote(){
+	public function AddHomeWork(){
+		header('Content-Type:application/json');
+		header('Accept:application/json');
+		// homework_id
+		
+		$this->form_validation->set_rules('homework_date', 'homework_date', 'trim|required');
+		$this->form_validation->set_rules('start_time', 'start_time', 'trim|required');
+		$this->form_validation->set_rules('finish_time', 'finish_time', 'trim|required');
+		$this->form_validation->set_rules('day', 'day', 'trim|required');
+		$this->form_validation->set_rules('note', 'note', 'trim|required');
+		$this->form_validation->set_rules('guru_id', 'guru_id', 'trim|required');
+		$this->form_validation->set_rules('mapel_id', 'mapel_id', 'trim|required');
+		$this->form_validation->set_rules('kelas_id', 'kelas_id', 'trim|required');
+		$this->form_validation->set_rules('jurusan_id', 'jurusan_id', 'trim|required');
+		$this->form_validation->set_rules('room_id', 'room_id', 'trim|required');
+		$this->form_validation->set_rules('schedule_id', 'schedule_id', 'trim|required');
+		$this->form_validation->set_rules('siswa_id', 'siswa_id', 'trim|required');
+		 if ($this->form_validation->run() == FALSE)
+		 {
+			$message =array('auth_AddHomework'=> array(
+				'status' => false,
+				'error' =>201,
+				'message' =>  $this->form_validation->error_array()
+			));
+			echo json_encode($message);
+		 }else{
+			
+				$kelas_nama= $this->input->post('kelas_nama');
+				$kelas=$this->Kelas_model->getKelas2("where kelas_name='$kelas_nama'")->result();
+				foreach($kelas as $kelas){
+					$id_kelas=$kelas->kelas_id;
+				}
+				$jurusan_nama=$this->input->post('jurusan_nama');
+				$Jurusan=$this->Jurusan_model->getJurusan2("where jurusan_name='$jurusan_nama'")->result();
+				foreach($Jurusan as $jurusan){
+					$id_jurusan=$jurusan->jurusan_id;
+				}
+				// print_r($id_jurusan);exit;
+				if($this->input->post('password_1')==$this->input->post('password_2')){
+					$data_insert = array(
+						'homework_id' => '',
+						'homework_date' => '',
+						'start_time' => '',
+						'finish_time' => '',
+						'day' =>'',
+						'note' => '',
+						'guru_id' => '',
+						'mapel_id' => '',
+						'kelas_id' => '',
+						'jurusan_id' => '',
+						'room_id' => '',
+						'schedule_id' => '',
+						'siswa_id' => '',
 
+					);
+					$res = $this->Siswa_model->insertData('siswa', $data_insert);
+					if ($res>=1){
+						$message =array('auth_AddHomework'=> array(
+							'status' => true,
+							'error'=>200,
+							'message' => 'Success'
+						));
+						echo json_encode($message);
+					}else{
+						$message =array('auth_AddHomework'=> array(
+							'status' => false,
+							'error'=>205,
+							'message' => 'Not Success'
+						));
+						echo json_encode($message);
+					}
+				}else{
+					$message =array('auth_AddHomework'=> array(
+						'status' => false,
+						'error'=>203,
+						'message' => 'Password Not Same'
+					));
+					echo json_encode($message);
+				}
+			
+		 }
 	}
 
 	public function GetNote(){
