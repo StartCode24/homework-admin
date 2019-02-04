@@ -389,23 +389,21 @@ class content extends CI_Controller {
 			));
 			echo json_encode($message);
 		 }else{
-			
 				// print_r($id_jurusan);exit;
-				if($this->input->post('password_1')==$this->input->post('password_2')){
 					$data_insert = array(
-						'homework_id' => '',
-						'homework_date' => '',
-						'start_time' => '',
-						'finish_time' => '',
-						'day' =>'',
-						'note' => '',
-						'guru_id' => '',
-						'mapel_id' => '',
-						'kelas_id' => '',
-						'jurusan_id' => '',
-						'room_id' => '',
-						'schedule_id' => '',
-						'siswa_id' => '',
+						'homework_id' => $this->HomeWork_model->cari_kode_idHomework(),
+						'homework_date' => $this->input->post('homework_date'),
+						'start_time' => $this->input->post('start_time'),
+						'finish_time' => $this->input->post('finish_time'),
+						'day' =>$this->input->post('day'),
+						'note' => $this->input->post('note'),
+						'guru_id' => $this->input->post('guru_id'),
+						'mapel_id' => $this->input->post('mapel_id'),
+						'kelas_id' => $this->input->post('kelas_id'),
+						'jurusan_id' => $this->input->post('jurusan_id'),
+						'room_id' => $this->input->post('room_id'),
+						'schedule_id' => $this->input->post('schedule_id'),
+						'siswa_id' => $this->input->post('siswa_id'),
 
 					);
 					$res = $this->HomeWork_model->insertData('homework', $data_insert);
@@ -424,14 +422,7 @@ class content extends CI_Controller {
 						));
 						echo json_encode($message);
 					}
-				}else{
-					$message =array('auth_AddHomework'=> array(
-						'status' => false,
-						'error'=>203,
-						'message' => 'Password Not Same'
-					));
-					echo json_encode($message);
-				}
+				
 			
 		 }
 	}
