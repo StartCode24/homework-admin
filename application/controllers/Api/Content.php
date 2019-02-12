@@ -364,6 +364,7 @@ class content extends CI_Controller {
 			 }
 	}
 	public function AddHomeWork(){
+		date_default_timezone_set('Asia/Jakarta');
 		header('Content-Type:application/json');
 		header('Accept:application/json');
 		// homework_id
@@ -371,15 +372,16 @@ class content extends CI_Controller {
 		$this->form_validation->set_rules('homework_date', 'homework_date', 'trim|required');
 		$this->form_validation->set_rules('start_time', 'start_time', 'trim|required');
 		$this->form_validation->set_rules('finish_time', 'finish_time', 'trim|required');
-		$this->form_validation->set_rules('day', 'day', 'trim|required');
+		// $this->form_validation->set_rules('day', 'day', 'trim|required');
 		$this->form_validation->set_rules('note', 'note', 'trim|required');
-		$this->form_validation->set_rules('guru_id', 'guru_id', 'trim|required');
-		$this->form_validation->set_rules('mapel_id', 'mapel_id', 'trim|required');
+		// $this->form_validation->set_rules('guru_id', 'guru_id', 'trim|required');
+		$this->form_validation->set_rules('mapel_name', 'mapel_id', 'trim|required');
 		$this->form_validation->set_rules('kelas_id', 'kelas_id', 'trim|required');
 		$this->form_validation->set_rules('jurusan_id', 'jurusan_id', 'trim|required');
-		$this->form_validation->set_rules('room_id', 'room_id', 'trim|required');
-		$this->form_validation->set_rules('schedule_id', 'schedule_id', 'trim|required');
-		$this->form_validation->set_rules('siswa_id', 'siswa_id', 'trim|required');
+		// $this->form_validation->set_rules('room_id', 'room_id', 'trim|required');
+		// $this->form_validation->set_rules('schedule_id', 'schedule_id', 'trim|required');
+		$this->form_validation->set_rules('siswa_nik', 'siswa_nik', 'trim|required');
+		$this->form_validation->set_rules('alarm_time', 'alarm_time', 'trim|required');
 		 if ($this->form_validation->run() == FALSE)
 		 {
 			$message =array('auth_AddHomework'=> array(
@@ -389,21 +391,60 @@ class content extends CI_Controller {
 			));
 			echo json_encode($message);
 		 }else{
-				// print_r($id_jurusan);exit;
+			 $homeWorkDate=$this->input->post('homework_date');
+			 $dayName=date('l',$homeWorkDate);
+			 if($dayName=='Monday'){
+			 $Nameday="Senin";
+			 }if($dayName=='Tuesday'){
+			 $Nameday="Selasa";
+			 }if($dayName=='Wednesday'){
+			 $Nameday="Rabu";
+			 }if($dayName=='Thursday'){
+			 $Nameday="Kamis";
+			 }if($dayName=='Friday'){
+			 $Nameday="Jumat";
+			 }if($dayName=='Saturday'){
+			 $Nameday="Sabtu";
+			 }if($dayName=='Sunday'){
+			 $Nameday="Minggu";
+			 }
+
+			 $starTime=$this->input->post('start_time');
+			 $finishTime= $this->input->post('finish_time');
+			 $note=$this->input->post('note');
+			 $mapelName=$this->input->post('mapel_name');
+			 $Mapel=$this->Mapel_model->getMapel2("where mapelname Like '%$mapelName%'")->result();
+			 foreach($Mapel as $mapel){
+				$idMapel=$mapel->mapel_id;
+			 }
+			 
+			 $kelasId=$this->input->post('kelas_id');
+			 $jurusanId=$this->input->post('jurusan_id');
+			 $siswaNik=$this->input->post('siswa_nik');
+			 $alrmTime=$this->input->post('alarm_time');
+			 $schedule=$this->Schedule_model->getSchedule("where mapel_id='$idMapel' and kelas_id='$kelasId' and jurusan_id='$jurusanId' ")->result();
+			 foreach($schedule as $schedule){
+				$guruId=$schedule->guru_id;
+				$scheduleId=$schedule->schedule_id;
+				$roomId=$schedule->room_id;
+			 }
+			 if(!empty($schedule)){
+				print_r($schedule);exit;
 					$data_insert = array(
 						'homework_id' => $this->HomeWork_model->cari_kode_idHomework(),
-						'homework_date' => $this->input->post('homework_date'),
-						'start_time' => $this->input->post('start_time'),
-						'finish_time' => $this->input->post('finish_time'),
-						'day' =>$this->input->post('day'),
-						'note' => $this->input->post('note'),
-						'guru_id' => $this->input->post('guru_id'),
-						'mapel_id' => $this->input->post('mapel_id'),
-						'kelas_id' => $this->input->post('kelas_id'),
-						'jurusan_id' => $this->input->post('jurusan_id'),
-						'room_id' => $this->input->post('room_id'),
-						'schedule_id' => $this->input->post('schedule_id'),
-						'siswa_id' => $this->input->post('siswa_id'),
+						'homework_date' =>$homeWorkDate,
+						'start_time' => $starTime,
+						'finish_time' =>$finishTime,
+						'day' =>$Nameday,
+						'note' => $note,
+						'guru_id' => $guruId,
+						'mapel_id' => $idMapel,
+						'kelas_id' => $kelasId,
+						'jurusan_id' => $jurusanId,
+						'room_id' => $roomId,
+						'schedule_id' => $scheduleId,
+						'siswa_nik' => $siswaNik,
+						'alarm_time'=>''
 
 					);
 					$res = $this->HomeWork_model->insertData('homework', $data_insert);
@@ -422,9 +463,122 @@ class content extends CI_Controller {
 						));
 						echo json_encode($message);
 					}
-				
+			}else{
+				$message =array('auth_AddHomework'=> array(
+					'status' => false,
+					'error'=>202,
+					'message' => 'Schedule not found'
+				));
+				echo json_encode($message);
+			}
 			
 		 }
+	}
+
+	public function SearchSched(){
+		date_default_timezone_set('Asia/Jakarta');
+		header('Content-Type:application/json');
+		header('Accept:application/json');
+		$this->form_validation->set_rules('schedule_id', 'schedule_id', 'trim|required');
+		if ($this->form_validation->run() == FALSE)
+		{
+				// Form Validation Errors
+				$message =array('auth_SearchSchedule'=> array(
+						'status' => false,
+						'error' => $this->form_validation->error_array(),
+						'message' => validation_errors()
+				));
+				//$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				echo json_encode($message);
+		}else{
+		try {
+			$schedule_id=$this->input->post('schedule_id');
+			$data=array();
+			$Schedule=$this->Schedule_model->getSchedule("where schedule_id='00$schedule_id'")->result();
+			// print_r($Schedule);exit;
+			if (!empty($Schedule) AND $Schedule != FALSE)
+			{
+						 
+			$nama_guru='';
+			$nama_mapel='';
+			$nama_kelas='';
+			$nama_jurusan='';
+			$nama_room='';
+							 
+							 
+			foreach ($Schedule as $schedule) {
+			$day=$schedule->day;
+			$day_of_week=substr($schedule->schedule_date,-2);
+								
+			$Guru =$this->Guru_model->getGuru2("where guru_id='$schedule->guru_id'")->result();
+			foreach($Guru as $guru){
+				$nama_guru=$guru->guruname;	
+			}
+			$Mapel=$this->Mapel_model->getMapel2("where mapel_id='$schedule->mapel_id'")->result();
+			foreach($Mapel as $mapel){
+				$nama_mapel=$mapel->mapelname;
+			}
+			$Kelas=$this->Kelas_model->getKelas2("where kelas_id='$schedule->kelas_id'")->result();
+				foreach($Kelas as $kelas){
+				$nama_kelas=$kelas->kelas_name;
+			}
+			$Jurusan=$this->Jurusan_model->getJurusan2("where jurusan_id='$schedule->jurusan_id'")->result();
+			foreach($Jurusan as $jurusan){
+				$nama_jurusan=$jurusan->jurusan_name;
+			}
+			$Room=$this->Room_model->getRoom2("where room_id='$schedule->room_id'")->result();
+			foreach($Room as $room){
+				$nama_room=$room->roomname;
+			}
+								
+			$schedule_dateYear=substr($schedule->schedule_date,0,4);
+			$schedule_dateMont=substr($schedule->schedule_date,5,-3);
+			$mont=date('M');
+			
+			$data=array(
+				'schedule_id'=>$schedule->schedule_id,
+				'month'=>$mont,
+				'start_time'=>$schedule->start_time,
+				'finish_time'=>$schedule->finish_time,
+				'day_name'=>$schedule->day,			
+				'note'=>$schedule->note,
+				'guru_id'=>$schedule->guru_id,
+				'guru_name'=>$nama_guru,
+				'mapel_id'=>$schedule->mapel_id,
+				'mapel_name'=>$nama_mapel,
+				'kelas_id'=>$schedule->kelas_id,
+				'kelas_name'=>$nama_kelas,
+				'jurusan_name'=>$nama_jurusan,
+				'room_name'=>$nama_room
+			    );
+			 }
+		
+		 
+		   $message =['auth_SearchSchedule'=> [
+				   'status' => 200,
+				   'data' => $data,
+				   'message' => "Data SearchSchedule"
+		   ]];
+		   echo json_encode($message);
+		}else{
+			$message =['auth_SearchSchedule'=> [
+				'status' => 404,
+				'data' => false,
+				'message' => "Data Notfound"
+		]];
+		echo json_encode($message);
+		}
+		} catch (Exception $e) {
+			http_response_code('401');
+		   $message =['auth_SearchSchedule'=> [
+				   'status' => false,
+				   'message' => $e->getMessage()
+		   ]];
+		   echo json_encode($message);
+		   exit;
+		}
+
+		}
 	}
 
 	public function GetNote(){
