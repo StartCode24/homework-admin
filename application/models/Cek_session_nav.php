@@ -58,17 +58,17 @@ class Cek_session_nav extends CI_Model {
 	}
 
 	function cek_session_schedule(){
-		 if ($this->session->set_userdata('class0')=='') {
- 			$this->session->set_userdata('class0','active');
+		 if ($this->session->set_userdata('class1')=='') {
+ 			$this->session->set_userdata('class1','active');
+ 			$this->session->unset_userdata('class0');
  			$this->session->unset_userdata('class2');
- 			$this->session->unset_userdata('class1');
  			$this->session->unset_userdata('class3');
  			$this->session->unset_userdata('class4');
 			$this->session->unset_userdata('class5');
 			$this->session->unset_userdata('class6');
- 		}elseif ($this->session->set_userdata('class1')=='active') {
-			$this->session->unset_userdata('class2');
+ 		}elseif ($this->session->set_userdata('class0')=='active') {
 			$this->session->unset_userdata('class1');
+			$this->session->unset_userdata('class2');
 			$this->session->unset_userdata('class3');
 			$this->session->unset_userdata('class4');
 			$this->session->unset_userdata('class5');
