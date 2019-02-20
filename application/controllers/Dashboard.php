@@ -20,6 +20,27 @@ class Dashboard extends CI_Controller {
 		$this->load->view('nav_content/footer.php');
 	}
 
+	public function schedule() {
+		$this->cek_session_nav->cek_session_schedule();
+		$data = $this->Schedule_model->getSchedule();
+		// $kodeunik= $this->Cek_kodeUnik->cari_kode_schedule();
+		//debug_array($data);
+		$this->load->view('nav_content/header.php', array('data' => $data ));
+		$this->load->view('content/schedule/all_schedule_data', array('data' => $data ));
+		$this->load->view('nav_content/footer.php');
+		// $this->load->view('content/schedule/add_modal_schedule',array('kode_unik' => $kodeunik ));
+
+		// untuk mengecek pesan konfirmasi input berhasil
+				if ($this->session->userdata('pesan')=='berhasil') {
+					$this->load->view('content/schedule/sweet-alert-input');
+					$this->session->unset_userdata('pesan');
+				}
+				if ($this->session->userdata('EditPesan')=='berhasil') {
+					$this->load->view('content/schedule/sweet-alert-edit');
+					$this->session->unset_userdata('EditPesan');
+				}
+	}
+
 	public function guru() {
 		$this->cek_session_nav->cek_session_guru();
 		$data = $this->Guru_model->getGuru();

@@ -57,7 +57,7 @@
 	                    </a>
 	                </li>
 	                <li class="<?php echo $this->session->userdata('class1'); ?>">
-	                    <a href="">
+	                    <a href="<?php echo base_url()."Dashboard/schedule/"?>">
 	                        <i class="material-icons">notifications</i>
 	                        <p>Schedule</p>
 	                    </a>
