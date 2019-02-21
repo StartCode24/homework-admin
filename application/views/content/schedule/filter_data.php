@@ -14,28 +14,39 @@
 function refresh_laman() {
 	location.reload();
 }
+function check_pilihan() {
+	if ($( "p#jurusan_terpilih" ).text() == '' ) {
+		swal("Pilihlah Jurusan", "Anda harus memilih salah satu jurusan" , "info");
+	} else if ($( "#kelas_terpilih" ).text() == '' ) {
+		swal("Pilihlah Kelas", "Anda harus memilih salah satu kelas" , "info");
+	} else {
+		swal("Selamat", "Anda bisa melanjutkan ke proses selanjutnya", "success");
+	}
+}
+
 function pilihJurusan(objButton) {
 	var jurusan = objButton.value;
 	swal("Terpilih", "Anda memilih jurusan : "+jurusan, "success");
 	$( ".jurusan" ).hide( "slow", function() {});
 	$( "#jurusan_terpilih" ).text( jurusan );
-	$( "#jurusan_terpilih" ).append(" <button class='btn' style=' transform: scale(0.8); '><b onclick='ganti_jurusan()''> Pilih Ulang</b></button>");
+	$( "#jurusan_terpilih" ).append(" <button class='btn' onclick='ganti_jurusan()' style='transform: scale(0.8);'><b> Pilih Ulang</b></button>");
+	
 }
 function ganti_jurusan() {
-	$( ".jurusan" ).show( 10 );
+	$( ".jurusan" ).show( 0 );
 	$( "#jurusan_terpilih" ).text( "" );
 }
 function pilihKelas(objButton) {
 	var kelas = objButton.value;
-	// var number=document.getElementById("number").value;
-	console.log(kelas);
+	// console.log(kelas);
 	swal("Terpilih", "Anda memilih kelas : "+kelas, "success");
   	$( ".kelas" ).hide( "slow", function() {});
 	$( "#kelas_terpilih" ).text( kelas );
-	$( "#kelas_terpilih" ).append(" <button class='btn' style=' transform: scale(0.8); '><b onclick='ganti_kelas()''> Pilih Ulang</b></button>");
+	$( "#kelas_terpilih" ).append(" <button class='btn' onclick='ganti_kelas()' style='transform: scale(0.8);'><b> Pilih Ulang</b></button>");
+	
 }
 function ganti_kelas() {
-	$( ".kelas" ).show( 10 );
+	$( ".kelas" ).show( 0 );
 	$( "#kelas_terpilih" ).text( "" );
 }
 </script>
@@ -62,6 +73,7 @@ function ganti_kelas() {
 								<?php } ?>
 							</div>
 						</div>
+						<button class='btn btn-primary' onclick='check_pilihan()' style='transform: scale(0.9);'><b>Lanjutkan</b></button>
 					</div>
 					<div class="card-footer">
 					</div>
