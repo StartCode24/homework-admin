@@ -5,8 +5,9 @@ class schedule_model extends CI_Model {
 
 	public function getSchedule($where="")
 	{
-		$data = $this->db->query('select * from schedule '.$where);
+		$data = $this->db->query('select * from schedule '.$where)->result_array();
 		return $data;
+		// debug_array($data);
 	}
 
 	public function insertData($schedule, $data){
