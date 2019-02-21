@@ -24,9 +24,10 @@ class Dashboard extends CI_Controller {
 		$this->cek_session_nav->cek_session_schedule();
 		$data = $this->Schedule_model->getSchedule();
 		// $kodeunik= $this->Cek_kodeUnik->cari_kode_schedule();
-		//debug_array($data);
+		$data_jurusan = $this->Jurusan_model->getJurusan();
+		$data_kelas = $this->Kelas_model->getKelas();
 		$this->load->view('nav_content/header.php', array('data' => $data ));
-		$this->load->view('content/schedule/all_schedule_data', array('data' => $data ));
+		$this->load->view('content/schedule/filter_data', array('data' => $data, 'data_jurusan' => $data_jurusan, 'data_kelas' => $data_kelas));
 		$this->load->view('nav_content/footer.php');
 		// $this->load->view('content/schedule/add_modal_schedule',array('kode_unik' => $kodeunik ));
 
