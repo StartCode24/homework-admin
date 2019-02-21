@@ -9,6 +9,13 @@ class schedule_model extends CI_Model {
 		return $data;
 		// debug_array($data);
 	}
+	public function getSchedule2($where="")
+	{
+		$data = $this->db->query('select * from schedule '.$where);
+		return $data;
+		// debug_array($data);
+	}
+	
 
 	public function insertData($schedule, $data){
 		$res = $this->db->insert($schedule, $data);
@@ -25,3 +32,4 @@ class schedule_model extends CI_Model {
 		return $res;	
 	}
 }
+ 

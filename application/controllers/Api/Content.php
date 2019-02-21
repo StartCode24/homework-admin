@@ -468,7 +468,7 @@ class content extends CI_Controller {
 			 $jurusanId=$this->input->post('jurusan_id');
 			 $siswaNik=$this->input->post('siswa_nik');
 			 $alrmTime=$this->input->post('alarm_time');
-			 $schedule=$this->Schedule_model->getSchedule("where mapel_id='$idMapel' and kelas_id='$kelasId' and jurusan_id='$jurusanId' ")->result();
+			 $schedule=$this->Schedule_model->getSchedule2("where mapel_id='$idMapel' and kelas_id='$kelasId' and jurusan_id='$jurusanId' ")->result();
 			 foreach($schedule as $schedule){
 				$guruId=$schedule->guru_id;
 				$scheduleId=$schedule->schedule_id;
