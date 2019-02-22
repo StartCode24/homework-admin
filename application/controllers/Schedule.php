@@ -80,7 +80,6 @@ class Schedule extends CI_Controller {
 		$room_id = $_POST['room_id'];
 		$data_insert = array(
 			'schedule_id' => $schedule_id,
-			'schedule_date' => $schedule_date,
 			'start_time' => $start_time,
 			'finish_time' => $finish_time,
 			'day' => $day,
@@ -107,7 +106,6 @@ class Schedule extends CI_Controller {
 		// debug_array($schedule);
 		$data = array(
 			'schedule_id' => $schedule[0]['schedule_id'],
-			'schedule_date' => $schedule[0]['schedule_date'],
 			'start_time' => $schedule[0]['start_time'],
 			'finish_time' => $schedule[0]['finish_time'],
 			'day' => $schedule[0]['day'],
@@ -126,7 +124,6 @@ class Schedule extends CI_Controller {
 
 	public function do_update(){
 		$schedule_id = $_POST['schedule_id'];
-		$schedule_date = $_POST['schedule_date'];
 		$start_time = $_POST['start_time'];
 		$finish_time = $_POST['finish_time'];
 		$day = $_POST['day'];

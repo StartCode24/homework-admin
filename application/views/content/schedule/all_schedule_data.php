@@ -1,3 +1,4 @@
+<?php // debug_array($data); ?>
 <div class="content">
   <div class="container-fluid">
     <div class="row">
@@ -16,7 +17,6 @@
 		<thead class=" text-primary">
 		<tr>
 			<th>Schedule ID</th>
-			<th>Schedule Date</th>
 			<th>Start Time</th>
 			<th>Finish Time</th>
 			<th>Day</th>
@@ -35,7 +35,6 @@
 			<?php // debug_array($value) ?>
 		<tr>
 				<td class=""><?php echo $value['schedule_id']; ?></td>
-				<td class=""><?php echo $value['schedule_date']; ?></td>
 				<td class=""><?php echo $value['start_time']; ?></td>
 				<td class=""><?php echo $value['finish_time']; ?></td>
 				<td class=""><?php echo $value['day']; ?></td>
