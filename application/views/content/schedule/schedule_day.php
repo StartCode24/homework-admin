@@ -5,9 +5,9 @@
 	}
 </style>
 <script>
-	$( ".card_day" ).click(function() {
-  		alert( "Handler for .click() called." );
-	});
+	// $( ".card_day" ).click(function() {
+ //  		alert( "Handler for .click() called." );
+	// });
 </script>
 <div class="content">
   <div class="container-fluid">
