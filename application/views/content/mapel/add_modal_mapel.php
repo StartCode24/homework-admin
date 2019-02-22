@@ -30,7 +30,7 @@
                       <div class="col-md-8">
                           <div class="form-group">
                               <label>Note Mapel</label>
-                              <textarea name="mapel_note" required rows="8" class="form-control border-input" cols="80"></textarea>
+                              <textarea name="mapel_note" rows="8" class="form-control border-input" cols="80"></textarea>
                           </div>
                       </div>
                   </div>
