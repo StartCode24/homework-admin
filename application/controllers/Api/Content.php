@@ -123,7 +123,7 @@ class content extends CI_Controller {
 					 'data' =>array( 
 						 'kelas'=>$data,
 					 ),
-					 'message' => "get Jurusan successful"
+					 'message' => "get Kelas successful"
 			 ]];
 			
 			// $this->response($message, REST_Controller::HTTP_OK);
@@ -180,7 +180,7 @@ class content extends CI_Controller {
 					 $kelas_id=$this->input->post('kelas_id');
 					 $jurusan_id=$this->input->post('jurusan_id');
 					 $data=array();
-					 $Schedule = $this->Schedule_model->getSchedule("where kelas_id = '$kelas_id' and jurusan_id='$jurusan_id'")->result();
+					 $Schedule = $this->Schedule_model->getSchedule2("where kelas_id = '$kelas_id' and jurusan_id='$jurusan_id'")->result();
 					 if (!empty($Schedule) AND $Schedule != FALSE)
 					 {
 						 
@@ -365,7 +365,7 @@ class content extends CI_Controller {
 								$data[]=array(
 									'homework_id'=>$HomeWork->homework_id,
 									'homework_date'=>$HomeWork->homework_date,
-									'tahun'=>$HomeWork_dateMont,
+									'month'=>$HomeWork_dateMont,
 									'start_time'=>$HomeWork->start_time,
 									'finish_time'=>$HomeWork->finish_time,
 									'day'=>$day_of_week,
@@ -427,6 +427,7 @@ class content extends CI_Controller {
 		// $this->form_validation->set_rules('schedule_id', 'schedule_id', 'trim|required');
 		$this->form_validation->set_rules('siswa_nik', 'siswa_nik', 'trim|required');
 		$this->form_validation->set_rules('alarm_time', 'alarm_time', 'trim|required');
+		$this->form_validation->set_rules('id_homework', 'id_homework', 'trim|required');
 		 if ($this->form_validation->run() == FALSE)
 		 {
 			$message =array('auth_AddHomework'=> array(
@@ -463,7 +464,7 @@ class content extends CI_Controller {
 			 foreach($Mapel as $mapel){
 				$idMapel=$mapel->mapel_id;
 			 }
-			 
+			 $idHomeWork=$this->input->post('id_homework');
 			 $kelasId=$this->input->post('kelas_id');
 			 $jurusanId=$this->input->post('jurusan_id');
 			 $siswaNik=$this->input->post('siswa_nik');
@@ -477,7 +478,7 @@ class content extends CI_Controller {
 			 if(!empty($schedule)){
 				// print_r($schedule);exit;
 					$data_insert = array(
-						'homework_id' => $this->HomeWork_model->cari_kode_idHomework(),
+						'homework_id' => $idHomeWork,
 						'homework_date' =>$homeWorkDate,
 						'start_time' => $starTime,
 						'finish_time' =>$finishTime,
@@ -614,7 +615,7 @@ class content extends CI_Controller {
 			$jurusanId=$this->input->post('jurusan_id');
 			$siswaNik=$this->input->post('siswa_nik');
 			$alrmTime=$this->input->post('alarm_time');
-			$schedule=$this->Schedule_model->getSchedule("where mapel_id='$idMapel' and kelas_id='$kelasId' and jurusan_id='$jurusanId' ")->result();
+			$schedule=$this->Schedule_model->getSchedule2("where mapel_id='$idMapel' and kelas_id='$kelasId' and jurusan_id='$jurusanId' ")->result();
 			foreach($schedule as $schedule){
 			   $guruId=$schedule->guru_id;
 			   $scheduleId=$schedule->schedule_id;
@@ -687,7 +688,7 @@ class content extends CI_Controller {
 		try {
 			$schedule_id=$this->input->post('schedule_id');
 			$data=array();
-			$Schedule=$this->Schedule_model->getSchedule("where schedule_id='00$schedule_id'")->result();
+			$Schedule=$this->Schedule_model->getSchedule2("where schedule_id='00$schedule_id'")->result();
 			// print_r($Schedule);exit;
 			if (!empty($Schedule) AND $Schedule != FALSE)
 			{
@@ -774,6 +775,39 @@ class content extends CI_Controller {
 		}
 	}
 
+	public function GetIdHomework(){
+		date_default_timezone_set('Asia/Jakarta');
+		header('Content-Type:application/json');
+		header('Accept:application/json');
+		$_POST = $this->security->xss_clean($_POST);
+		$idHomeWork=$this->HomeWork_model->cari_kode_idHomework();
+		if (!empty($idHomeWork) AND $idHomeWork != FALSE)
+		{
+			 $message =['auth_idHomeWork'=> [
+					 'status' => 200,
+					 'data' =>array( 
+						 'idHomeWork'=>$idHomeWork,
+					 ),
+					 'message' => "get idHomeWork successful"
+			 ]];
+			
+			// $this->response($message, REST_Controller::HTTP_OK);
+			echo json_encode($message);
+		}else{
+			$message =['auth_idHomeWork'=> [
+				'status' => 404,
+				'data' =>array( 
+					'idHomeWork'=>$idHomeWork,
+				),
+				'message' => "get idHomeWork Not Found"
+		]];
+	   
+	   // $this->response($message, REST_Controller::HTTP_OK);
+	   echo json_encode($message);
+		}
+
+	}
+
 	public function SearchHomeWork(){
 		date_default_timezone_set('Asia/Jakarta');
 		header('Content-Type:application/json');
@@ -832,7 +866,9 @@ class content extends CI_Controller {
 								
 			$schedule_dateYear=substr($Homework->homework_date,0,4);
 			$schedule_dateMont=substr($Homework->homework_date,5,-3);
-			$mont=date('M');
+			$mont=date('m',strtotime($Homework->homework_date))-1;
+			$date=date('d',strtotime($Homework->homework_date));
+			$years=date('Y',strtotime($Homework->homework_date));
 			$dayName=date('l',strtotime($Homework->homework_date));
 			 
 			 if($dayName=='Monday'){
@@ -850,6 +886,8 @@ class content extends CI_Controller {
 			 }if($dayName=='Sunday'){
 			 $Nameday="Minggu";
 			 }
+			 $hours=substr($Homework->alarm_time,0,2);
+			 $minute=substr($Homework->alarm_time,3,-3);
 			 $HomeworkDate=date('Ymd',strtotime($Homework->homework_date));
 			$dateName=$Nameday.', '.date('d-M-Y',strtotime($Homework->homework_date));
 			$data=array(
@@ -857,6 +895,10 @@ class content extends CI_Controller {
 				'homework_date'=>$HomeworkDate,
 				'dateName'=>$dateName,
 				'month'=>$mont,
+				'date'=>$date,
+				'years'=>$years,
+				'hours'=>$hours,
+				'minute'=>$minute,
 				'start_time'=>$Homework->start_time,
 				'finish_time'=>$Homework->finish_time,
 				'day_name'=>$Homework->day,			
