@@ -30,7 +30,7 @@
 	<table class="table">
 		<thead class=" text-primary">
 		<tr>
-			<th>Schedule ID</th>
+			<th>ID</th>
 			<th>Start Time</th>
 			<th>Finish Time</th>
 			<th>Day</th>
@@ -39,7 +39,7 @@
 			<th>Note</th>
 			<th>Guru</th>
 			<th>Mapel</th>
-			<th>Room ID</th>
+			<th>Room</th>
 			<th>Action</th>
 		</tr>
 		</thead>
