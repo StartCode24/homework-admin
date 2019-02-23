@@ -17,7 +17,7 @@
           <div class="card-content">
             <p class="category">Schedule</p>
             <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: 25px;">
-		        <a href="" title="">
+		        <a href="<?php echo $_SERVER['REQUEST_URI'];?>Senin" title="">
 		        	<div class="col-lg-4 card_day">
 				        <div class="card card-stats" style="margin-bottom: 0px;">
 				          <div class="card-content">
@@ -26,7 +26,7 @@
 				        </div>
 			    	</div>
 				</a>
-		        <a href="" title="">
+		        <a href="<?php echo $_SERVER['REQUEST_URI'];?>Selasa" title="">
 		        	<div class="col-lg-4 card_day">
 				        <div class="card card-stats" style="margin-bottom: 0px;">
 				          <div class="card-content">
@@ -35,7 +35,7 @@
 				        </div>
 			    	</div>
 				</a>
-		        <a href="" title="">
+		        <a href="<?php echo $_SERVER['REQUEST_URI'];?>Rabu" title="">
 		        	<div class="col-lg-4 card_day">
 				        <div class="card card-stats" style="margin-bottom: 0px;">
 				          <div class="card-content">
@@ -44,7 +44,7 @@
 				        </div>
 			    	</div>
 				</a>
-		        <a href="" title="">
+		        <a href="<?php echo $_SERVER['REQUEST_URI'];?>Kamis" title="">
 		        	<div class="col-lg-4 card_day">
 				        <div class="card card-stats" style="margin-bottom: 0px;">
 				          <div class="card-content">
@@ -53,7 +53,7 @@
 				        </div>
 			    	</div>
 				</a>
-		        <a href="" title="">
+		        <a href="<?php echo $_SERVER['REQUEST_URI'];?>Jumat" title="">
 		        	<div class="col-lg-4 card_day">
 				        <div class="card card-stats" style="margin-bottom: 0px;">
 				          <div class="card-content">
@@ -62,7 +62,7 @@
 				        </div>
 			    	</div>
 				</a>
-		        <a href="" title="">
+		        <a href="<?php echo $_SERVER['REQUEST_URI'];?>Sabtu" title="">
 		        	<div class="col-lg-4 card_day">
 				        <div class="card card-stats" style="margin-bottom: 0px;">
 				          <div class="card-content">
