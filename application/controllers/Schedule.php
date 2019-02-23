@@ -11,13 +11,63 @@ class Schedule extends CI_Controller {
 		redirect('Dashboard/schedule');
 	}
 
+	public function filter_data_view_schedule(){
+		// debug_array($_POST);
+		
+		if ($_POST['subkelas'] == "_") {
+			$_POST['subkelas'] = "";
+		}
+
+		// debug_array($_POST);
+
+		$data['jurusan'] = $_POST['jurusan'];
+		$data['kelas'] = $_POST['kelas'];
+		$data['subkelas'] = $_POST['subkelas'];
+
+		$this->db->where('kelas_jurusan',$data['jurusan'])
+				 ->where('kelas_name',$data['kelas'])
+				 ->where('kelas_sub',$data['subkelas']);
+		    $query = $this->db->get('kelas');
+		    if ($query->num_rows() > 0){
+		        $data['status'] = "true";
+		        echo json_encode(array('status' => 'ok')); 
+		    }
+		    else{
+		        $data['status'] = "false";
+		        echo json_encode(array('status' => 'not ok')); 
+		    }
+		  // $this->db->last_query();
+		
+	}
+
+	public function view_schedule_day($kelas_jurusan_subkelas) {
+		$data = "";
+		$this->load->view('nav_content/header.php', array('data' => $data ));
+		$this->load->view('content/schedule/schedule_day', array('data' => $data ));
+		$this->load->view('nav_content/footer.php');
+	}
+
+	public function view_schedule_detail($value='')	{
+		if ($kelas_jurusan_subkelas != "") {
+			$expl = explode("_", $kelas_jurusan_subkelas);
+			$kelas = $expl[0];
+			$jurusan = $expl[1];
+			$subkelas = $expl[2];
+			// debug_array($expl);
+		}
+		$data = $this->Schedule_model->getSchedule();
+		// debug_array($data);
+		$this->load->view('nav_content/header.php', array('data' => $data ));
+		$this->load->view('content/schedule/schedule_day_detail', array('data' => $data ));
+		$this->load->view('nav_content/footer.php');
+	}
+
 	public function add_data(){
 		$this->load->view('content/schedule/add_schedule');
 	}
 
 	public function do_insert(){
 		$schedule_id = $_POST['schedule_id'];
-		$schedule_date = $_POST['schedule_date'];
 		$start_time = $_POST['start_time'];
 		$finish_time = $_POST['finish_time'];
 		$day = $_POST['day'];
@@ -30,7 +80,6 @@ class Schedule extends CI_Controller {
 		$room_id = $_POST['room_id'];
 		$data_insert = array(
 			'schedule_id' => $schedule_id,
-			'schedule_date' => $schedule_date,
 			'start_time' => $start_time,
 			'finish_time' => $finish_time,
 			'day' => $day,
@@ -57,7 +106,6 @@ class Schedule extends CI_Controller {
 		// debug_array($schedule);
 		$data = array(
 			'schedule_id' => $schedule[0]['schedule_id'],
-			'schedule_date' => $schedule[0]['schedule_date'],
 			'start_time' => $schedule[0]['start_time'],
 			'finish_time' => $schedule[0]['finish_time'],
 			'day' => $schedule[0]['day'],
@@ -76,7 +124,6 @@ class Schedule extends CI_Controller {
 
 	public function do_update(){
 		$schedule_id = $_POST['schedule_id'];
-		$schedule_date = $_POST['schedule_date'];
 		$start_time = $_POST['start_time'];
 		$finish_time = $_POST['finish_time'];
 		$day = $_POST['day'];
