@@ -40,11 +40,34 @@ class Schedule extends CI_Controller {
 		
 	}
 
-	public function view_schedule_day($kelas_jurusan_subkelas) {
-		$data = "";
-		$this->load->view('nav_content/header.php', array('data' => $data ));
-		$this->load->view('content/schedule/schedule_day', array('data' => $data ));
-		$this->load->view('nav_content/footer.php');
+	public function view_schedule_day($kelas_jurusan_subkelas="", $day="") {
+		if ($kelas_jurusan_subkelas != "") {
+			$expl = explode("_", $kelas_jurusan_subkelas);
+			$kelas = $expl[0];
+			$jurusan = $expl[1];
+			$subkelas = $expl[2];
+			// debug_array($expl);
+		} else {
+			redirect('Dashboard/schedule');
+		}
+
+		$day_array = array("Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu");
+
+		if (in_array($day, $day_array))
+		  {
+			// $data = $this->Schedule_model->getScheduleByDay("10","13","B","Senin");
+			$data = $this->Schedule_model->getScheduleByDay($kelas, $jurusan, $subkelas, $day);
+			// debug_array($data[0]['day']);
+			$this->load->view('nav_content/header.php', array('data' => $data ));
+			$this->load->view('content/schedule/schedule_day_detail', array('data' => $data ));
+			$this->load->view('nav_content/footer.php');
+		  } else {
+			$data = "";
+			$this->load->view('nav_content/header.php', array('data' => $data ));
+			$this->load->view('content/schedule/schedule_day', array('data' => $data ));
+			$this->load->view('nav_content/footer.php');
+		  }
+		
 	}
 
 	public function view_schedule_detail($value='')	{
