@@ -35,4 +35,13 @@ class Jurusan_model extends CI_Model {
 		$data = $this->db->query('select * from jurusan');
 		return $data;
 	}
+
+	public function getJurusanName($jurusan_id)
+	{
+		$this->db->select('jurusan_name');
+		$this->db->where('jurusan_id', $jurusan_id);
+		$query = $this->db->get('jurusan', 1)->row();
+		return $query->jurusan_name;
+		// debug_array($query);
+	}
 }
