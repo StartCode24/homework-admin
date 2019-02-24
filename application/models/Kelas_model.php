@@ -34,4 +34,13 @@ class Kelas_model extends CI_Model {
 		$data = $this->db->query('select * from kelas ');
 		return $data;
 	}
+
+	public function get_kelas_id($kelas_name, $kelas_jurusan, $kelas_sub)
+	{
+		$this->db->select('kelas_id');
+		$this->db->where('kelas_name', $kelas_name);
+		$query = $this->db->get('kelas', 1)->row();
+		return $query->kelas_id;
+		// debug_array($query);
+	}
 }

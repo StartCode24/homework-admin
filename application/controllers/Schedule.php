@@ -57,9 +57,33 @@ class Schedule extends CI_Controller {
 		  {
 			// $data = $this->Schedule_model->getScheduleByDay("10","13","B","Senin");
 			$data = $this->Schedule_model->getScheduleByDay($kelas, $jurusan, $subkelas, $day);
-			// debug_array($data[0]['day']);
+			$jurusan_describe = $this->Jurusan_model->getJurusanName($jurusan);
+			$data_guru = $this->Guru_model->getGuru();
+			$data_mapel = $this->Mapel_model->getMapel();
+			$data_room = $this->Room_model->getRoom();
+			// debug_array($data_mapel);
 			$this->load->view('nav_content/header.php', array('data' => $data ));
-			$this->load->view('content/schedule/schedule_day_detail', array('data' => $data ));
+			$this->load->view('content/schedule/add_modal_schedule', array(
+				'data' => $data, 
+				'kelas' => $kelas, 
+				'jurusan' => $jurusan, 
+				'jurusan_describe' => $jurusan_describe, 
+				'subkelas' => $subkelas, 
+				'day' => $day,
+				'data_guru' => $data_guru,
+				'data_mapel' => $data_mapel,
+				'data_room' => $data_room
+			));
+			$this->load->view('content/schedule/schedule_day_detail', array(
+				'data' => $data, 
+				'kelas' => $kelas, 
+				'jurusan' => $jurusan, 
+				'jurusan_describe' => $jurusan_describe, 
+				'subkelas' => $subkelas, 
+				'day' => $day,
+				'data_guru' => $data_guru,
+				'data_mapel' => $data_mapel
+			));
 			$this->load->view('nav_content/footer.php');
 		  } else {
 			$data = "";
@@ -90,23 +114,31 @@ class Schedule extends CI_Controller {
 	}
 
 	public function do_insert(){
+		// debug_array($_POST);
+		$expl_jurusan = explode("_", $_POST['jurusan']);
+		// debug_array($expl_jurusan);
+		$kode_jurusan = $expl_jurusan[0];
+		$kode_kelas = $this->Kelas_model->get_kelas_id($_POST['kelas'], $kode_jurusan, $_POST['subkelas']);
+		// debug_array($kode_kelas);
 		$schedule_id = $_POST['schedule_id'];
 		$start_time = $_POST['start_time'];
 		$finish_time = $_POST['finish_time'];
 		$day = $_POST['day'];
-		$jam_ke = $_POST['jam_ke'];
-		$note = $_POST['note'];
+		$jam_mulai = $_POST['jam_mulai'];
+		$jam_akhir = $_POST['jam_akhir'];
 		$guru_id = $_POST['guru_id'];
 		$mapel_id = $_POST['mapel_id'];
-		$kelas_id = $_POST['kelas_id'];
-		$jurusan_id = $_POST['jurusan_id'];
+		$kelas_id = $kode_kelas;
+		$jurusan_id = $kode_jurusan;
 		$room_id = $_POST['room_id'];
+		$note = $_POST['note'];
 		$data_insert = array(
 			'schedule_id' => $schedule_id,
 			'start_time' => $start_time,
 			'finish_time' => $finish_time,
 			'day' => $day,
-			'jam_ke' => $jam_ke,
+			'jam_mulai' => $jam_mulai,
+			'jam_akhir' => $jam_akhir,
 			'note' => $note,
 			'guru_id' => $guru_id,
 			'mapel_id' => $mapel_id,
@@ -116,10 +148,13 @@ class Schedule extends CI_Controller {
 		);
 		$res = $this->Schedule_model->insertData('schedule', $data_insert);
 		if ($res>=1){
-			$this->session->set_flashdata('pesan', 'Tambah data sukses');
-			redirect('Dashboard/schedule');
+			$data['status'] = "true";
+		        echo json_encode(array('status' => 'ok')); 
+			
 		}else{
-			echo "<h3>Insert data gagal</h3>";
+			// echo "<h3>Insert data gagal</h3>";
+			$data['status'] = "false";
+		        echo json_encode(array('status' => 'not ok')); 
 		}
 	}
 
