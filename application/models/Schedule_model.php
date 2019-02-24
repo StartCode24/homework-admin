@@ -28,7 +28,8 @@ class schedule_model extends CI_Model {
 			inner join guru on schedule.guru_id = guru.guru_id 
 			inner join mapel on schedule.mapel_id = mapel.mapel_id
 			inner join room on schedule.room_id = room.room_id
-			where schedule.jurusan_id = '$jurusan' and schedule.kelas_id = '$get_kelas_id->kelas_id' and schedule.day = '$day' "
+			where schedule.jurusan_id = '$jurusan' and schedule.kelas_id = '$get_kelas_id->kelas_id' and schedule.day = '$day' 
+			order by schedule_id asc "
 			)->result_array();
 
 		// $this->db->select('schedule_id, start_time, finish_time, day, jam_mulai,jam_akhir,note,guruname,mapelname,room_id');
