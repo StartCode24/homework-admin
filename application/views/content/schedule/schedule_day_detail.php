@@ -1,16 +1,65 @@
-<?php // debug_array($data); ?>
+<?php // debug_array($kelas); ?>
 <?php
-	if (!empty($data[0]['day'])) {
-		$day = $data[0]['day'];
-	} else {
+	if (empty($day)) {
 		$day = "(Error. Data Hari tidak ditemukan)";
-	}
+	} else {}
 	
 ?>
 <script>
-	function Swall_Add_Schedule() {
-		alert("hay");
-	}
+  function Swall_Edit_Schedule(schedule_id){
+    var datam={"schedule_id":schedule_id};
+    var base_url = $('#base').val();
+    var base_url2=base_url+'Schedule/';
+
+
+    // ajax
+    jQuery.ajax({
+      // url untuk menuju data yang akan di kirim
+      url: base_url2+"edit_data",
+      method : "POST",
+      data:datam,
+      success:function(data){
+
+        jQuery('body').append(data);
+        // untuk menampilkan modal berdasarkan edit
+        jQuery('#myModaledit').modal('toggle');
+        // untuk menghilangkan isi post agar kembali menjadi 0 pada variabel datam
+        jQuery('#myModaledit').remove();
+      },
+      error:function(){
+          swal ( "Oops" ,  "Something went wrong!" ,  "error" );
+      }
+
+    });
+  }
+
+  function Swall_Add_Schedule(){
+    // untuk menampung isi data dari schedule id
+    // var base_url = $('#base').val();
+    // var base_url2=base_url+'Schedule/';
+
+
+    // // ajax
+    // jQuery.ajax({
+    //   // url untuk menuju data yang akan di kirim
+    //   url: base_url2+"do_insert",
+    //   method : "POST",
+    //   data:datam,
+    //   success:function(data){
+
+        // jQuery('body').append(data);
+        // untuk menampilkan modal berdasarkan edit
+        jQuery('#myModaladd').modal('toggle');
+        // untuk menghilangkan isi post agar kembali menjadi 0 pada variabel datam
+        jQuery('#myModaladd').remove();
+    //   },
+    //   error:function(){
+    //       // alert("something went wrong"+datam).console.error();
+    //       swal ( "Oops" ,  "Something went wrong!" ,  "error" );
+    //   }
+
+    // });
+  }
 </script>
 <div class="content">
   <div class="container-fluid">
@@ -20,8 +69,8 @@
           <div class="card-content">
             <p class="category">Schedule - <?php echo $day; ?></p>
             <!-- <a href="<?php echo base_url()?>Schedule/add_data"><h3 class="title"><i class="fa fa-plus-circle"></i>Tambah Data</h3></a> -->
-            <button class="btn btn-light" onclick="Swall_Add_Schedule()">Add</button>
-            <a href="" class="btn btn-primary btn-fill" data-toggle="modal" data-target="#myModal">
+            <!-- <button class="btn btn-light" onclick="Swall_Add_Schedule()">Add</button> -->
+			<a href="" onclick="Swall_Add_Schedule()" class="btn btn-primary btn-fill" data-toggle="modal" data-target="#myModal">
               <span class="fa fa-plus-circle"></span>
               <b>Tambah Data</b>
             </a>
@@ -33,7 +82,6 @@
 			<th>ID</th>
 			<th>Start Time</th>
 			<th>Finish Time</th>
-			<th>Day</th>
 			<th>Jam Mulai</th>
 			<th>Jam Akhir</th>
 			<th>Note</th>
@@ -50,7 +98,6 @@
 				<td class=""><?php echo $value['schedule_id']; ?></td>
 				<td class=""><?php echo $value['start_time']; ?></td>
 				<td class=""><?php echo $value['finish_time']; ?></td>
-				<td class=""><?php echo $value['day']; ?></td>
 				<td class=""><?php echo $value['jam_mulai']; ?></td>
 				<td class=""><?php echo $value['jam_akhir']; ?></td>
 				<td class=""><?php echo $value['note']; ?></td>
@@ -59,7 +106,7 @@
 				<td class=""><?php echo $value['roomname']; ?></td>
 				<!-- <td class=""><?php// echo $value['siswa_note']; ?></td> -->
 				<td class="">
-					<button class="btn btn-warning btn-fill" onclick="_edit_schedule('<?php echo $value['schedule_id'];?>')">
+					<button class="btn btn-warning btn-fill" onclick="Swall_Edit_Schedule('<?php echo $value['schedule_id'];?>')">
                Edit
              </button>
 					||

@@ -28,10 +28,14 @@ class Mapel_model extends CI_Model {
 		$res = $this->db->delete($mapel, $where);
 		return $res;	
 	}
-	public function getAllMapel()
+
+	public function getMapelName($mapel_id)
 	{
-		$data = $this->db->query('select * from mapel');
-		return $data;
+		$this->db->select('mapelname');
+		$this->db->where('mapel_id', $mapel_id);
+		$data = $this->db->get('mapel', 1)->row();
+		// debug_array($data);
+		return $data->mapelname;
 	}
 }
  

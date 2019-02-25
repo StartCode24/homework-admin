@@ -13,6 +13,14 @@ class Kelas_model extends CI_Model {
 		$data = $this->db->query('select * from kelas '.$where);
 		return $data;
 	}
+	public function get_kelas_info_by_id($kelas_id)
+	{
+		$this->db->select('*');
+		$this->db->where('kelas_id', $kelas_id);
+		$data = $this->db->get('kelas')->result_array();
+		// debug_array($data);
+		return $data;
+	}
 
 	public function insertData($kelas, $data){
 		$res = $this->db->insert($kelas, $data);
@@ -33,5 +41,16 @@ class Kelas_model extends CI_Model {
 	{
 		$data = $this->db->query('select * from kelas ');
 		return $data;
+	}
+
+	public function get_kelas_id($kelas_name, $kelas_jurusan, $kelas_sub)
+	{
+		$this->db->select('kelas_id');
+		$this->db->where('kelas_name', $kelas_name);
+		$this->db->where('kelas_jurusan', $kelas_jurusan);
+		$this->db->where('kelas_sub', $kelas_sub);
+		$query = $this->db->get('kelas', 1)->row();
+		return $query->kelas_id;
+		// debug_array($query);
 	}
 }
