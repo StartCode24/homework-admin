@@ -16,7 +16,7 @@ class schedule_model extends CI_Model {
 			$this->db->query(
 			" select kelas_id
 			from kelas
-			where kelas.kelas_jurusan = '$jurusan' and kelas.kelas_name = '$kelas_name' "
+			where kelas.kelas_name = '$kelas_name' and kelas.kelas_jurusan = '$jurusan' and kelas.kelas_sub = '$subkelas' "
 			)->row();
 
 		// debug_array($get_kelas_id->kelas_id);
