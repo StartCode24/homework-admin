@@ -13,6 +13,14 @@ class Kelas_model extends CI_Model {
 		$data = $this->db->query('select * from kelas '.$where);
 		return $data;
 	}
+	public function get_kelas_info_by_id($kelas_id)
+	{
+		$this->db->select('*');
+		$this->db->where('kelas_id', $kelas_id);
+		$data = $this->db->get('kelas')->result_array();
+		// debug_array($data);
+		return $data;
+	}
 
 	public function insertData($kelas, $data){
 		$res = $this->db->insert($kelas, $data);

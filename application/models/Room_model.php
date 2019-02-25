@@ -28,4 +28,13 @@ class Room_model extends CI_Model {
 		$res = $this->db->delete($room, $where);
 		return $res;	
 	}
+
+	public function getRoomName($room_id)
+	{
+		$this->db->select('roomname');
+		$this->db->where('room_id', $room_id);
+		$data = $this->db->get('room', 1)->row();
+		// debug_array($data);
+		return $data->roomname;
+	}
 }

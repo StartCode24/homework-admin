@@ -29,4 +29,13 @@ class Guru_model extends CI_Model {
 		$res = $this->db->delete($guru, $where);
 		return $res;
 	}
+
+	public function getGuruName($guru_id)
+	{
+		$this->db->select('guruname');
+		$this->db->where('guru_id', $guru_id);
+		$data = $this->db->get('guru', 1)->row();
+		// debug_array($data);
+		return $data->guruname;
+	}
 }
