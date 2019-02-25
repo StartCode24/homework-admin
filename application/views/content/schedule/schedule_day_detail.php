@@ -6,9 +6,33 @@
 	
 ?>
 <script>
-	// function Swall_Add_Schedule() {
-	// 	alert("hay");
-	// }
+  function Swall_Edit_Schedule(schedule_id){
+    var datam={"schedule_id":schedule_id};
+    var base_url = $('#base').val();
+    var base_url2=base_url+'Schedule/';
+
+
+    // ajax
+    jQuery.ajax({
+      // url untuk menuju data yang akan di kirim
+      url: base_url2+"edit_data",
+      method : "POST",
+      data:datam,
+      success:function(data){
+
+        jQuery('body').append(data);
+        // untuk menampilkan modal berdasarkan edit
+        jQuery('#myModaledit').modal('toggle');
+        // untuk menghilangkan isi post agar kembali menjadi 0 pada variabel datam
+        jQuery('#myModaledit').remove();
+      },
+      error:function(){
+          swal ( "Oops" ,  "Something went wrong!" ,  "error" );
+      }
+
+    });
+  }
+
   function Swall_Add_Schedule(){
     // untuk menampung isi data dari schedule id
     // var base_url = $('#base').val();
@@ -82,7 +106,7 @@
 				<td class=""><?php echo $value['roomname']; ?></td>
 				<!-- <td class=""><?php// echo $value['siswa_note']; ?></td> -->
 				<td class="">
-					<button class="btn btn-warning btn-fill" onclick="_edit_schedule('<?php echo $value['schedule_id'];?>')">
+					<button class="btn btn-warning btn-fill" onclick="Swall_Edit_Schedule('<?php echo $value['schedule_id'];?>')">
                Edit
              </button>
 					||
