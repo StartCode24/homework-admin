@@ -193,7 +193,7 @@ class content extends CI_Controller {
 							 
 							 foreach ($Schedule as $schedule) {
 								$day=$schedule->day;
-								$day_of_week=substr($schedule->schedule_date,-2);
+								// $day_of_week=substr($schedule->schedule_date,-2);
 								
 								$Guru =$this->Guru_model->getGuru2("where guru_id='$schedule->guru_id'")->result();
 								foreach($Guru as $guru){
@@ -216,8 +216,8 @@ class content extends CI_Controller {
 									$nama_room=$room->roomname;
 								}
 								
-								$schedule_dateYear=substr($schedule->schedule_date,0,4);
-								$schedule_dateMont=substr($schedule->schedule_date,5,-3);
+								// $schedule_dateYear=substr($schedule->schedule_date,0,4);
+								// $schedule_dateMont=substr($schedule->schedule_date,5,-3);
 								
 									//  print_r($dayofweek );exit;
 									$dayName=$schedule->day;
@@ -241,13 +241,14 @@ class content extends CI_Controller {
 									// }
 									// print_r($dayDate);exit;
 								
-								if($tahun==$schedule_dateYear&&$bulan==$schedule_dateMont){
+								// if($tahun==$schedule_dateYear&&$bulan==$schedule_dateMont){
+									$month=date('m');
 									for($i=1;$i<=$dayofweek;$i++){
 										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($date)));
 										
 									$data[]=array(
 										'schedule_id'=>$schedule->schedule_id,
-										'month'=>$schedule_dateMont,
+										'month'=>$month,
 										'start_time'=>$schedule->start_time,
 										'finish_time'=>$schedule->finish_time,
 										'day_name'=>$dayName,
@@ -264,7 +265,7 @@ class content extends CI_Controller {
 										'room_id'=>$schedule->room_id,
 										'room_name'=>$nama_room
 									);
-							}
+							// }
 							}
 							// print_r($schedule);
 							}
@@ -688,7 +689,7 @@ class content extends CI_Controller {
 		try {
 			$schedule_id=$this->input->post('schedule_id');
 			$data=array();
-			$Schedule=$this->Schedule_model->getSchedule2("where schedule_id='00$schedule_id'")->result();
+			$Schedule=$this->Schedule_model->getSchedule2("where schedule_id='$schedule_id'")->result();
 			// print_r($Schedule);exit;
 			if (!empty($Schedule) AND $Schedule != FALSE)
 			{
@@ -702,7 +703,7 @@ class content extends CI_Controller {
 							 
 			foreach ($Schedule as $schedule) {
 			$day=$schedule->day;
-			$day_of_week=substr($schedule->schedule_date,-2);
+			// $day_of_week=substr($schedule->schedule_date,-2);
 								
 			$Guru =$this->Guru_model->getGuru2("where guru_id='$schedule->guru_id'")->result();
 			foreach($Guru as $guru){
@@ -725,8 +726,8 @@ class content extends CI_Controller {
 				$nama_room=$room->roomname;
 			}
 								
-			$schedule_dateYear=substr($schedule->schedule_date,0,4);
-			$schedule_dateMont=substr($schedule->schedule_date,5,-3);
+			// $schedule_dateYear=substr($schedule->schedule_date,0,4);
+			// $schedule_dateMont=substr($schedule->schedule_date,5,-3);
 			$mont=date('M');
 			
 			$data=array(
@@ -819,7 +820,7 @@ class content extends CI_Controller {
 					 
 					 foreach ($Schedule as $schedule) {
 						$day=$schedule->day;
-						$day_of_week=substr($schedule->schedule_date,-2);
+						// $day_of_week=substr($schedule->schedule_date,-2);
 						
 						$Guru =$this->Guru_model->getGuru2("where guru_id='$schedule->guru_id'")->result();
 						foreach($Guru as $guru){
@@ -842,8 +843,8 @@ class content extends CI_Controller {
 							$nama_room=$room->roomname;
 						}
 						
-						$schedule_dateYear=substr($schedule->schedule_date,0,4);
-						$schedule_dateMont=substr($schedule->schedule_date,5,-3);
+						// $schedule_dateYear=substr($schedule->schedule_date,0,4);
+						// $schedule_dateMont=substr($schedule->schedule_date,5,-3);
 						
 							//  print_r($dayofweek );exit;
 							$dayName=$schedule->day;
@@ -867,13 +868,14 @@ class content extends CI_Controller {
 							// }
 							// print_r($dayDate);exit;
 						
-						if($tahun==$schedule_dateYear&&$bulan==$schedule_dateMont){
+						// if($tahun==$schedule_dateYear&&$bulan==$schedule_dateMont){
+							$month=(date('m'));
 							for($i=1;$i<=$dayofweek;$i++){
 								$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($date)));
 								
 							$data[]=array(
 								'schedule_id'=>$schedule->schedule_id,
-								'month'=>$schedule_dateMont,
+								'month'=>$month,
 								'start_time'=>$schedule->start_time,
 								'finish_time'=>$schedule->finish_time,
 								'day_name'=>$dayName,
@@ -890,7 +892,7 @@ class content extends CI_Controller {
 								'room_id'=>$schedule->room_id,
 								'room_name'=>$nama_room
 							);
-					}
+					// }
 					}
 					// print_r($schedule);
 					}
