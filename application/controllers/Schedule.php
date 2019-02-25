@@ -221,24 +221,31 @@ class Schedule extends CI_Controller {
 	}
 
 	public function do_update(){
+		// debug_array($_POST);
+		$expl_jurusan = explode("_", $_POST['jurusan']);
+		// debug_array($expl_jurusan);
+		$kode_jurusan = $expl_jurusan[0];
+		$kode_kelas = $this->Kelas_model->get_kelas_id($_POST['kelas'], $kode_jurusan, $_POST['subkelas']);
+		// debug_array($kode_kelas);
 		$schedule_id = $_POST['schedule_id'];
 		$start_time = $_POST['start_time'];
 		$finish_time = $_POST['finish_time'];
 		$day = $_POST['day'];
-		$jam_ke = $_POST['jam_ke'];
-		$note = $_POST['note'];
+		$jam_mulai = $_POST['jam_mulai'];
+		$jam_akhir = $_POST['jam_akhir'];
 		$guru_id = $_POST['guru_id'];
 		$mapel_id = $_POST['mapel_id'];
-		$kelas_id = $_POST['kelas_id'];
-		$jurusan_id = $_POST['jurusan_id'];
+		$kelas_id = $kode_kelas;
+		$jurusan_id = $kode_jurusan;
 		$room_id = $_POST['room_id'];
+		$note = $_POST['note'];
 		$data_update = array(
 			'schedule_id' => $schedule_id,
-			'schedule_date' => $schedule_date,
 			'start_time' => $start_time,
 			'finish_time' => $finish_time,
 			'day' => $day,
-			'jam_ke' => $jam_ke,
+			'jam_mulai' => $jam_mulai,
+			'jam_akhir' => $jam_akhir,
 			'note' => $note,
 			'guru_id' => $guru_id,
 			'mapel_id' => $mapel_id,
@@ -246,14 +253,17 @@ class Schedule extends CI_Controller {
 			'jurusan_id' => $jurusan_id,
 			'room_id' => $room_id
 		);
+		// debug_array($data_update);
 		$where = array('schedule_id' => $schedule_id);
 		$res = $this->Schedule_model->updateData('schedule', $data_update, $where);
 		if ($res>=1){
-			$this->session->set_flashdata('pesan', 'Update data sukses');
-			redirect('Dashboard/schedule');
+			$data['status'] = "true";
+		        echo json_encode(array('status' => 'ok')); 
 		}else{
-			echo "<h3>Update data gagal</h3>";
+			$data['status'] = "false";
+		        echo json_encode(array('status' => 'not ok')); 
 		}
+
 	}
 
 	public function do_delete() {

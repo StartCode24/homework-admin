@@ -10,33 +10,34 @@
 </style>
 <script>
 function submit_updated_data() {
-  var schedule_id = $( "#schedule_id" ).val();
-  var start_time = $( "#start_time" ).val();
-  var finish_time = $( "#finish_time" ).val();
-  var day = $( "#day" ).val();
-  var jam_mulai = $( "#jam_mulai" ).val();
-  var jam_akhir = $( "#jam_akhir" ).val();
-  var guru_id = $( "#guru_id" ).val();
-  var mapel_id = $( "#mapel_id" ).val();
-  var room_id = $( "#room_id" ).val();
-  var note = $( "#note" ).val();
-  var kelas = $( "#kelas" ).val();
-  var jurusan = $( "#jurusan" ).val();
-  var subkelas = $( "#subkelas" ).val();
+  // alert($( "#start_time_edit" ).val());
+  var schedule_id = $( "#schedule_id_edit" ).val();
+  var start_time = $( "#start_time_edit" ).val();
+  var finish_time = $( "#finish_time_edit" ).val();
+  var day = $( "#day_edit" ).val();
+  var jam_mulai = $( "#jam_mulai_edit" ).val();
+  var jam_akhir = $( "#jam_akhir_edit" ).val();
+  var guru_id = $( "#guru_id_edit" ).val();
+  var mapel_id = $( "#mapel_id_edit" ).val();
+  var room_id = $( "#room_id_edit" ).val();
+  var note = $( "#note_edit" ).val();
+  var kelas = $( "#kelas_edit" ).val();
+  var jurusan = $( "#jurusan_edit" ).val();
+  var subkelas = $( "#subkelas_edit" ).val();
   var kelas_jurusan_subkelas = kelas+"_"+jurusan+"_"+subkelas;
-  if ($( "#start_time" ).val() == '' ) {
+  if ($( "#start_time_edit" ).val() === '' ) {
     swal("Start Time Harus Diisi", "Isilah pukul berapa dimulainya pelajaran" , "info");
-  } else if ($( "#finish_time" ).val() == '' ) {
+  } else if ($( "#finish_time_edit" ).val() == '' ) {
     swal("Finish Time Harus Diisi", "Isilah pukul berapa selesainya pelajaran" , "info");
-  } else if ($( "#jam_mulai" ).val() == '' ) {
+  } else if ($( "#jam_mulai_edit" ).val() == '' ) {
     swal("Jam Mulai Harus Diisi", "Isilah jam ke- berapa dimulainya pelajaran" , "info");
-  } else if ($( "#jam_akhir" ).val() == '' ) {
+  } else if ($( "#jam_akhir_edit" ).val() == '' ) {
     swal("Jam Akhir Harus Diisi", "Isilah jam ke- berapa selesainya pelajaran" , "info");
-  } else if ($( "#guru_id" ).val() == '' ) {
+  } else if ($( "#guru_id_edit" ).val() == '' ) {
     swal("Data Guru Harus Diisi", "Isilah data guru yang mengajar" , "info");
-  } else if ($( "#mapel_id" ).val() == '' ) {
+  } else if ($( "#mapel_id_edit" ).val() == '' ) {
     swal("Data Mapel Harus Diisi", "Isilah data mata pelajaran" , "info");
-  } else if ($( "#room_id" ).val() == '' ) {
+  } else if ($( "#room_id_edit" ).val() == '' ) {
     swal("Data Ruangan Harus Diisi", "Isilah data ruangan" , "info");
   } else {
      $.ajax({
@@ -98,19 +99,19 @@ function submit_updated_data() {
                       <div class="col-md-4">
                           <div class="form-group">
                               <label>Schedule ID</label>
-                              <input type="text" id="schedule_id" class="form-control border-input" readonly value="<?php echo $schedule_id; ?>" name="schedule_id" placeholder="(autofill by system)">
+                              <input type="text" id="schedule_id_edit" class="form-control border-input" readonly value="<?php echo $schedule_id; ?>" name="schedule_id_edit" placeholder="(autofill by system)">
                           </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Start Time</label>
-                            <input type="time" required id="start_time" class="form-control border-input" placeholder="start_time" name="start_time" value="<?php echo $start_time; ?>">
+                            <input type="time" required id="start_time_edit" class="form-control border-input" placeholder="start_time_edit" name="start_time_edit" value="<?php echo $start_time; ?>">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Finish Time</label>
-                            <input type="time" required id="finish_time" class="form-control border-input" placeholder="finish_time" name="finish_time" value="<?php echo $finish_time; ?>">
+                            <input type="time" required id="finish_time_edit" class="form-control border-input" placeholder="finish_time_edit" name="finish_time_edit" value="<?php echo $finish_time; ?>">
                         </div>
                       </div>
                   </div>
@@ -119,19 +120,19 @@ function submit_updated_data() {
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Day</label>
-                            <input type="text" readonly required id="day" class="form-control border-input" placeholder="day" name="day" value="Senin">
+                            <input type="text" readonly required id="day_edit" class="form-control border-input" placeholder="day" name="day_edit" value="<?php echo $day; ?>">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Jam Mulai</label>
-                            <input type="number" min="0" max="10" required id="jam_mulai" class="form-control border-input" placeholder="jam ke- (awal)" name="jam_mulai" value="<?php echo $jam_mulai; ?>">
+                            <input type="number" min="0" max="10" required id="jam_mulai_edit" class="form-control border-input" placeholder="jam ke- (awal)" name="jam_mulai_edit" value="<?php echo $jam_mulai; ?>">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Jam Akhir</label>
-                            <input type="number" min="0" max="10" required id="jam_akhir" class="form-control border-input" placeholder="jam ke- (akhir)" name="jam_akhir" value="<?php echo $jam_akhir; ?>">
+                            <input type="number" min="0" max="10" required id="jam_akhir_edit" class="form-control border-input" placeholder="jam ke- (akhir)" name="jam_akhir_edit" value="<?php echo $jam_akhir; ?>">
                         </div>
                       </div>
                   </div>
@@ -139,7 +140,7 @@ function submit_updated_data() {
                       <div class="col-md-5">
                         <div class="form-group">
                             <label>Guru</label>
-                            <select id="guru_id" name="guru_id" class="form-control border-input select-guru">
+                            <select id="guru_id_edit" name="guru_id_edit" class="form-control border-input select-guru_edit">
                                 <option value="<?php echo $guru_id; ?>" selected><?php echo $guruname; ?></option>
                                 <option value="">---</option>
                               <?php foreach ($data_guru as $value) { //print_r($value);?>
@@ -151,7 +152,7 @@ function submit_updated_data() {
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Mapel</label>
-                            <select id="mapel_id" name="mapel_id" class="form-control border-input select-mapel">
+                            <select id="mapel_id_edit" name="mapel_id_edit" class="form-control border-input select-mapel">
                               <option value="<?php echo $mapel_id; ?>" selected><?php echo $mapelname; ?></option>
                               <option value="">---</option>
                             <?php foreach ($data_mapel as $value) { //print_r($value);?>
@@ -163,7 +164,7 @@ function submit_updated_data() {
                       <div class="col-md-3">
                         <div class="form-group">
                             <label>Room</label>
-                            <select id="room_id" name="room_id" class="form-control border-input select-room">
+                            <select id="room_id_edit" name="room_id_edit" class="form-control border-input select-room_edit">
                               <option value="<?php echo $room_id; ?>" selected><?php echo $roomname; ?></option>
                               <option value="">---</option>
                             <?php foreach ($data_room as $value) { //print_r($value);?>
@@ -177,7 +178,7 @@ function submit_updated_data() {
                       <div class="col-md-12">
                           <div class="form-group">
                               <label>Note</label>
-                              <textarea id="note" class="form-control border-input" name="note"><?php echo $note; ?></textarea>
+                              <textarea id="note_edit" class="form-control border-input" name="note_edit"><?php echo $note; ?></textarea>
                           </div>
                       </div>
                   </div>
@@ -185,19 +186,19 @@ function submit_updated_data() {
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Kelas</label>
-                            <input type="text" id="kelas" class="form-control border-input" readonly value="<?php echo $kelas;?>" name="kelas" placeholder="(autofill by system)">
+                            <input type="text" id="kelas_edit" class="form-control border-input" readonly value="<?php echo $kelas;?>" name="kelas_edit" placeholder="(autofill by system)">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Jurusan</label>
-                            <input type="text" id="jurusan" class="form-control border-input" readonly value="<?php echo $jurusan;?>_<?php echo $jurusan_describe;?>" name="jurusan" placeholder="(autofill by system)">
+                            <input type="text" id="jurusan_edit" class="form-control border-input" readonly value="<?php echo $jurusan;?>_<?php echo $jurusan_describe;?>" name="jurusan_edit" placeholder="(autofill by system)">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Subkelas</label>
-                            <input type="text" id="subkelas" class="form-control border-input" readonly value="<?php echo $subkelas;?>" name="subkelas" placeholder="(autofill by system)">
+                            <input type="text" id="subkelas_edit" class="form-control border-input" readonly value="<?php echo $subkelas;?>" name="subkelas_edit" placeholder="(autofill by system)">
                         </div>
                       </div>
                   </div>

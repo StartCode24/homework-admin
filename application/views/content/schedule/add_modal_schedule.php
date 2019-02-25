@@ -118,7 +118,7 @@ function submit_data() {
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Day</label>
-                            <input type="text" readonly required id="day" class="form-control border-input" placeholder="day" name="day" value="Senin">
+                            <input type="text" readonly required id="day" class="form-control border-input" placeholder="day" name="day" value="<?php echo $day; ?>">
                         </div>
                       </div>
                       <div class="col-md-4">
