@@ -74,6 +74,17 @@ class Schedule extends CI_Controller {
 				'data_mapel' => $data_mapel,
 				'data_room' => $data_room
 			));
+			// $this->load->view('content/schedule/edit_modal_schedule', array(
+			// 	'data' => $data, 
+			// 	'kelas' => $kelas, 
+			// 	'jurusan' => $jurusan, 
+			// 	'jurusan_describe' => $jurusan_describe, 
+			// 	'subkelas' => $subkelas, 
+			// 	'day' => $day,
+			// 	'data_guru' => $data_guru,
+			// 	'data_mapel' => $data_mapel,
+			// 	'data_room' => $data_room
+			// ));
 			$this->load->view('content/schedule/schedule_day_detail', array(
 				'data' => $data, 
 				'kelas' => $kelas, 
@@ -162,18 +173,47 @@ class Schedule extends CI_Controller {
 		$schedule_id=$this->input->post('schedule_id');
 		$schedule = $this->Schedule_model->getSchedule("where schedule_id = '$schedule_id'");
 		// debug_array($schedule);
+		$jurusan_id = $schedule[0]['jurusan_id'];
+		$jurusan_describe = $this->Jurusan_model->getJurusanName($jurusan_id);
+
+		$guru_id = $schedule[0]['guru_id'];
+		$guruname = $this->Guru_model->getGuruName($guru_id);
+
+		$mapel_id = $schedule[0]['mapel_id'];
+		$mapelname = $this->Mapel_model->getMapelName($mapel_id);
+
+		$room_id = $schedule[0]['room_id'];
+		$roomname = $this->Room_model->getRoomName($room_id);
+
+		$kelas_info = $this->Kelas_model->get_kelas_info_by_id($schedule[0]['kelas_id']);
+		// debug_array($kelas_info[0]);
+		$kelas = $kelas_info[0]['kelas_name'];
+		$subkelas = $kelas_info[0]['kelas_sub'];
+
+		$data_guru = $this->Guru_model->getGuru();
+		$data_mapel = $this->Mapel_model->getMapel();
+		$data_room = $this->Room_model->getRoom();
 		$data = array(
 			'schedule_id' => $schedule[0]['schedule_id'],
 			'start_time' => $schedule[0]['start_time'],
 			'finish_time' => $schedule[0]['finish_time'],
 			'day' => $schedule[0]['day'],
-			'jam_ke' => $schedule[0]['jam_ke'],
+			'jam_mulai' => $schedule[0]['jam_mulai'],
+			'jam_akhir' => $schedule[0]['jam_akhir'],
 			'note' => $schedule[0]['note'],
-			'guru_id' => $schedule[0]['guru_id'],
-			'mapel_id' => $schedule[0]['mapel_id'],
-			'kelas_id' => $schedule[0]['kelas_id'],
-			'jurusan_id' => $schedule[0]['jurusan_id'],
-			'room_id' => $schedule[0]['room_id']
+			'guru_id' => $guru_id,
+			'guruname' => $guruname,
+			'mapel_id' => $mapel_id,
+			'mapelname' => $mapelname,
+			'room_id' => $room_id,
+			'roomname' => $roomname,
+			'kelas' => $kelas,
+			'subkelas' => $subkelas,
+			'jurusan' => $jurusan_id,
+			'jurusan_describe' => $jurusan_describe,
+			'data_guru' => $data_guru,
+			'data_mapel' => $data_mapel,
+			'data_room' => $data_room
 		);
 		// debug_array($data);
 
