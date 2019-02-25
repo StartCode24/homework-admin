@@ -37,4 +37,10 @@ class Mapel_model extends CI_Model {
 		// debug_array($data);
 		return $data->mapelname;
 	}
+
+	public function getAllMapel()
+	 {
+	  $data = $this->db->query('select * from mapel');
+	  return $data;
+	 }
 }
