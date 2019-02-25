@@ -27,7 +27,7 @@ class homework_model extends CI_Model {
         $this->db->select('RIGHT(homework.homework_id,4) as id',false );
         $this->db->order_by('homework_id','DESC');
         $this->db->limit(1);
-        $query=$this->db->get('siswa');//cek apakah id atau tidak
+        $query=$this->db->get('homework');//cek apakah id atau tidak
         if ($query->num_rows()<>0) {
           // jika kode ternyata sudah add
           $data=$query->row();
@@ -37,7 +37,7 @@ class homework_model extends CI_Model {
           $kode=1;
         }
 
-         $kodeMax=str_pad($kode,4,"0",STR_PAD_LEFT);//angka 4 menunjukan jumlah angka digit 0
+         $kodeMax=str_pad($kode,3,"0",STR_PAD_LEFT);//angka 4 menunjukan jumlah angka digit 0
           $kodeJadi=$kodeMax;
           return $kodeJadi;
 	  }

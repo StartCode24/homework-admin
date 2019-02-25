@@ -9,7 +9,7 @@ class Mapel extends CI_Controller {
 		//debug_array($data);
 		// $this->load->view('mapel/all_mapel_data', array('data' => $data ));
 		redirect('Dashboard/mapel');
-	}
+	} 
 
 	public function add_data(){
 		$this->load->view('content/mapel/add_mapel');
