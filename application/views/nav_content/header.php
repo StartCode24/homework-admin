@@ -82,7 +82,7 @@
 	                </li>
 	                <li class="<?php echo $this->session->userdata('class5'); ?>">
 	                    <a href="<?php echo base_url()."Dashboard/jurusan/"?>">
-	                        <i class="material-icons">content_paste</i>
+	                        <i class="material-icons">stars</i>
 	                        <p>Jurusan</p>
 	                    </a>
 	                </li>
@@ -92,6 +92,12 @@
 	                        <p>Siswa</p>
 	                    </a>
 	                </li>		                
+	                <li class="<?php echo $this->session->userdata('class6'); ?>">
+	                    <a href="<?php echo base_url()."Dashboard/kelas/"?>">
+	                        <i class="material-icons">meeting_room</i>
+	                        <p>Kelas</p>
+	                    </a>
+	                </li>
 	            </ul>
 	    	</div>
 	    </div>
