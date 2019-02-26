@@ -43,6 +43,20 @@ class Kelas_model extends CI_Model {
 		return $data;
 	}
 
+	public function getKelasJurusan()
+	{
+// 		SELECT kelas_id, kelas_name, kelas_jurusan as 'kode_jurusan', jurusan_name, kelas_sub
+// FROM kelas
+// LEFT JOIN jurusan
+// ON kelas.kelas_jurusan = jurusan.jurusan_id
+
+		$this->db->select('kelas_id, kelas_name, kelas_jurusan as "kode_jurusan", jurusan_name, kelas_sub');
+		$this->db->join('jurusan', 'kelas.kelas_jurusan = jurusan.jurusan_id', 'left');
+		$data = $this->db->get('kelas')->result_array();
+		
+		return $data;
+	}
+
 	public function get_kelas_id($kelas_name, $kelas_jurusan, $kelas_sub)
 	{
 		$this->db->select('kelas_id');

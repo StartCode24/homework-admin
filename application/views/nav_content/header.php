@@ -76,7 +76,7 @@
 	                </li>
 	                <li class="<?php echo $this->session->userdata('class4'); ?>">
 	                    <a href="<?php echo base_url()."Dashboard/room/all_room_data/"?>">
-	                        <i class="material-icons">room</i>
+	                        <i class="material-icons">meeting_room</i>
 	                        <p>Ruangan</p>
 	                    </a>
 	                </li>
@@ -88,13 +88,13 @@
 	                </li>
 	                <li class="<?php echo $this->session->userdata('class6'); ?>">
 	                    <a href="<?php echo base_url()."Dashboard/siswa/"?>">
-	                        <i class="material-icons">people</i>
+	                        <i class="material-icons">face</i>
 	                        <p>Siswa</p>
 	                    </a>
 	                </li>		                
-	                <li class="<?php echo $this->session->userdata('class6'); ?>">
+	                <li class="<?php echo $this->session->userdata('class7'); ?>">
 	                    <a href="<?php echo base_url()."Dashboard/kelas/"?>">
-	                        <i class="material-icons">meeting_room</i>
+	                        <i class="material-icons">people</i>
 	                        <p>Kelas</p>
 	                    </a>
 	                </li>

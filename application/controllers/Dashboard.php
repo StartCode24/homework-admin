@@ -150,4 +150,27 @@ class Dashboard extends CI_Controller {
 					$this->session->unset_userdata('EditPesan');
 				}
 	}
+
+	public function kelas() {
+		$this->cek_session_nav->cek_session_kelas();
+		$data = $this->Kelas_model->getKelasJurusan();
+		// $kodeunik= $this->Cek_kodeUnik->cari_kode_kelas();
+		// debug_array($data);
+		// debug_array($this->db->last_query());
+		$data_jurusan = $this->Jurusan_model->getJurusan();
+		$this->load->view('nav_content/header.php', array('data' => $data ));
+		$this->load->view('content/kelas/all_kelas_data', array('data' => $data, 'data_jurusan' => $data_jurusan));
+		$this->load->view('nav_content/footer.php');
+		$this->load->view('content/kelas/add_modal_kelas');
+
+		// untuk mengecek pesan konfirmasi input berhasil
+				if ($this->session->userdata('pesan')=='berhasil') {
+					$this->load->view('content/kelas/sweet-alert-input');
+					$this->session->unset_userdata('pesan');
+				}
+				if ($this->session->userdata('EditPesan')=='berhasil') {
+					$this->load->view('content/kelas/sweet-alert-edit');
+					$this->session->unset_userdata('EditPesan');
+				}
+	}
 }
