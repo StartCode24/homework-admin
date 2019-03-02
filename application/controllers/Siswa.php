@@ -16,13 +16,14 @@ class Siswa extends CI_Controller {
 	}
 
 	public function do_insert(){
+		// debug_array($_POST);
 		$siswa_id = $_POST['siswa_id'];
 		$siswa_nik = $_POST['siswa_nik'];
-		$siswa_name = $_POST['siswa_name'];
-		$siswa_alamat = $_POST['siswa_alamat'];
+		$siswa_name = $_POST['siswaname'];
+		$siswa_alamat = $_POST['alamat'];
 		$kelas_id = $_POST['kelas_id'];
 		$jurusan_id = $_POST['jurusan_id'];
-		$siswa_password = $_POST['siswa_password'];
+		$siswa_password = $_POST['password'];
 		$siswa_note = $_POST['siswa_note'];
 		$data_insert = array(
 			'siswa_id' => $siswa_id,
