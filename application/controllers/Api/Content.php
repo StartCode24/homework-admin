@@ -294,6 +294,152 @@ class content extends CI_Controller {
 
 	}
 
+	public function SearchScheduleAll(){
+		date_default_timezone_set('Asia/Jakarta');
+		$bulan=date("m");
+		$tahun=date("Y");
+		$date=date('Y-m');
+		// print_r($date);exit;
+		$dayofweek = date('w', strtotime($bulan));
+		// print_r($dayofweek);exit;
+		
+			header('Content-Type:application/json');
+			header('Accept:application/json');
+			 # XSS Filtering
+			 $_POST = $this->security->xss_clean($_POST);
+
+			 # Form Validation
+			 $this->form_validation->set_rules('kelas_id', 'kelas_id', 'trim|required');
+			 $this->form_validation->set_rules('jurusan_id', 'jurusan_id', 'trim|required');
+			 if ($this->form_validation->run() == FALSE)
+			 {
+					 // Form Validation Errors
+					 $message =array('auth_SearchScheduleAll'=> array(
+							 'status' => false,
+							 'error' => $this->form_validation->error_array(),
+							 'message' => validation_errors()
+					 ));
+					 //$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+					 echo json_encode($message);
+			 }
+			 else
+			 {
+					 // Load Login Function
+					 $kelas_id=$this->input->post('kelas_id');
+					 $jurusan_id=$this->input->post('jurusan_id');
+					 $data=array();
+					 $Schedule = $this->Schedule_model->getSchedule2("where kelas_id = '$kelas_id' and jurusan_id='$jurusan_id'")->result();
+					 if (!empty($Schedule) AND $Schedule != FALSE)
+					 {
+						 
+							 $nama_guru='';
+							 $nama_mapel='';
+							 $nama_kelas='';
+							 $nama_jurusan='';
+							 $nama_room='';
+							 
+							 
+							 foreach ($Schedule as $schedule) {
+								$day=$schedule->day;
+								// $day_of_week=substr($schedule->schedule_date,-2);
+								
+								$Guru =$this->Guru_model->getGuru2("where guru_id='$schedule->guru_id'")->result();
+								foreach($Guru as $guru){
+									$nama_guru=$guru->guruname;	
+								}
+								$Mapel=$this->Mapel_model->getMapel2("where mapel_id='$schedule->mapel_id'")->result();
+								foreach($Mapel as $mapel){
+									$nama_mapel=$mapel->mapelname;
+								}
+								$Kelas=$this->Kelas_model->getKelas2("where kelas_id='$schedule->kelas_id'")->result();
+								foreach($Kelas as $kelas){
+									$nama_kelas=$kelas->kelas_name;
+								}
+								$Jurusan=$this->Jurusan_model->getJurusan2("where jurusan_id='$schedule->jurusan_id'")->result();
+								foreach($Jurusan as $jurusan){
+									$nama_jurusan=$jurusan->jurusan_name;
+								}
+								$Room=$this->Room_model->getRoom2("where room_id='$schedule->room_id'")->result();
+								foreach($Room as $room){
+									$nama_room=$room->roomname;
+								}
+								
+								// $schedule_dateYear=substr($schedule->schedule_date,0,4);
+								// $schedule_dateMont=substr($schedule->schedule_date,5,-3);
+								
+									//  print_r($dayofweek );exit;
+									$dayName=$schedule->day;
+									if($dayName=='Senin'){
+										$dayName="Monday";
+										$dayNumber=2;
+									}if($dayName=='Selasa'){
+										$dayName="Tuesday";
+										$dayNumber=3;
+									}if($dayName=='Rabu'){
+										$dayName="Wednesday";
+										$dayNumber=4;
+									}if($dayName=='Kamis'){
+										$dayName="Thursday";
+										$dayNumber=5;
+									}if($dayName=='Jumat'){
+										$dayName="Friday";
+										$dayNumber=6;
+									}if($dayName=='Sabtu'){
+										$dayName="Saturday";
+										$dayNumber=7;
+									}if($dayName=='Minggu'){
+										$dayName="Sunday";
+										$dayNumber=1;
+									}
+									
+									$month=date('m');
+									$data[]=array(
+										'schedule_id'=>$schedule->schedule_id,
+										'month'=>$month,
+										'start_time'=>$schedule->start_time,
+										'finish_time'=>$schedule->finish_time,
+										'day_name'=>$dayName,
+										'day_number'=>$dayNumber,
+										'note'=>$schedule->note,
+										'guru_id'=>$schedule->guru_id,
+										'guru_name'=>$nama_guru,
+										'mapel_id'=>$schedule->mapel_id,
+										'mapel_name'=>$nama_mapel,
+										'kelas_id'=>$schedule->kelas_id,
+										'kelas_name'=>$nama_kelas,
+										'jurusan_id'=>$schedule->jurusan_id,
+										'jurusan_name'=>$nama_jurusan,
+										'room_id'=>$schedule->room_id,
+										'room_name'=>$nama_room
+									);
+							// }
+							
+							// print_r($schedule);
+							}
+							 $message =['auth_SearchScheduleAll'=> [
+									 'status' => 200,
+									 'data' =>array( 
+										 'schedule'=>$data,
+									 ),
+									 'message' => "get User schedule successful"
+							 ]];
+							
+							// $this->response($message, REST_Controller::HTTP_OK);
+							echo json_encode($message);
+					 } else
+					 {
+							 // Login Error
+							 $message = ['auth_SearchScheduleAll'=> [
+									 'status' => FALSE,
+									 'message' => "Invalid Get Schedule"
+							 ]];
+							 //$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+							 echo json_encode($message);
+					 }
+			 }
+
+	}
+
 	public function GetHomeWork(){
 		date_default_timezone_set('Asia/Jakarta');
 		header('Content-Type:application/json');
@@ -870,17 +1016,20 @@ class content extends CI_Controller {
 						
 						// if($tahun==$schedule_dateYear&&$bulan==$schedule_dateMont){
 							$month=(date('m'));
-							for($i=1;$i<=$dayofweek;$i++){
-								$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($date)));
-								
+							// for($i=1;$i<=$dayofweek;$i++){
+								// $dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($date)));
+							$note=$schedule->note;
+							if($note==null){
+								$note='';
+							}	
 							$data[]=array(
 								'schedule_id'=>$schedule->schedule_id,
 								'month'=>$month,
 								'start_time'=>$schedule->start_time,
 								'finish_time'=>$schedule->finish_time,
 								'day_name'=>$dayName,
-								'day_date'=>$dayDate,
-								'note'=>$schedule->note,
+								'day_date'=>0,
+								'note'=>$note,
 								'guru_id'=>$schedule->guru_id,
 								'guru_name'=>$nama_guru,
 								'mapel_id'=>$schedule->mapel_id,
@@ -893,7 +1042,7 @@ class content extends CI_Controller {
 								'room_name'=>$nama_room
 							);
 					// }
-					}
+					// }
 					// print_r($schedule);
 					}
 					 $message =['auth_SearchSchedForDay'=> [
