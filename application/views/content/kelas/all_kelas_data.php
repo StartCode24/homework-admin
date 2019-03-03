@@ -1,3 +1,4 @@
+
 <?php // debug_array($data); ?>
 <style>
     .swal-footer {
@@ -7,6 +8,33 @@
 </style>
 <script>
   function Swall_Edit_Kelas(kelas_id){
+    // $('#myModaleditKelas').modal('show');
+    // var base_url = $('#base').val();
+    // var base_url2=base_url+'Kelas/edit_data';
+    // $.post(base_url2,
+    // {
+    //   kelas_id: kelas_id
+    // },
+    // function(data, status){
+    //   // alert("Data: " + data + "\nStatus: " + status);
+    //   if (status=="success") {
+    //     jQuery('body').append(data);
+    //     // untuk menampilkan modal berdasarkan edit
+    //     jQuery('#myModaleditKelas').modal('toggle');
+    //     // untuk menghilangkan isi post agar kembali menjadi 0 pada variabel datam
+    //     jQuery('#myModaleditKelas').remove();
+    //   }
+    // });
+
+
+
+
+
+
+
+
+
+    // alert(kelas_id);
     var datam={"kelas_id":kelas_id};
     var base_url = $('#base').val();
     var base_url2=base_url+'Kelas/';
@@ -18,13 +46,14 @@
       url: base_url2+"edit_data",
       method : "POST",
       data:datam,
+      dataType: "html",
       success:function(data){
 
         jQuery('body').append(data);
         // untuk menampilkan modal berdasarkan edit
-        jQuery('#myModaledit').modal('toggle');
+        jQuery('#myModaleditKelas').modal('toggle');
         // untuk menghilangkan isi post agar kembali menjadi 0 pada variabel datam
-        jQuery('#myModaledit').remove();
+        jQuery('#myModaleditKelas').remove();
       },
       error:function(){
           swal ( "Oops" ,  "Something went wrong!" ,  "error" );
@@ -109,8 +138,8 @@
 				<div class="card card-stats">
 					<div class="card-content">
 						<p class="category">Kelas</p>
-						<!-- <a href="<?php echo base_url()?>Room/add_data"><h3 class="title"><i class="fa fa-plus-circle"></i>Tambah Data</h3></a> -->
-			            <a href="" class="btn btn-primary btn-fill" data-toggle="modal" data-target="#myModaladd">
+						<!-- <a href="<?php echo base_url()?>Kelas/add_data"><h3 class="title"><i class="fa fa-plus-circle"></i>Tambah Data</h3></a> -->
+			            <a href="" class="btn btn-primary btn-fill" data-toggle="modal" data-target="#myModal">
 			              <span class="fa fa-plus-circle"></span>
 			              <b>Tambah Data</b>
 			              </a>
@@ -120,7 +149,7 @@
 									<thead class=" text-primary">
 										<tr>
 											<th>ID</th>
-											<th>Kelas Tingkatan</th>
+											<th>Kelas</th>
 											<th>Jurusan</th>
 											<th>Sub</th>
 											<th>Action</th>
@@ -128,13 +157,18 @@
 									</thead>
 									<tbody>
 										<?php foreach ($data as $value) { ?>
+                      <?php
+                      if ($value['kelas_sub'] == "") {
+                        $value['kelas_sub'] = "_";
+                      } else{}
+                      ?>
 											<tr>
 												<td class=""><?php echo $value['kelas_id']; ?></td>
 												<td class=""><?php echo $value['kelas_name']; ?></td>
 												<td class=""><?php echo $value['jurusan_name']; ?></td>
 												<td class=""><?php echo $value['kelas_sub']; ?></td>
 												<td class="">
-          <button class="btn btn-warning btn-fill" onclick="Swall_Edit_Kelas('<?php echo $value['kelas_id'];?>')">
+          <button class="btn btn-warning btn-fill" onclick="_edit_kelas('<?php echo $value['kelas_id'];?>')">
                Edit
              </button>
 													||

@@ -1,49 +1,5 @@
-<?php // debug_array($data_jurusan); ?>
-<script>
-function submit_data() {
-  var kelas_id = $( "#kelas_id" ).val();
-  var kelas_name = $( "#kelas_name" ).val();
-  var kelas_jurusan = $( "#kelas_jurusan" ).val();
-  var kelas_sub = $( "#kelas_sub" ).val();
-  if ($( "#kelas_name" ).val() == '' ) {
-    swal("Tingkatan Kelas Harus Diisi", "Isilah data tingkatan kelas" , "info");
-  } else if ($( "#kelas_jurusan" ).val() == '' ) {
-    swal("Jurusan Harus Diisi", "Isilah data jurusan kelas" , "info");
-  } else {
-     $.ajax({
-      type: 'POST',
-      url: '<?php echo base_url()?>Kelas/do_insert',
-      data: 
-          {
-            kelas_id: kelas_id,
-            kelas_name: kelas_name,
-            kelas_jurusan: kelas_jurusan,
-            kelas_sub: kelas_sub
-          },
-      dataType: 'json',
-      success: function(d){
-       // alert(d.status); //will alert ok
-      if (d.status === "ok") {
-            swal("Data Tersimpan", "Terimakasih, data Anda berhasil tersimpan.", "success")
-            // console.log(d.status);
-            .then(
-          function() {
-            location.reload();
-          }, function() {
-            alert( "failed redirect" );
-          }
-        );
-          } else if (d.status === "not ok") {
-            swal("Error", "Data tidak ditemukan, tolong cek kembali pilihan anda.", "error");
-            // console.log(d.status);
-          } else {}
-      }
-    });
-  }
-}
-</script>
 <!-- Modal -->
-	<div id="myModaladd" class="modal fade" role="dialog">
+	<div id="myModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<!-- konten modal-->
 			<div class="modal-content">
@@ -55,10 +11,11 @@ function submit_data() {
 				<!-- body modal -->
 				<div class="modal-body">
           <div class="content">
+              <form action="<?php echo base_url()?>Kelas/do_insert" method="post">
                   <div class="row">
                       <div class="col-md-4">
                           <div class="form-group">
-                              <label>Kode Kelas</label>
+                              <label>ID Kelas</label>
                               <input type="text" id="kelas_id" class="form-control border-input" readonly placeholder="(autofill by system)" value="" name="kelas_id">
                           </div>
                       </div>
@@ -94,9 +51,10 @@ function submit_data() {
                       </div>
                   </div>
                   <div class="text-center">
-                      <input type="button" class="btn btn-info btn-fill btn-wd" value="Simpan Data" onclick="submit_data()">
+                      <input type="submit" class="btn btn-info btn-fill btn-wd" value="Simpan Data"  >
                   </div>
                   <div class="clearfix"></div>
+              </form>
           </div>
 				</div>
 				<!-- footer modal -->
