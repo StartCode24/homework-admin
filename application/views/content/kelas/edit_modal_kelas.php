@@ -1,3 +1,51 @@
+<script>
+function submit_updated_data() {
+  // alert($( "#start_time_edit" ).val());
+  var kelas_id = $( "#kelas_id_update" ).val();
+  var kelas_name = $( "#kelas_name_update" ).val();
+  var kelas_jurusan = $( "#kelas_jurusan_update" ).val();
+  var kelas_sub = $( "#kelas_sub_update" ).val();
+  
+  if ($( "#kelas_name_update" ).val() === '' ) {
+    swal("Tingkatan kelas Harus Diisi", "Isilah tingkatan kelas" , "info");
+  } else if ($( "#kelas_jurusan_update" ).val() == '' ) {
+    swal("Jurusan Harus Diisi", "Isilah data jurusan" , "info");
+  } else if ($( "#kelas_sub_update" ).val() == '' ) {
+    swal("Subkelas Harus Diisi", "Isilah data subkelas" , "info");
+  } else {
+     $.ajax({
+      type: 'POST',
+      url: '<?php echo base_url()?>Kelas/do_update',
+      data: 
+          {
+            kelas_id: kelas_id,
+            kelas_name: kelas_name,
+            kelas_jurusan: kelas_jurusan,
+            kelas_sub: kelas_sub,
+            
+          },
+      dataType: 'json',
+      success: function(d){
+       // alert(d.status); //will alert ok
+      if (d.status === "ok") {
+            swal("Data Tersimpan", "Terimakasih, data Anda berhasil tersimpan.", "success")
+            // console.log(d.status);
+            .then(
+          function() {
+            location.reload();
+          }, function() {
+            alert( "failed redirect" );
+          }
+        );
+          } else if (d.status === "not ok") {
+            swal("Error", "Data tidak ditemukan, tolong cek kembali pilihan anda.", "error");
+            // console.log(d.status);
+          } else {}
+      }
+    });
+  }
+}
+</script>
 <?php // debug_array($data); ?>
 <!-- Modal -->
   <div id="myModaledit" class="modal fade" role="dialog">
@@ -12,7 +60,6 @@
         <!-- body modal -->
         <div class="modal-body">
           <div class="content">
-              <form action="<?php echo base_url()?>Kelas/do_update" method="post">
                   <div class="row">
                       <div class="col-md-4">
                           <div class="form-group">
@@ -54,10 +101,9 @@
                       </div>
                   </div>
                   <div class="text-center">
-                      <button type="submit" class="btn btn-warning btn-fill btn-wd">Simpan Data</button>
+                      <button type="submit" class="btn btn-warning btn-fill btn-wd" onclick="submit_updated_data()">Simpan Data</button>
                   </div>
                   <div class="clearfix"></div>
-              </form>
           </div>
         </div>
         <!-- footer modal -->
