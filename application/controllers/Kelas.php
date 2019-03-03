@@ -61,13 +61,15 @@ class Kelas extends CI_Controller {
 	}
 
 	public function do_update(){
-		debug_array($_POST);
-		$kelas_id = $_POST['kelas_id'];
-		$kelasname = $_POST['kelasname'];
-		$kelas_note = $_POST['kelas_note'];
+		// debug_array($_POST);
+		$kelas_id = $_POST['kelas_id_update'];
+		$kelas_name_update = $_POST['kelas_name_update'];
+		$kelas_jurusan_update = $_POST['kelas_jurusan_update'];
+		$kelas_sub_update = $_POST['kelas_sub_update'];
 		$data_update = array(
-			'kelasname' => $kelasname,
-			'kelas_note' => $kelas_note
+			'kelas_name' => $kelas_name_update,
+			'kelas_jurusan' => $kelas_jurusan_update,
+			'kelas_sub' => $kelas_sub_update
 		);
 		$where = array('kelas_id' => $kelas_id);
 		$res = $this->Kelas_model->updateData('kelas', $data_update, $where);
