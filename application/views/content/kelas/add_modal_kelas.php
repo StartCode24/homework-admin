@@ -16,21 +16,37 @@
                       <div class="col-md-4">
                           <div class="form-group">
                               <label>ID Kelas</label>
-                              <input type="text" class="form-control border-input" readonly placeholder="(autofill by systems)" value="" name="kelas_id">
+                              <input type="text" id="kelas_id" class="form-control border-input" readonly placeholder="(autofill by system)" value="" name="kelas_id">
                           </div>
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-3">
                         <div class="form-group">
-                            <label>Nama Kelas</label>
-                            <input type="text" required class="form-control border-input" placeholder="nama kelas" name="kelasname">
+                            <label>Kelas Tingkatan</label>
+                            <select id="kelas_name" name="kelas_name" class="form-control border-input select-kelas-name">
+                              <option value="">---</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                            </select>
                         </div>
                       </div>
                   </div>
                   <div class="row">
-                      <div class="col-md-8">
+                      <div class="col-md-12">
+                            <label>Jurusan</label>
+                            <select id="kelas_jurusan" name="kelas_jurusan" class="form-control border-input select-jurusan">
+                                <option value="">---</option>
+                              <?php foreach ($data_jurusan as $value) { //print_r($value);?>
+                                <option value="<?php echo $value['jurusan_id']?>"><?php echo $value['jurusan_name'] ?></option>
+                              <?php } ?>
+                            </select>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
                           <div class="form-group">
-                              <label>Note Kelas</label>
-                              <textarea name="kelas_note" required rows="8" class="form-control border-input" cols="80"></textarea>
+                              <label>Subkelas</label>
+                              <input type="text" id="kelas_sub" class="form-control border-input" placeholder="masukkan subkelas jika ada, contoh: A, B, C" value="" name="kelas_sub">
                           </div>
                       </div>
                   </div>
