@@ -6,31 +6,31 @@
         <!-- heading modal -->
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" onclick="closeModal()">&times;</button>
-          <h4 class="modal-title">Edit Data Room</h4>
+          <h4 class="modal-title">Edit Data Kelas</h4>
         </div>
         <!-- body modal -->
         <div class="modal-body">
           <div class="content">
-              <form action="<?php echo base_url()?>Room/do_update" method="post">
+              <form action="<?php echo base_url()?>Kelas/do_update" method="post">
                   <div class="row">
                       <div class="col-md-4">
                           <div class="form-group">
-                              <label>Kode Room</label>
-                              <input type="text" class="form-control border-input" readonly placeholder="kode" value="<?php echo $room_id; ?>" name="room_id">
+                              <label>Kode Kelas</label>
+                              <input type="text" class="form-control border-input" readonly placeholder="kode" value="<?php echo $kelas_id; ?>" name="kelas_id">
                           </div>
                       </div>
                       <div class="col-md-8">
                         <div class="form-group">
-                            <label>Nama Room</label>
-                            <input type="text" required class="form-control border-input" placeholder="nama room" value="<?php echo $roomname; ?>" name="roomname">
+                            <label>Nama Kelas</label>
+                            <input type="text" required class="form-control border-input" placeholder="nama kelas" value="<?php echo $kelasname; ?>" name="kelasname">
                         </div>
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-md-8">
                           <div class="form-group">
-                              <label>Note Room</label>
-                              <textarea name="room_note" rows="8" class="form-control border-input" cols="80"></textarea>
+                              <label>Note Kelas</label>
+                              <textarea name="kelas_note" rows="8" class="form-control border-input" cols="80"></textarea>
                           </div>
                       </div>
                   </div>
