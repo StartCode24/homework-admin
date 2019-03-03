@@ -32,10 +32,13 @@ class Kelas extends CI_Controller {
 		$res = $this->Kelas_model->insertData('kelas', $data_insert);
 		if ($res>=1){
 			$data['status'] = "true";
-		        echo json_encode(array('status' => 'ok')); 
+		        echo json_encode(array('status' => 'ok'));
+		        // $this->session->set_flashdata('pesan', 'Tambah data sukses');
+		        // redirect('Dashboard/kelas');
 		}else{
 			$data['status'] = "false";
-		        echo json_encode(array('status' => 'not ok')); 
+		        echo json_encode(array('status' => 'not ok'));
+		        // echo "<h3>Insert data gagal</h3>";
 		}
 	}
 
@@ -62,10 +65,10 @@ class Kelas extends CI_Controller {
 
 	public function do_update(){
 		// debug_array($_POST);
-		$kelas_id = $_POST['kelas_id_update'];
-		$kelas_name_update = $_POST['kelas_name_update'];
-		$kelas_jurusan_update = $_POST['kelas_jurusan_update'];
-		$kelas_sub_update = $_POST['kelas_sub_update'];
+		$kelas_id = $_POST['kelas_id'];
+		$kelas_name_update = $_POST['kelas_name'];
+		$kelas_jurusan_update = $_POST['kelas_jurusan'];
+		$kelas_sub_update = $_POST['kelas_sub'];
 		$data_update = array(
 			'kelas_name' => $kelas_name_update,
 			'kelas_jurusan' => $kelas_jurusan_update,
@@ -74,10 +77,14 @@ class Kelas extends CI_Controller {
 		$where = array('kelas_id' => $kelas_id);
 		$res = $this->Kelas_model->updateData('kelas', $data_update, $where);
 		if ($res>=1){
-			$this->session->set_flashdata('pesan', 'Update data sukses');
-			redirect('Dashboard/kelas');
+			// $this->session->set_flashdata('pesan', 'Update data sukses');
+			// redirect('Dashboard/kelas');
+			$data['status'] = "true";
+		        echo json_encode(array('status' => 'ok'));
 		}else{
-			echo "<h3>Update data gagal</h3>";
+			// echo "<h3>Update data gagal</h3>";
+			$data['status'] = "false";
+		        echo json_encode(array('status' => 'not ok'));
 		}
 	}
 
