@@ -1,3 +1,136 @@
+
+<?php // debug_array($data); ?>
+<style>
+    .swal-footer {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<script>
+  function Swall_Edit_Kelas(kelas_id){
+    // $('#myModaleditKelas').modal('show');
+    // var base_url = $('#base').val();
+    // var base_url2=base_url+'Kelas/edit_data';
+    // $.post(base_url2,
+    // {
+    //   kelas_id: kelas_id
+    // },
+    // function(data, status){
+    //   // alert("Data: " + data + "\nStatus: " + status);
+    //   if (status=="success") {
+    //     jQuery('body').append(data);
+    //     // untuk menampilkan modal berdasarkan edit
+    //     jQuery('#myModaleditKelas').modal('toggle');
+    //     // untuk menghilangkan isi post agar kembali menjadi 0 pada variabel datam
+    //     jQuery('#myModaleditKelas').remove();
+    //   }
+    // });
+
+
+
+
+
+
+
+
+
+    // alert(kelas_id);
+    var datam={"kelas_id":kelas_id};
+    var base_url = $('#base').val();
+    var base_url2=base_url+'Kelas/';
+
+
+    // ajax
+    jQuery.ajax({
+      // url untuk menuju data yang akan di kirim
+      url: base_url2+"edit_data",
+      method : "POST",
+      data:datam,
+      dataType: "html",
+      success:function(data){
+
+        jQuery('body').append(data);
+        // untuk menampilkan modal berdasarkan edit
+        jQuery('#myModaleditKelas').modal('toggle');
+        // untuk menghilangkan isi post agar kembali menjadi 0 pada variabel datam
+        jQuery('#myModaleditKelas').remove();
+      },
+      error:function(){
+          swal ( "Oops" ,  "Something went wrong!" ,  "error" );
+      }
+
+    });
+  }
+
+  function Swall_Add_Kelas(){
+    // untuk menampung isi data dari kelas id
+    // var base_url = $('#base').val();
+    // var base_url2=base_url+'Kelas/';
+
+
+    // // ajax
+    // jQuery.ajax({
+    //   // url untuk menuju data yang akan di kirim
+    //   url: base_url2+"do_insert",
+    //   method : "POST",
+    //   data:datam,
+    //   success:function(data){
+
+        // jQuery('body').append(data);
+        // untuk menampilkan modal berdasarkan edit
+        // jQuery('#myModaladd').modal('toggle');
+        // // untuk menghilangkan isi post agar kembali menjadi 0 pada variabel datam
+        // jQuery('#myModaladd').remove();
+    //   },
+    //   error:function(){
+    //       // alert("something went wrong"+datam).console.error();
+    //       swal ( "Oops" ,  "Something went wrong!" ,  "error" );
+    //   }
+
+    // });
+  }
+  function Swall_Delete_Kelas(kelas_id){
+  //  var kd_kary=kd_kar;
+    // alert('error hapus'+kd_kary);
+    var base_url = $('#base').val();
+    console.log(base_url);
+    var base_url2=base_url+'Kelas/';
+    swal({
+      title: "Anda yakin?",
+      text: "Data yang sudah terhapus tidak bisa dikembalikan lagi !",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+          $.ajax({
+            url:base_url2+"do_delete",
+            type:"POST",
+            data:{'kelas_id':kelas_id},
+
+            success:function(){
+              swal("Terhapus!", "Data Berhasil Dihapus.", {
+                icon: "success",
+              }).then((value) => {
+                  window.location.reload();
+                });
+
+            },
+            error:function(){
+              alert('error hapus');
+            }
+
+          });
+
+      } else {
+        swal("Cancelled", "Data Tidak Jadi Dihapus");
+      }
+    });
+
+    }
+</script>
 <div class="content">
 	<div class="container-fluid">
 		<div class="row">
@@ -24,6 +157,11 @@
 									</thead>
 									<tbody>
 										<?php foreach ($data as $value) { ?>
+                      <?php
+                      if ($value['kelas_sub'] == "") {
+                        $value['kelas_sub'] = "_";
+                      } else{}
+                      ?>
 											<tr>
 												<td class=""><?php echo $value['kelas_id']; ?></td>
 												<td class=""><?php echo $value['kelas_name']; ?></td>
