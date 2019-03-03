@@ -40,17 +40,20 @@ class Kelas extends CI_Controller {
 	}
 
 	public function edit_data(){
-		$kelas_id=$this->input->post('kelas_id');
-		$kelas = $this->Kelas_model->getKelas("where kelas_id = '$kelas_id'");
-		// debug_array($kelas);
-		$data_jurusan = $this->Jurusan_model->getJurusan();
-		$data = array(
-			'kelas_id' => $kelas[0]['kelas_id'],
-			'kelas_name' => $kelas[0]['kelas_name'],
-			'kelas_jurusan' => $kelas[0]['kelas_jurusan'],
-			'kelas_sub' => $kelas[0]['kelas_sub'],
-			'data_jurusan' => $data_jurusan
-		);
+		// debug_array($_POST);
+		// $kelas_id=$this->input->post('kelas_id');
+		// $kelas = $this->Kelas_model->getKelas("where kelas_id = '$kelas_id'");
+		// // debug_array($kelas);
+		// $data_jurusan = $this->Jurusan_model->getJurusan();
+		// $data = array(
+		// 	'kelas_id' => $kelas[0]['kelas_id'],
+		// 	'kelas_name' => $kelas[0]['kelas_name'],
+		// 	'kelas_jurusan' => $kelas[0]['kelas_jurusan'],
+		// 	'kelas_sub' => $kelas[0]['kelas_sub'],
+		// 	'data_jurusan' => $data_jurusan
+		// );
+		// debug_array($data);
+		$data = "";
 		$this->load->view('content/kelas/edit_modal_kelas', $data);
 	}
 
