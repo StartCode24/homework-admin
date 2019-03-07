@@ -157,16 +157,36 @@ class Schedule extends CI_Controller {
 			'jurusan_id' => $jurusan_id,
 			'room_id' => $room_id
 		);
-		$res = $this->Schedule_model->insertData('schedule', $data_insert);
-		if ($res>=1){
-			$data['status'] = "true";
-		        echo json_encode(array('status' => 'ok')); 
-			
-		}else{
-			// echo "<h3>Insert data gagal</h3>";
-			$data['status'] = "false";
+
+		$this->db->where('kelas_id',$kelas_id)
+				 ->where('day',$day)
+				 ->where('start_time',$start_time)
+				 ->where('finish_time',$finish_time)
+				 ->where('jam_mulai',$jam_mulai)
+				 ->where('jam_akhir',$jam_akhir);
+		$query = $this->db->get('schedule')->num_rows();
+		// debug_array($query);
+		    if ($query == 0){
+		    	// debug_array($query, true);
+		    	// debug_array($this->db->last_query());
+		        	$res = $this->Schedule_model->insertData('schedule', $data_insert);
+					if ($res>=1){
+						$data['status'] = "true";
+					        echo json_encode(array('status' => 'ok')); 
+						
+					}else{
+						// echo "<h3>Insert data gagal</h3>";
+						$data['status'] = "false";
+					        echo json_encode(array('status' => 'not ok')); 
+					}
+		    }
+		    else{
+		        $data['status'] = "false";
 		        echo json_encode(array('status' => 'not ok')); 
-		}
+		        // echo json_encode(array('status' => 'not ok', 'desc' => 'data has duplicate')); 
+		    }
+
+
 	}
 
 	public function edit_data(){
