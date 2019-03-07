@@ -132,7 +132,7 @@ class Dashboard extends CI_Controller {
 
 	public function siswa() {
 		$this->cek_session_nav->cek_session_siswa();
-		$data = $this->Siswa_model->getSiswa();
+		$data = $this->Siswa_model->getAllSiswa();
 		$kodeunik= $this->Cek_kodeUnik->cari_kode_siswa();
 		$data_jurusan = $this->Jurusan_model->getJurusan();
 		$data_kelas = $this->Kelas_model->getAllKelas();

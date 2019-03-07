@@ -67,4 +67,22 @@ class Kelas_model extends CI_Model {
 		return $query->kelas_id;
 		// debug_array($query);
 	}
+
+	public function get_jurusan_id_by_kelas_id($kelas_id)
+	{
+		$this->db->select('kelas_jurusan');
+		$this->db->where('kelas_id', $kelas_id);
+		$query = $this->db->get('kelas', 1)->row();
+		return $query->kelas_jurusan;
+		// debug_array($query);
+	}
+
+	public function get_kelas_notasi_by_kelas_id($kelas_id)
+	{
+		$this->db->select('kelas_notasi');
+		$this->db->where('kelas_id', $kelas_id);
+		$query = $this->db->get('kelas', 1)->row();
+		return $query->kelas_notasi;
+		// debug_array($query);
+	}
 }

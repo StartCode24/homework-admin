@@ -21,46 +21,35 @@
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
-                            <label>Nik Siswa</label>
-                            <input type="text" required class="form-control border-input" placeholder="nik siswa" name="siswa_nik">
+                            <label>Nis Siswa</label>
+                            <input type="text" required class="form-control border-input" placeholder="nik siswa" name="siswa_nis">
                         </div>
                       </div>
                   </div>
                   <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-md-8">
                         <div class="form-group">
                             <label>Nama Siswa</label>
                             <input type="text" required class="form-control border-input" placeholder="nama siswa" name="siswaname">
                         </div>
                       </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                            <label>Alamat</label>
-                            <input type="text" required class="form-control border-input" placeholder="alamat" name="alamat">
-                        </div>
-                      </div>
-                  </div>
-                  <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
                             <label>Kelas</label>
                             <select id="kelas_id" name="kelas_id" class="form-control border-input select-kelas">
                                 <option value="">---</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
+                              <?php foreach ($data_kelas as $value) { //print_r($value);?>
+                                <option value="<?php echo $value['kelas_id']?>"><?php echo $value['kelas_notasi'] ?></option>
+                              <?php } ?>
                             </select>
                         </div>
                       </div>
-                      <div class="col-md-8">
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
                         <div class="form-group">
-                            <label>Jurusan</label>
-                            <select id="jurusan_id" name="jurusan_id" class="form-control border-input select-jurusan">
-                                <option value="">---</option>
-                              <?php foreach ($data_jurusan as $value) { //print_r($value);?>
-                                <option value="<?php echo $value['jurusan_id']?>"><?php echo $value['jurusan_name'] ?></option>
-                              <?php } ?>
-                            </select>
+                            <label>Alamat</label>
+                            <input type="text" class="form-control border-input" placeholder="alamat" name="alamat">
                         </div>
                       </div>
                   </div>

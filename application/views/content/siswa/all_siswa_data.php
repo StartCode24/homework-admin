@@ -16,11 +16,10 @@
 		<thead class=" text-primary">
 		<tr>
 			<th>Kode Siswa</th>
-			<th>Nik Siswa</th>
+			<th>Nis Siswa</th>
 			<th>Nama Siswa</th>
 			<th>Alamat</th>
 			<th>Kelas</th>
-			<th>Jurusan</th>
 			<th>Note</th>
 			<th>Action</th>
 		</tr>
@@ -30,11 +29,10 @@
 			<?php // debug_array($value) ?>
 		<tr>
 				<td class=""><?php echo $value['siswa_id']; ?></td>
-				<td class=""><?php echo $value['siswa_nik']; ?></td>
+				<td class=""><?php echo $value['siswa_nis']; ?></td>
 				<td class=""><?php echo $value['siswa_name']; ?></td>
 				<td class=""><?php echo $value['siswa_alamat']; ?></td>
-				<td class=""><?php echo $value['kelas_id']; ?></td>
-				<td class=""><?php echo $value['jurusan_id']; ?></td>
+				<td class=""><?php echo $value['kelas_notasi']; ?></td>
 				<td class=""><?php echo $value['siswa_note']; ?></td>
 				<!-- <td class=""><?php// echo $value['siswa_note']; ?></td> -->
 				<td class="">
