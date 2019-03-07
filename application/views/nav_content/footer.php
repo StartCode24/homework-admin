@@ -1,6 +1,6 @@
 <footer class="footer">
   <div class="container-fluid">
-    <nav class="pull-left">
+<!--     <nav class="pull-left">
       <ul>
         <li>
           <a href="#">
@@ -23,9 +23,9 @@
           </a>
         </li>
       </ul>
-    </nav>
+    </nav> -->
     <p class="copyright pull-right">
-      &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+      &copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.skedi.site">Skedi</a>, made with love for a better education.
     </p>
   </div>
 </footer>
