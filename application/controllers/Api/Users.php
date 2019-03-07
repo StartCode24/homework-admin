@@ -28,7 +28,7 @@ class users extends CI_Controller {
 		 $this->form_validation->set_rules('siswa_name', 'siswa_name', 'trim|required');
 		 $this->form_validation->set_rules('siswa_alamat', 'siswa_alamat', 'trim|required');
 		 $this->form_validation->set_rules('kelas_nama', 'kelas_nama', 'trim|required');
-		 $this->form_validation->set_rules('jurusan_nama', 'jurusan_nama', 'trim|required');
+		//  $this->form_validation->set_rules('jurusan_nama', 'jurusan_nama', 'trim|required');
 		 $this->form_validation->set_rules('password_1', 'password_1', 'trim|required');
 		 $this->form_validation->set_rules('password_2', 'password_2', 'trim|required');
 		 if ($this->form_validation->run() == FALSE)
@@ -52,20 +52,21 @@ class users extends CI_Controller {
 			echo json_encode($message);
 			}else{
 				$kelas_nama= $this->input->post('kelas_nama');
-				$kelas=$this->Kelas_model->getKelas2("where kelas_name='$kelas_nama'")->result();
+				$kelas=$this->Kelas_model->getKelas2("where kelas_notasi='$kelas_nama'")->result();
 				foreach($kelas as $kelas){
 					$id_kelas=$kelas->kelas_id;
+					$id_jurusan=$kelas->kelas_jurusan;
 				}
-				$jurusan_nama=$this->input->post('jurusan_nama');
-				$Jurusan=$this->Jurusan_model->getJurusan2("where jurusan_name='$jurusan_nama'")->result();
-				foreach($Jurusan as $jurusan){
-					$id_jurusan=$jurusan->jurusan_id;
-				}
+				// $jurusan_nama=$this->input->post('jurusan_nama');
+				// $Jurusan=$this->Jurusan_model->getJurusan2("where jurusan_name='$jurusan_nama'")->result();
+				// foreach($Jurusan as $jurusan){
+				// 	$id_jurusan=$jurusan->jurusan_id;
+				// }
 				// print_r($id_jurusan);exit;
 				if($this->input->post('password_1')==$this->input->post('password_2')){
 					$data_insert = array(
 						'siswa_id' => $this->Siswa_model->cari_kode_idSiswa(),
-						'siswa_nik' => $this->input->post('NIS'),
+						'siswa_nis' => $this->input->post('NIS'),
 						'siswa_name' => $this->input->post('siswa_name'),
 						'siswa_alamat' => $this->input->post('siswa_alamat'),
 						'kelas_id' =>$id_kelas,
@@ -110,7 +111,7 @@ class users extends CI_Controller {
 			 $_POST = $this->security->xss_clean($_POST);
 
 			 # Form Validation
-			 $this->form_validation->set_rules('NIK', 'NIK', 'trim|required');
+			 $this->form_validation->set_rules('NIS', 'NIS', 'trim|required');
 			 $this->form_validation->set_rules('Password', 'Password', 'trim|required|max_length[100]');
 			 if ($this->form_validation->run() == FALSE)
 			 {
@@ -126,7 +127,7 @@ class users extends CI_Controller {
 			 else
 			 {
 					 // Load Login Function
-					 $output = $this->cek_login->cekLoginSiswa($this->input->post('NIK'), $this->input->post('Password'));
+					 $output = $this->cek_login->cekLoginSiswa($this->input->post('NIS'), $this->input->post('Password'));
 					 if (!empty($output) AND $output != FALSE)
 					 {
 							 // Load Authorization Token Library
@@ -134,7 +135,7 @@ class users extends CI_Controller {
 							 // Generate Token
 							   foreach ($output as $output) ;
 							 $token_data['siswa_id'] = $output->siswa_id;
-							 $token_data['siswa_nik'] = $output->siswa_nik;
+							 $token_data['siswa_nis'] = $output->siswa_nis;
 							 $token_data['siswa_name'] = $output->siswa_name;
 							 $token_data['jurusan_id'] = $output->jurusan_id;
 							 $token_data['kelas_id'] = $output->kelas_id;
@@ -186,13 +187,13 @@ class users extends CI_Controller {
 			 $kelas=$this->Kelas_model->getKelas("where kelas_id = '$kelas_id'");
 			 $data=array(
 				 'siswa_id'=>$siswa[0]['siswa_id'],
-				 'siswa_nik'=>$siswa[0]['siswa_nik'],
+				 'siswa_nis'=>$siswa[0]['siswa_nis'],
 				 'siswa_name'=>$siswa[0]['siswa_name'],
 				 'siswa_alamat'=>$siswa[0]['siswa_alamat'],
 				 'siswa_password'=>$siswa[0]['siswa_password'],
 				 'siswa_note'=>$siswa[0]['siswa_note'],
 				 'siswa_jurusan'=>$jurusan[0]['jurusan_name'],
-				 'siswa_kelas'=>$kelas[0]['kelas_name'],
+				 'siswa_kelas'=>$kelas[0]['kelas_name'].'-'.$kelas[0]['kelas_sub'],
 				 'kelas_id'=>$jwtData['kelas_id'],
 				 'jurusan_id'=>$jwtData['jurusan_id']
 			 );
@@ -225,7 +226,7 @@ class users extends CI_Controller {
 
 			# Form Validation
 			$this->form_validation->set_rules('siswa_id', 'siswa_id', 'trim|required');
-			$this->form_validation->set_rules('siswa_nik', 'siswa_nik', 'trim|required');
+			$this->form_validation->set_rules('siswa_nis', 'siswa_nis', 'trim|required');
 			$this->form_validation->set_rules('siswa_name', 'siswa_name', 'trim|required');
 			$this->form_validation->set_rules('siswa_alamat', 'siswa_alamat', 'trim|required');
 			$this->form_validation->set_rules('kelas_id', 'kelas_id', 'trim|required');
@@ -246,7 +247,7 @@ class users extends CI_Controller {
 			else
 			{
 					$siswa_id = $_POST['siswa_id'];
-					$siswa_nik = $_POST['siswa_nik'];
+					$siswa_nis = $_POST['siswa_nis'];
 					$siswa_name = $_POST['siswa_name'];
 					$siswa_alamat = $_POST['siswa_alamat'];
 					$kelas_id= $_POST['kelas_id'];
@@ -255,7 +256,7 @@ class users extends CI_Controller {
 					$siswa_note = $_POST['siswa_note'];
 					$data_update = array(
 						'siswa_id' => $siswa_id,
-						'siswa_nik' => $siswa_nik,
+						'siswa_nis' => $siswa_nis,
 						'siswa_name' => $siswa_name,
 						'siswa_alamat' => $siswa_alamat,
 						'kelas_id' => $kelas_id,
