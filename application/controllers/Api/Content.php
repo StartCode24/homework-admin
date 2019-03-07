@@ -451,7 +451,7 @@ class content extends CI_Controller {
 			 # Form Validation
 			 $this->form_validation->set_rules('kelas_id', 'kelas_id', 'trim|required');
 			 $this->form_validation->set_rules('jurusan_id', 'jurusan_id', 'trim|required');
-			 $this->form_validation->set_rules('siswa_nik', 'siswa_nik', 'trim|required');
+			 $this->form_validation->set_rules('siswa_nis', 'siswa_nis', 'trim|required');
 			 if ($this->form_validation->run() == FALSE)
 			 {
 					 // Form Validation Errors
@@ -468,9 +468,9 @@ class content extends CI_Controller {
 					 // Load Login Function
 					 $kelas_id=$this->input->post('kelas_id');
 					 $jurusan_id=$this->input->post('jurusan_id');
-					 $siswa_nis=$this->input->post('siswa_nik');
+					 $siswa_nis=$this->input->post('siswa_nis');
 					 $data=array();
-					 $HomeWork= $this->HomeWork_model->getHomeWork("where kelas_id = '$kelas_id' and jurusan_id='$jurusan_id' and siswa_nik='$siswa_nis'")->result();
+					 $HomeWork= $this->HomeWork_model->getHomeWork("where kelas_id = '$kelas_id' and jurusan_id='$jurusan_id' and siswa_nis='$siswa_nis'")->result();
 					 if (!empty($HomeWork) AND $HomeWork != FALSE)
 					 {
 						 
@@ -528,7 +528,7 @@ class content extends CI_Controller {
 									'jurusan_name'=>$nama_jurusan,
 									'room_id'=>$HomeWork->room_id,
 									'room_name'=>$nama_room,
-									'siswa_nik'=>$HomeWork->siswa_nik,
+									'siswa_nis'=>$HomeWork->siswa_nis,
 									'alarm_time'=>$HomeWork->alarm_time,
 								);
 							}
@@ -573,7 +573,7 @@ class content extends CI_Controller {
 		$this->form_validation->set_rules('jurusan_id', 'jurusan_id', 'trim|required');
 		// $this->form_validation->set_rules('room_id', 'room_id', 'trim|required');
 		// $this->form_validation->set_rules('schedule_id', 'schedule_id', 'trim|required');
-		$this->form_validation->set_rules('siswa_nik', 'siswa_nik', 'trim|required');
+		$this->form_validation->set_rules('siswa_nis', 'siswa_nis', 'trim|required');
 		$this->form_validation->set_rules('alarm_time', 'alarm_time', 'trim|required');
 		$this->form_validation->set_rules('id_homework', 'id_homework', 'trim|required');
 		 if ($this->form_validation->run() == FALSE)
@@ -615,7 +615,7 @@ class content extends CI_Controller {
 			 $idHomeWork=$this->input->post('id_homework');
 			 $kelasId=$this->input->post('kelas_id');
 			 $jurusanId=$this->input->post('jurusan_id');
-			 $siswaNik=$this->input->post('siswa_nik');
+			 $siswaNik=$this->input->post('siswa_nis');
 			 $alrmTime=$this->input->post('alarm_time');
 			 $schedule=$this->Schedule_model->getSchedule2("where mapel_id='$idMapel' and kelas_id='$kelasId' and jurusan_id='$jurusanId' ")->result();
 			 foreach($schedule as $schedule){
@@ -638,7 +638,7 @@ class content extends CI_Controller {
 						'jurusan_id' => $jurusanId,
 						'room_id' => $roomId,
 						'schedule_id' => $scheduleId,
-						'siswa_nik' => $siswaNik,
+						'siswa_nis' => $siswaNik,
 						'alarm_time'=>$alrmTime
 
 					);
@@ -721,7 +721,7 @@ class content extends CI_Controller {
 		$this->form_validation->set_rules('jurusan_id', 'jurusan_id', 'trim|required');
 		// $this->form_validation->set_rules('room_id', 'room_id', 'trim|required');
 		// $this->form_validation->set_rules('schedule_id', 'schedule_id', 'trim|required');
-		$this->form_validation->set_rules('siswa_nik', 'siswa_nik', 'trim|required');
+		$this->form_validation->set_rules('siswa_nis', 'siswa_nis', 'trim|required');
 		$this->form_validation->set_rules('alarm_time', 'alarm_time', 'trim|required');
 		if ($this->form_validation->run() == FALSE)
 		{
@@ -758,10 +758,12 @@ class content extends CI_Controller {
 			foreach($Mapel as $mapel){
 			   $idMapel=$mapel->mapel_id;
 			}
+			if(!empty($idMapel)){
+			// print_r($idMapel);exit;
 			
 			$kelasId=$this->input->post('kelas_id');
 			$jurusanId=$this->input->post('jurusan_id');
-			$siswaNik=$this->input->post('siswa_nik');
+			$siswaNik=$this->input->post('siswa_nis');
 			$alrmTime=$this->input->post('alarm_time');
 			$schedule=$this->Schedule_model->getSchedule2("where mapel_id='$idMapel' and kelas_id='$kelasId' and jurusan_id='$jurusanId' ")->result();
 			foreach($schedule as $schedule){
@@ -783,7 +785,7 @@ class content extends CI_Controller {
 					   'jurusan_id' => $jurusanId,
 					   'room_id' => $roomId,
 					   'schedule_id' => $scheduleId,
-					   'siswa_nik' => $siswaNik,
+					   'siswa_nis' => $siswaNik,
 					   'alarm_time'=>$alrmTime
 
 				   );
@@ -813,6 +815,14 @@ class content extends CI_Controller {
 			   ));
 			   echo json_encode($message);
 		   }
+		}else{
+			$message =array('auth_UpdateHomework'=> array(
+				'status' => false,
+				'error'=>402,
+				'message' => 'Mapel tidak ditemukan'
+			));
+			echo json_encode($message);
+		}
 		   
 		}
 	}
