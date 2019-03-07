@@ -105,15 +105,15 @@ class content extends CI_Controller {
 		header('Accept:application/json');
 		$_POST = $this->security->xss_clean($_POST);
 
-		$AllKelas=$this->Kelas_model->getAllKelas()->result();
+		$AllKelas=$this->Kelas_model->getAllKelas();
 		$data=array();
 		if (!empty($AllKelas) AND $AllKelas != FALSE)
 		{
 			foreach ($AllKelas as $allKelas) {
 				$data[]=array(
-					'kelas_id'=>$allKelas->kelas_id,
-					'kelas_name'=>$allKelas->kelas_name,
-					'kelas_jurusan'=>$allKelas->kelas_jurusan,
+					'kelas_id'=>$allKelas['kelas_id'],
+					'kelas_name'=>$allKelas['kelas_name'],
+					'kelas_jurusan'=>$allKelas['kelas_jurusan'],
 				);
 			
 			// print_r($schedule);
@@ -242,6 +242,7 @@ class content extends CI_Controller {
 									// print_r($dayDate);exit;
 								
 								// if($tahun==$schedule_dateYear&&$bulan==$schedule_dateMont){
+									// print_r($dayofweek);exit;
 									$month=date('m');
 									for($i=1;$i<=$dayofweek;$i++){
 										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($date)));
