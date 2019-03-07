@@ -21,12 +21,12 @@ class Cek_login extends CI_Model {
 			return false;
 		}
 	}
-	function cekLoginSiswa($nik,$pass){
-	 $NIK=$this->db->escape_like_str($nik);
+	function cekLoginSiswa($NIS,$pass){
+	 $NIS=$this->db->escape_like_str($NIS);
 	 $password=$this->db->escape_like_str($pass);
 	 $this->db->select('*');
 	 $this->db->from('siswa');
-	 $this->db->where('siswa_nik',$NIK);
+	 $this->db->where('siswa_nis',$NIS);
 	 $this->db->where('siswa_password',$password);
 	 $this->db->limit(1);
 
