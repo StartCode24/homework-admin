@@ -23,11 +23,20 @@ class Kelas extends CI_Controller {
 		$kelas_jurusan = $_POST['kelas_jurusan'];
 		$kelas_sub = $_POST['kelas_sub'];
 
+		$jurusan_singkat = $this->Jurusan_model->getJurusanSingkat($kelas_jurusan);
+		if ($kelas_sub == "") {
+			$kelas_notasi = $_POST['kelas_name']."-".$jurusan_singkat;
+		} else {
+			$kelas_notasi = $_POST['kelas_name']."-".$jurusan_singkat."-".$kelas_sub;
+		}
+		// debug_array($kelas_notasi);
+
 		$data_insert = array(
 			'kelas_id' => $kelas_id,
 			'kelas_name' => $kelas_name,
 			'kelas_jurusan' => $kelas_jurusan,
 			'kelas_sub' => $kelas_sub,
+			'kelas_notasi' => $kelas_notasi
 		);
 		$res = $this->Kelas_model->insertData('kelas', $data_insert);
 		if ($res>=1){
@@ -69,10 +78,19 @@ class Kelas extends CI_Controller {
 		$kelas_name_update = $_POST['kelas_name'];
 		$kelas_jurusan_update = $_POST['kelas_jurusan'];
 		$kelas_sub_update = $_POST['kelas_sub'];
+
+		$jurusan_singkat = $this->Jurusan_model->getJurusanSingkat($kelas_jurusan_update);
+		if ($kelas_sub_update == "") {
+			$kelas_notasi_update = $_POST['kelas_name']."-".$jurusan_singkat;
+		} else {
+			$kelas_notasi_update = $_POST['kelas_name']."-".$jurusan_singkat."-".$kelas_sub_update;
+		}
+
 		$data_update = array(
 			'kelas_name' => $kelas_name_update,
 			'kelas_jurusan' => $kelas_jurusan_update,
-			'kelas_sub' => $kelas_sub_update
+			'kelas_sub' => $kelas_sub_update,
+			'kelas_notasi' => $kelas_notasi_update
 		);
 		$where = array('kelas_id' => $kelas_id);
 		$res = $this->Kelas_model->updateData('kelas', $data_update, $where);

@@ -135,9 +135,10 @@ class Dashboard extends CI_Controller {
 		$data = $this->Siswa_model->getSiswa();
 		$kodeunik= $this->Cek_kodeUnik->cari_kode_siswa();
 		$data_jurusan = $this->Jurusan_model->getJurusan();
-		// debug_array($data_jurusan);
+		$data_kelas = $this->Kelas_model->getAllKelas();
+		// debug_array($data_kelas);
 		$this->load->view('nav_content/header.php', array('data' => $data ));
-		$this->load->view('content/siswa/all_siswa_data', array('data' => $data, 'data_jurusan' => $data_jurusan));
+		$this->load->view('content/siswa/all_siswa_data', array('data' => $data, 'data_jurusan' => $data_jurusan, 'data_kelas' => $data_kelas));
 		$this->load->view('nav_content/footer.php');
 		$this->load->view('content/siswa/add_modal_siswa',array('kode_unik' => $kodeunik ));
 

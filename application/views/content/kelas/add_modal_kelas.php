@@ -82,7 +82,7 @@ function submit_data() {
                             <select id="kelas_jurusan" name="kelas_jurusan" class="form-control border-input select-jurusan">
                                 <option value="">---</option>
                               <?php foreach ($data_jurusan as $value) { //print_r($value);?>
-                                <option value="<?php echo $value['jurusan_id']?>"><?php echo $value['jurusan_name'] ?></option>
+                                <option value="<?php echo $value['jurusan_id']?>"><?php echo $value['jurusan_singkat'] ?> - <?php echo $value['jurusan_name'] ?></option>
                               <?php } ?>
                             </select>
                       </div>

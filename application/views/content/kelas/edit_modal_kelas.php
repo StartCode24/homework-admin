@@ -10,8 +10,6 @@ function submit_updated_data() {
     swal("Tingkatan kelas Harus Diisi", "Isilah tingkatan kelas" , "info");
   } else if ($( "#kelas_jurusan_update" ).val() == '' ) {
     swal("Jurusan Harus Diisi", "Isilah data jurusan" , "info");
-  } else if ($( "#kelas_sub_update" ).val() == '' ) {
-    swal("Subkelas Harus Diisi", "Isilah data subkelas" , "info");
   } else {
      $.ajax({
       type: 'POST',

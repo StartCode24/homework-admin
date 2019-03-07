@@ -152,6 +152,7 @@
 											<th>Kelas</th>
 											<th>Jurusan</th>
 											<th>Sub</th>
+                      <th>Notasi</th>
 											<th>Action</th>
 										</tr>
 									</thead>
@@ -167,12 +168,13 @@
 												<td class=""><?php echo $value['kelas_name']; ?></td>
 												<td class=""><?php echo $value['jurusan_name']; ?></td>
 												<td class=""><?php echo $value['kelas_sub']; ?></td>
+                        <td class=""><?php echo $value['kelas_notasi']; ?></td>
 												<td class="">
           <button class="btn btn-warning btn-fill" onclick="_edit_kelas('<?php echo $value['kelas_id'];?>')">
                Edit
              </button>
 													||
-													<button class="btn btn-danger" onclick="Swall_Delete_Kelas('<?php echo $value['kelas_id'];?> ')">Delete</button>
+													<button class="btn btn-danger" onclick="Swall_Delete_Kelas('<?php echo $value['kelas_id'];?>')">Delete</button>
 												</td>
 											</tr>
 										<?php } ?>

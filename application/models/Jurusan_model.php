@@ -42,4 +42,13 @@ class Jurusan_model extends CI_Model {
 		return $query->jurusan_name;
 		// debug_array($query);
 	}
+
+	public function getJurusanSingkat($jurusan_id)
+	{
+		$this->db->select('jurusan_singkat');
+		$this->db->where('jurusan_id', $jurusan_id);
+		$query = $this->db->get('jurusan', 1)->row();
+		return $query->jurusan_singkat;
+		// debug_array($query);
+	}
 }
