@@ -15,8 +15,13 @@ class Dashboard extends CI_Controller {
 
 	public function index()	{
 		$this->cek_session_nav->cek_session_dashboard();
+		$data['count_schedule'] = $this->Schedule_model->countSchedule();
+		$data['count_homework'] = $this->HomeWork_model->countHomework();
+		$data['count_jurusan'] = $this->Jurusan_model->countJurusan();
+		$data['count_siswa'] = $this->Siswa_model->countSiswa();
+		// debug_array($count_schedule);
 		$this->load->view('nav_content/header.php');
-		$this->load->view('content/dashboard.php');
+		$this->load->view('content/dashboard.php', $data);
 		$this->load->view('nav_content/footer.php');
 	}
 

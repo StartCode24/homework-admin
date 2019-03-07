@@ -41,6 +41,12 @@ class homework_model extends CI_Model {
           $kodeJadi=$kodeMax;
           return $kodeJadi;
 	  }
-	  
+	
+	public function countHomework()
+	{
+		$query = $this->db->query('select * from homework');
+
+		return $query->num_rows();
+	}	  
 	  
 }

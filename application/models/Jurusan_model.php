@@ -51,4 +51,11 @@ class Jurusan_model extends CI_Model {
 		return $query->jurusan_singkat;
 		// debug_array($query);
 	}
+
+	public function countJurusan()
+	{
+		$query = $this->db->query('select * from jurusan');
+
+		return $query->num_rows();
+	}
 }

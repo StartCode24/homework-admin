@@ -68,5 +68,12 @@ class schedule_model extends CI_Model {
 		$res = $this->db->delete($schedule, $where);
 		return $res;	
 	}
+	
+	public function countSchedule()
+	{
+		$query = $this->db->query('select * from schedule');
+
+		return $query->num_rows();
+	}
 }
  
