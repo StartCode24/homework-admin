@@ -76,4 +76,12 @@ class Siswa_model extends CI_Model {
 
 		return $data;
 	}
+
+	public function countSiswa()
+	{
+		$query = $this->db->query('select * from siswa');
+
+		return $query->num_rows();
+	}
+	
 }
