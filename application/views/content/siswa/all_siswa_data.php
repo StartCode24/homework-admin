@@ -21,7 +21,6 @@
 			<th>Alamat</th>
 			<th>Kelas</th>
 			<th>Jurusan</th>
-			<th>Password</th>
 			<th>Note</th>
 			<th>Action</th>
 		</tr>
@@ -36,7 +35,6 @@
 				<td class=""><?php echo $value['siswa_alamat']; ?></td>
 				<td class=""><?php echo $value['kelas_id']; ?></td>
 				<td class=""><?php echo $value['jurusan_id']; ?></td>
-				<td class=""><?php echo $value['siswa_password']; ?></td>
 				<td class=""><?php echo $value['siswa_note']; ?></td>
 				<!-- <td class=""><?php// echo $value['siswa_note']; ?></td> -->
 				<td class="">

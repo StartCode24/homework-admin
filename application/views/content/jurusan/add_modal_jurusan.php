@@ -13,16 +13,22 @@
           <div class="content">
               <form action="<?php echo base_url()?>Jurusan/do_insert" method="post">
                   <div class="row">
-                      <div class="col-md-4">
+                      <div class="col-md-2">
                           <div class="form-group">
-                              <label>Kode Jurusan</label>
-                              <input type="text" class="form-control border-input" readonly placeholder="kode" value="<?php echo $kode_unik; ?>" name="jurusan_id">
+                              <label>ID</label>
+                              <input type="text" class="form-control border-input" readonly placeholder="id" value="<?php echo $kode_unik; ?>" name="jurusan_id">
                           </div>
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-7">
                         <div class="form-group">
                             <label>Nama Jurusan</label>
                             <input type="text" required class="form-control border-input" placeholder="nama jurusan" name="jurusan_name">
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Kode Jurusan</label>
+                            <input type="text" required class="form-control border-input" placeholder="kode jurusan" name="jurusan_singkat">
                         </div>
                       </div>
                   </div>
@@ -36,7 +42,7 @@
                       <div class="col-md-8">
                           <div class="form-group">
                               <label>Note Jurusan</label>
-                              <textarea name="jurusan_note" required rows="8" class="form-control border-input" cols="80"></textarea>
+                              <textarea name="jurusan_note" rows="8" class="form-control border-input" cols="80"></textarea>
                           </div>
                       </div>
                   </div>

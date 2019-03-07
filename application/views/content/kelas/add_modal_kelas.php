@@ -1,14 +1,15 @@
-<?php // debug_array($data_jurusan); ?>
 <script>
 function submit_data() {
   var kelas_id = $( "#kelas_id" ).val();
   var kelas_name = $( "#kelas_name" ).val();
   var kelas_jurusan = $( "#kelas_jurusan" ).val();
   var kelas_sub = $( "#kelas_sub" ).val();
-  if ($( "#kelas_name" ).val() == '' ) {
-    swal("Tingkatan Kelas Harus Diisi", "Isilah data tingkatan kelas" , "info");
+  if ($( "#kelas_name" ).val() === '' ) {
+    swal("Tingkatan kelas Harus Diisi", "Isilah tingkatan kelas" , "info");
   } else if ($( "#kelas_jurusan" ).val() == '' ) {
-    swal("Jurusan Harus Diisi", "Isilah data jurusan kelas" , "info");
+    swal("Jurusan Harus Diisi", "Isilah data jurusan" , "info");
+  } else if ($( "#kelas_sub" ).val() == '' ) {
+    swal("Subkelas Harus Diisi", "Isilah data subkelas" , "info");
   } else {
      $.ajax({
       type: 'POST',
@@ -18,7 +19,8 @@ function submit_data() {
             kelas_id: kelas_id,
             kelas_name: kelas_name,
             kelas_jurusan: kelas_jurusan,
-            kelas_sub: kelas_sub
+            kelas_sub: kelas_sub,
+            
           },
       dataType: 'json',
       success: function(d){
@@ -43,7 +45,7 @@ function submit_data() {
 }
 </script>
 <!-- Modal -->
-	<div id="myModaladd" class="modal fade" role="dialog">
+	<div id="myModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
 			<!-- konten modal-->
 			<div class="modal-content">
@@ -58,7 +60,7 @@ function submit_data() {
                   <div class="row">
                       <div class="col-md-4">
                           <div class="form-group">
-                              <label>Kode Kelas</label>
+                              <label>ID Kelas</label>
                               <input type="text" id="kelas_id" class="form-control border-input" readonly placeholder="(autofill by system)" value="" name="kelas_id">
                           </div>
                       </div>
@@ -80,7 +82,7 @@ function submit_data() {
                             <select id="kelas_jurusan" name="kelas_jurusan" class="form-control border-input select-jurusan">
                                 <option value="">---</option>
                               <?php foreach ($data_jurusan as $value) { //print_r($value);?>
-                                <option value="<?php echo $value['jurusan_id']?>"><?php echo $value['jurusan_name'] ?></option>
+                                <option value="<?php echo $value['jurusan_id']?>"><?php echo $value['jurusan_singkat'] ?> - <?php echo $value['jurusan_name'] ?></option>
                               <?php } ?>
                             </select>
                       </div>
@@ -94,7 +96,7 @@ function submit_data() {
                       </div>
                   </div>
                   <div class="text-center">
-                      <input type="button" class="btn btn-info btn-fill btn-wd" value="Simpan Data" onclick="submit_data()">
+                      <button type="submit" class="btn btn-warning btn-fill btn-wd" onclick="submit_data()">Simpan Data</button>
                   </div>
                   <div class="clearfix"></div>
           </div>

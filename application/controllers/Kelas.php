@@ -23,53 +23,86 @@ class Kelas extends CI_Controller {
 		$kelas_jurusan = $_POST['kelas_jurusan'];
 		$kelas_sub = $_POST['kelas_sub'];
 
+		$jurusan_singkat = $this->Jurusan_model->getJurusanSingkat($kelas_jurusan);
+		if ($kelas_sub == "") {
+			$kelas_notasi = $_POST['kelas_name']."-".$jurusan_singkat;
+		} else {
+			$kelas_notasi = $_POST['kelas_name']."-".$jurusan_singkat."-".$kelas_sub;
+		}
+		// debug_array($kelas_notasi);
+
 		$data_insert = array(
 			'kelas_id' => $kelas_id,
 			'kelas_name' => $kelas_name,
 			'kelas_jurusan' => $kelas_jurusan,
 			'kelas_sub' => $kelas_sub,
+			'kelas_notasi' => $kelas_notasi
 		);
 		$res = $this->Kelas_model->insertData('kelas', $data_insert);
 		if ($res>=1){
 			$data['status'] = "true";
-		        echo json_encode(array('status' => 'ok')); 
+		        echo json_encode(array('status' => 'ok'));
+		        // $this->session->set_flashdata('pesan', 'Tambah data sukses');
+		        // redirect('Dashboard/kelas');
 		}else{
 			$data['status'] = "false";
-		        echo json_encode(array('status' => 'not ok')); 
+		        echo json_encode(array('status' => 'not ok'));
+		        // echo "<h3>Insert data gagal</h3>";
 		}
 	}
 
 	public function edit_data(){
+		// debug_array($_POST);
 		$kelas_id=$this->input->post('kelas_id');
 		$kelas = $this->Kelas_model->getKelas("where kelas_id = '$kelas_id'");
 		// debug_array($kelas);
 		$data_jurusan = $this->Jurusan_model->getJurusan();
+		$kelas_jurusan_name = $this->Jurusan_model->getJurusanName($kelas[0]['kelas_jurusan']);
 		$data = array(
 			'kelas_id' => $kelas[0]['kelas_id'],
 			'kelas_name' => $kelas[0]['kelas_name'],
 			'kelas_jurusan' => $kelas[0]['kelas_jurusan'],
+			'kelas_jurusan_name' => $kelas_jurusan_name,
 			'kelas_sub' => $kelas[0]['kelas_sub'],
 			'data_jurusan' => $data_jurusan
 		);
+		
+		// $data = "";
 		$this->load->view('content/kelas/edit_modal_kelas', $data);
+		// debug_array($data);
 	}
 
 	public function do_update(){
-		debug_array($_POST);
+		// debug_array($_POST);
 		$kelas_id = $_POST['kelas_id'];
-		$kelasname = $_POST['kelasname'];
-		$kelas_note = $_POST['kelas_note'];
+		$kelas_name_update = $_POST['kelas_name'];
+		$kelas_jurusan_update = $_POST['kelas_jurusan'];
+		$kelas_sub_update = $_POST['kelas_sub'];
+
+		$jurusan_singkat = $this->Jurusan_model->getJurusanSingkat($kelas_jurusan_update);
+		if ($kelas_sub_update == "") {
+			$kelas_notasi_update = $_POST['kelas_name']."-".$jurusan_singkat;
+		} else {
+			$kelas_notasi_update = $_POST['kelas_name']."-".$jurusan_singkat."-".$kelas_sub_update;
+		}
+
 		$data_update = array(
-			'kelasname' => $kelasname,
-			'kelas_note' => $kelas_note
+			'kelas_name' => $kelas_name_update,
+			'kelas_jurusan' => $kelas_jurusan_update,
+			'kelas_sub' => $kelas_sub_update,
+			'kelas_notasi' => $kelas_notasi_update
 		);
 		$where = array('kelas_id' => $kelas_id);
 		$res = $this->Kelas_model->updateData('kelas', $data_update, $where);
 		if ($res>=1){
-			$this->session->set_flashdata('pesan', 'Update data sukses');
-			redirect('Dashboard/kelas');
+			// $this->session->set_flashdata('pesan', 'Update data sukses');
+			// redirect('Dashboard/kelas');
+			$data['status'] = "true";
+		        echo json_encode(array('status' => 'ok'));
 		}else{
-			echo "<h3>Update data gagal</h3>";
+			// echo "<h3>Update data gagal</h3>";
+			$data['status'] = "false";
+		        echo json_encode(array('status' => 'not ok'));
 		}
 	}
 

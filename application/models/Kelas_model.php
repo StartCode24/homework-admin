@@ -39,7 +39,7 @@ class Kelas_model extends CI_Model {
 
 	public function getAllKelas()
 	{
-		$data = $this->db->query('select * from kelas ');
+		$data = $this->db->query('select * from kelas')->result_array();
 		return $data;
 	}
 
@@ -50,7 +50,7 @@ class Kelas_model extends CI_Model {
 // LEFT JOIN jurusan
 // ON kelas.kelas_jurusan = jurusan.jurusan_id
 
-		$this->db->select('kelas_id, kelas_name, kelas_jurusan as "kode_jurusan", jurusan_name, kelas_sub');
+		$this->db->select('kelas_id, kelas_name, kelas_jurusan as "kode_jurusan", jurusan_name, kelas_sub, kelas_notasi');
 		$this->db->join('jurusan', 'kelas.kelas_jurusan = jurusan.jurusan_id', 'left');
 		$data = $this->db->get('kelas')->result_array();
 		

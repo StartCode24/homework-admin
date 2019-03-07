@@ -19,11 +19,13 @@ class Jurusan extends CI_Controller {
 		$jurusan_id = $_POST['jurusan_id'];
 		$jurusan_name = $_POST['jurusan_name'];
 		$jurusan_kepala = $_POST['jurusan_kepala'];
+		$jurusan_singkat = $_POST['jurusan_singkat'];
 		$jurusan_note = $_POST['jurusan_note'];
 		$data_insert = array(
 			'jurusan_id' => $jurusan_id,
 			'jurusan_name' => $jurusan_name,
-			'jurusan_kepala' => $jurusan_kepala,						
+			'jurusan_kepala' => $jurusan_kepala,
+			'jurusan_singkat' => $jurusan_singkat,
 			'jurusan_note' => $jurusan_note,
 		);
 		$res = $this->Jurusan_model->insertData('jurusan', $data_insert);
@@ -42,6 +44,7 @@ class Jurusan extends CI_Controller {
 			'jurusan_id' => $jurusan[0]['jurusan_id'], 
 			'jurusan_name' => $jurusan[0]['jurusan_name'],
 			'jurusan_kepala' => $jurusan[0]['jurusan_kepala'],
+			'jurusan_singkat' => $jurusan[0]['jurusan_singkat'],
 			'jurusan_note' => $jurusan[0]['jurusan_note']
 		);
 		// $this->load->view('content/jurusan/edit_jurusan', $data);
@@ -52,11 +55,13 @@ class Jurusan extends CI_Controller {
 		$jurusan_id = $_POST['jurusan_id'];
 		$jurusan_name = $_POST['jurusan_name'];
 		$jurusan_kepala = $_POST['jurusan_kepala'];
+		$jurusan_singkat = $_POST['jurusan_singkat'];
 		$jurusan_note = $_POST['jurusan_note'];
 		$data_update = array(
 			'jurusan_id' => $jurusan_id,
 			'jurusan_name' => $jurusan_name,
-			'jurusan_kepala' => $jurusan_kepala,						
+			'jurusan_kepala' => $jurusan_kepala,
+			'jurusan_singkat' => $jurusan_singkat,
 			'jurusan_note' => $jurusan_note,
 		);
 		$where = array('jurusan_id' => $jurusan_id);

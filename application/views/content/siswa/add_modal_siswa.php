@@ -52,7 +52,7 @@
                             </select>
                         </div>
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-md-8">
                         <div class="form-group">
                             <label>Jurusan</label>
                             <select id="jurusan_id" name="jurusan_id" class="form-control border-input select-jurusan">
@@ -61,12 +61,6 @@
                                 <option value="<?php echo $value['jurusan_id']?>"><?php echo $value['jurusan_name'] ?></option>
                               <?php } ?>
                             </select>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input type="text" required class="form-control border-input" placeholder="password" name="password">
                         </div>
                       </div>
                   </div>
