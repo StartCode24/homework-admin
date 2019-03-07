@@ -15,8 +15,9 @@
 	<table class="table">
 		<thead class=" text-primary">
 		<tr>
-			<th>Kode Jurusan</th>
+			<th>ID</th>
 			<th>Nama Jurusan</th>
+			<th>Kode Jurusan</th>
 			<th>Kepala Jurusan</th>
 			<th>Note</th>
 			<th>Action</th>
@@ -27,6 +28,7 @@
 		<tr>
 				<td class=""><?php echo $value['jurusan_id']; ?></td>
 				<td class=""><?php echo $value['jurusan_name']; ?></td>
+				<td class=""><?php echo $value['jurusan_singkat']; ?></td>
 				<td class=""><?php echo $value['jurusan_kepala']; ?></td>
 				<td class=""><?php echo $value['jurusan_note']; ?></td>
 				<td class="">
