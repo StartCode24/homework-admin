@@ -46,7 +46,7 @@ class Siswa_model extends CI_Model {
 		$NIS=$this->db->escape_like_str($nis);
 		$this->db->select('*');
 		$this->db->from('siswa');
-		$this->db->where('siswa_nik',$NIS);
+		$this->db->where('siswa_nis',$NIS);
 		$this->db->limit(1);
    
 		$query=$this->db->get();
@@ -60,9 +60,18 @@ class Siswa_model extends CI_Model {
 
 	public function getSiswaJurusan($siswa_id)
 	{
-		$this->db->select('siswa_id, siswa_nik, siswa_name, siswa_alamat, kelas_id, siswa.jurusan_id, jurusan_name, siswa_password, siswa_note');
+		$this->db->select('siswa_id, siswa_nis, siswa_name, siswa_alamat, kelas_id, siswa.jurusan_id, jurusan_name, siswa_password, siswa_note');
 		$this->db->join('jurusan', 'siswa.jurusan_id = jurusan.jurusan_id', 'left');
 		$this->db->where('siswa_id', $siswa_id);
+		$data = $this->db->get('siswa')->result_array();
+
+		return $data;
+	}
+
+	public function getAllSiswa()
+	{
+		$this->db->select('siswa_id, siswa_nis, siswa_name, siswa_alamat, kelas_notasi, siswa_note');
+		$this->db->join('kelas', 'siswa.kelas_id = kelas.kelas_id', 'left');
 		$data = $this->db->get('siswa')->result_array();
 
 		return $data;
