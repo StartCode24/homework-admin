@@ -25,7 +25,9 @@ class Siswa extends CI_Controller {
 
 		$jurusan_id = $this->Kelas_model->get_jurusan_id_by_kelas_id($kelas_id);
 
-		// $siswa_password = $_POST['password'];
+		// Pembuatan password untuk siswa baru diatur statis, siswa diwajibkan melakukan perubahan password secara mandiri
+		$siswa_password = "skedi1234";
+
 		$siswa_note = $_POST['siswa_note'];
 		$data_insert = array(
 			'siswa_id' => $siswa_id,
@@ -34,7 +36,7 @@ class Siswa extends CI_Controller {
 			'siswa_alamat' => $siswa_alamat,
 			'kelas_id' => $kelas_id,
 			'jurusan_id' => $jurusan_id,
-			// 'siswa_password' => $siswa_password,
+			'siswa_password' => $siswa_password,
 			'siswa_note' => $siswa_note
 		);
 		$res = $this->Siswa_model->insertData('siswa', $data_insert);
@@ -79,7 +81,7 @@ class Siswa extends CI_Controller {
 		$kelas_id = $_POST['kelas_id'];
 		
 		$jurusan_id = $this->Kelas_model->get_jurusan_id_by_kelas_id($kelas_id);
-		
+
 		// $siswa_password = $_POST['siswa_password'];
 		$siswa_note = $_POST['siswa_note'];
 		$data_update = array(
