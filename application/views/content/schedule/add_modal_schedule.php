@@ -72,7 +72,7 @@ function submit_data() {
           }
         );
           } else if (d.status === "not ok") {
-            swal("Error", "Data tidak ditemukan, tolong cek kembali pilihan anda.", "error");
+            swal("Error", "Data memiliki duplikat di database, tolong cek kembali inputan data anda.", "error");
             // console.log(d.status);
           } else {}
       }
