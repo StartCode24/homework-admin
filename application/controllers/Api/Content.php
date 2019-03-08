@@ -114,6 +114,7 @@ class content extends CI_Controller {
 					'kelas_id'=>$allKelas['kelas_id'],
 					'kelas_name'=>$allKelas['kelas_name'],
 					'kelas_jurusan'=>$allKelas['kelas_jurusan'],
+					'kelas_notasi'=>$allKelas['kelas_notasi']
 				);
 			
 			// print_r($schedule);
