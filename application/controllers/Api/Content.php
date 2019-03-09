@@ -63,43 +63,74 @@ class content extends CI_Controller {
 		header('Accept:application/json');
 		$_POST = $this->security->xss_clean($_POST);
 
-		$Allmapel=$this->Mapel_model->getAllMapel()->result();
-		$data=array();
-		if (!empty($Allmapel) AND $Allmapel != FALSE)
+		
+		$this->form_validation->set_rules('kelas_id', 'kelas_id', 'trim|required');
+		$this->form_validation->set_rules('jurusan_id', 'jurusan_id', 'trim|required');
+		if ($this->form_validation->run() == FALSE)
 		{
-			foreach ($Allmapel as $allmapel) {
-				$data[]=array(
-					'mapelId'=>$allmapel->mapel_id,
-					'mapelName'=>$allmapel->mapelname,
-					'mapelNote'=>$allmapel->mapel_note
-				);
-			
-			// print_r($schedule);
+				// Form Validation Errors
+				$message =array('auth_Mapel'=> array(
+						'status' => false,
+						'error' => $this->form_validation->error_array(),
+						'message' => validation_errors()
+				));
+				//$this->response($message, REST_Controller::HTTP_NOT_FOUND);
+				echo json_encode($message);
+		}
+		else
+		{
+		$kelas_id=$this->input->post('kelas_id');
+		$jurusan_id=$this->input->post('jurusan_id');
+		$idMapel=array();
+		$MapelId=array();
+		$data=array();
+		$Schedule = $this->Schedule_model->getMapelIdDistinc("where kelas_id = '$kelas_id' and jurusan_id='$jurusan_id'")->result();
+		if (!empty($Schedule) AND $Schedule != FALSE)
+		{
+			foreach ($Schedule as $schedule) {
+				$idMapel[]=$schedule->mapel_id;
 			}
-			 $message =['auth_Mapel'=> [
-					 'status' => 200,
-					 'data' =>array( 
-						 'Mapel'=>$data,
-					 ),
-					 'message' => "get Mapel successful"
-			 ]];
+			// $MapelId=array_diff_key(array_unique($idMapel));
+			// print_r($MapelId);exit;
 			
-			// $this->response($message, REST_Controller::HTTP_OK);
-			echo json_encode($message);
-		}else{
-			$message =['auth_Mapel'=> [
-				'status' => 404,
+			for($i=0;$i<count($idMapel);$i++){
+				$id=$idMapel[$i];
+				// print($id);exit;
+				$Mapel=$this->Mapel_model->getMapel2("where mapel_id='$id'")->result();
+				if (!empty($Mapel) AND $Mapel != FALSE)
+				{
+				foreach ($Mapel as $allmapel) {
+					$data[]=array(
+						'mapelId'=>$allmapel->mapel_id,
+						'mapelName'=>$allmapel->mapelname,
+						'mapelNote'=>$allmapel->mapel_note
+					);
+				}
+				
+			}
+			
+			}$message =['auth_Mapel'=> [
+				'status' => 200,
 				'data' =>array( 
 					'Mapel'=>$data,
 				),
+				'message' => "get Mapel successful"
+			]];
+
+			echo json_encode($message);
+
+		}else{	
+			$message =['auth_Mapel'=> [
+				'status' => 404,
+				'data' =>array( 
+				'Mapel'=>$data,
+			),
 				'message' => "get Mapel Not Found"
-		]];
-	   
-	   // $this->response($message, REST_Controller::HTTP_OK);
-	   echo json_encode($message);
+			]];
+			echo json_encode($message);
+			}
 		}
 	}
-
 	public function GetKelas(){
 		header('Content-Type:application/json');
 		header('Accept:application/json');
