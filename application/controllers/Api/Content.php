@@ -109,7 +109,8 @@ class content extends CI_Controller {
 				
 			}
 			
-			}$message =['auth_Mapel'=> [
+			}
+			$message =['auth_Mapel'=> [
 				'status' => 200,
 				'data' =>array( 
 					'Mapel'=>$data,
@@ -119,7 +120,12 @@ class content extends CI_Controller {
 
 			echo json_encode($message);
 
-		}else{	
+		}else{
+			$data[]=array(
+				'mapelId'=>0,
+				'mapelName'=>'(Jadwal Kosong Harap Hubungi Admin)',
+				'mapelNote'=>''
+			);	
 			$message =['auth_Mapel'=> [
 				'status' => 404,
 				'data' =>array( 
