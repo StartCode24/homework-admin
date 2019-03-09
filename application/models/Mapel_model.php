@@ -13,6 +13,7 @@ class Mapel_model extends CI_Model {
 		$data = $this->db->query('select * from mapel '.$where);
 		return $data;
 	}
+	
 
 	public function insertData($mapel, $data){
 		$res = $this->db->insert($mapel, $data);

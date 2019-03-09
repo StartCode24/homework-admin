@@ -15,6 +15,11 @@ class schedule_model extends CI_Model {
 		return $data;
 		// debug_array($data);
 	}
+	public function getMapelIdDistinc($where="")
+	{
+		$data = $this->db->query('select DISTINCT mapel_id FROM schedule '.$where);
+		return $data;
+	}
 	
 
 	public function getScheduleByDay($kelas_name, $jurusan, $subkelas, $day)
