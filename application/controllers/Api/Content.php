@@ -302,7 +302,8 @@ class content extends CI_Controller {
 										'jurusan_id'=>$schedule->jurusan_id,
 										'jurusan_name'=>$nama_jurusan,
 										'room_id'=>$schedule->room_id,
-										'room_name'=>$nama_room
+										'room_name'=>$nama_room,
+										'color_mapel'=>'Blue'
 									);
 							// }
 							}
