@@ -569,6 +569,8 @@ class content extends CI_Controller {
 									'room_name'=>$nama_room,
 									'siswa_nis'=>$HomeWork->siswa_nis,
 									'alarm_time'=>$HomeWork->alarm_time,
+									'homework_detail'=>$HomeWork->homework_detail,
+									'minut_before'=>$HomeWork->minut_before,
 								);
 							}
 							// print_r($schedule);
@@ -615,6 +617,8 @@ class content extends CI_Controller {
 		$this->form_validation->set_rules('siswa_nis', 'siswa_nis', 'trim|required');
 		$this->form_validation->set_rules('alarm_time', 'alarm_time', 'trim|required');
 		$this->form_validation->set_rules('id_homework', 'id_homework', 'trim|required');
+		$this->form_validation->set_rules('homework_detail', 'homework_detail', 'trim|required');
+		$this->form_validation->set_rules('minut_before', 'minut_before', 'trim|required');
 		 if ($this->form_validation->run() == FALSE)
 		 {
 			$message =array('auth_AddHomework'=> array(
@@ -647,6 +651,7 @@ class content extends CI_Controller {
 			 $finishTime= $this->input->post('finish_time');
 			 $note=$this->input->post('note');
 			 $mapelName=$this->input->post('mapel_name');
+			 $homeworkDetail=$this->input->post('homework_detail');
 			 $Mapel=$this->Mapel_model->getMapel2("where mapelname Like '%$mapelName%'")->result();
 			 foreach($Mapel as $mapel){
 				$idMapel=$mapel->mapel_id;
@@ -656,6 +661,7 @@ class content extends CI_Controller {
 			 $jurusanId=$this->input->post('jurusan_id');
 			 $siswaNik=$this->input->post('siswa_nis');
 			 $alrmTime=$this->input->post('alarm_time');
+			 $minutBefore=$this->input->post('minut_before');
 			 $schedule=$this->Schedule_model->getSchedule2("where mapel_id='$idMapel' and kelas_id='$kelasId' and jurusan_id='$jurusanId' ")->result();
 			 foreach($schedule as $schedule){
 				$guruId=$schedule->guru_id;
@@ -678,7 +684,9 @@ class content extends CI_Controller {
 						'room_id' => $roomId,
 						'schedule_id' => $scheduleId,
 						'siswa_nis' => $siswaNik,
-						'alarm_time'=>$alrmTime
+						'alarm_time'=>$alrmTime,
+						'homework_detail'=>$homeworkDetail,
+						'minut_before'=>$minutBefore
 
 					);
 					$res = $this->HomeWork_model->insertData('homework', $data_insert);
@@ -762,6 +770,8 @@ class content extends CI_Controller {
 		// $this->form_validation->set_rules('schedule_id', 'schedule_id', 'trim|required');
 		$this->form_validation->set_rules('siswa_nis', 'siswa_nis', 'trim|required');
 		$this->form_validation->set_rules('alarm_time', 'alarm_time', 'trim|required');
+		$this->form_validation->set_rules('homework_detail', 'homework_detail', 'trim|required');
+		$this->form_validation->set_rules('minut_before', 'minut_before', 'trim|required');
 		if ($this->form_validation->run() == FALSE)
 		{
 		   $message =array('auth_UpdateHomework'=> array(
@@ -793,6 +803,8 @@ class content extends CI_Controller {
 			$finishTime= $this->input->post('finish_time');
 			$note=$this->input->post('note');
 			$mapelName=$this->input->post('mapel_name');
+			$minutBefore=$this->input->post('minut_before');
+			$homeworkDetail=$this->input->post('homework_detail');
 			$Mapel=$this->Mapel_model->getMapel2("where mapelname Like '%$mapelName%'")->result();
 			foreach($Mapel as $mapel){
 			   $idMapel=$mapel->mapel_id;
@@ -825,7 +837,9 @@ class content extends CI_Controller {
 					   'room_id' => $roomId,
 					   'schedule_id' => $scheduleId,
 					   'siswa_nis' => $siswaNik,
-					   'alarm_time'=>$alrmTime
+					   'alarm_time'=>$alrmTime,
+					   'homework_detail'=>$homeworkDetail,
+					   'minut_before'=>$minutBefore
 
 				   );
 				   $where = array('homework_id' =>'00'.$idHomework);
@@ -1254,7 +1268,9 @@ class content extends CI_Controller {
 				'kelas_name'=>$nama_kelas,
 				'jurusan_name'=>$nama_jurusan,
 				'room_name'=>$nama_room,
-				'alarm_time'=>$Homework->alarm_time
+				'alarm_time'=>$Homework->alarm_time,
+				'homework_detail'=>$Homework->homework_detail,
+				'minut_before'=>$Homework->minut_before
 			    );
 			 }
 		
