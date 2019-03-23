@@ -22,14 +22,14 @@
     <?php echo form_open('Auth/cekLogin', array(
       'class' => 'form-signin'
       ));; ?>
-    <img class="mb-4" src="<?php echo base_url("assets/img/");?>/bootstrap-solid.svg" alt="" width="72" height="72">
+    <img class="mb-4" src="<?php echo base_url("assets/img/");?>/skedi_logo.jpeg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="text" name="username" id="inputEmail" class="form-control" placeholder="Email address">
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password">
     <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
-    <p class="mt-5 mb-3 text-muted copyright">Homework Project © 2018</p>
+    <p class="mt-5 mb-3 text-muted copyright">Skedi © 2019</p>
     <div id="remember-container">
       <span id="remember"><input type="checkbox" id="checkbox-remember-me" class="checkbox" checked="checked"/>Remember me</span>
     </div>
