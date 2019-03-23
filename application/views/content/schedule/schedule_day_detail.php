@@ -82,12 +82,10 @@
 			<th>ID</th>
 			<th>Start Time</th>
 			<th>Finish Time</th>
-			<th>Jam Mulai</th>
-			<th>Jam Akhir</th>
 			<th>Note</th>
 			<th>Guru</th>
 			<th>Mapel</th>
-			<th>Room</th>
+			<th>Ruangan</th>
 			<th>Action</th>
 		</tr>
 		</thead>
@@ -98,8 +96,6 @@
 				<td class=""><?php echo $value['schedule_id']; ?></td>
 				<td class=""><?php echo $value['start_time']; ?></td>
 				<td class=""><?php echo $value['finish_time']; ?></td>
-				<td class=""><?php echo $value['jam_mulai']; ?></td>
-				<td class=""><?php echo $value['jam_akhir']; ?></td>
 				<td class=""><?php echo $value['note']; ?></td>
 				<td class=""><?php echo $value['guruname']; ?></td>
 				<td class=""><?php echo $value['mapelname']; ?></td>

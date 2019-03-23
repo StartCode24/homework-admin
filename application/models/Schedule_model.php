@@ -35,7 +35,7 @@ class schedule_model extends CI_Model {
 
 		$schedule_by_day = 
 			$this->db->query(
-			" select schedule_id, start_time, finish_time, day, jam_mulai,jam_akhir,note,guruname,mapelname,roomname 
+			" select schedule_id, start_time, finish_time, day, note,guruname,mapelname,roomname 
 			from schedule 
 			inner join guru on schedule.guru_id = guru.guru_id 
 			inner join mapel on schedule.mapel_id = mapel.mapel_id

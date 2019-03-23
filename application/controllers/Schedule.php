@@ -135,8 +135,6 @@ class Schedule extends CI_Controller {
 		$start_time = $_POST['start_time'];
 		$finish_time = $_POST['finish_time'];
 		$day = $_POST['day'];
-		$jam_mulai = $_POST['jam_mulai'];
-		$jam_akhir = $_POST['jam_akhir'];
 		$guru_id = $_POST['guru_id'];
 		$mapel_id = $_POST['mapel_id'];
 		$kelas_id = $kode_kelas;
@@ -148,8 +146,6 @@ class Schedule extends CI_Controller {
 			'start_time' => $start_time,
 			'finish_time' => $finish_time,
 			'day' => $day,
-			'jam_mulai' => $jam_mulai,
-			'jam_akhir' => $jam_akhir,
 			'note' => $note,
 			'guru_id' => $guru_id,
 			'mapel_id' => $mapel_id,
@@ -161,9 +157,7 @@ class Schedule extends CI_Controller {
 		$this->db->where('kelas_id',$kelas_id)
 				 ->where('day',$day)
 				 ->where('start_time',$start_time)
-				 ->where('finish_time',$finish_time)
-				 ->where('jam_mulai',$jam_mulai)
-				 ->where('jam_akhir',$jam_akhir);
+				 ->where('finish_time',$finish_time);
 		$query = $this->db->get('schedule')->num_rows();
 		// debug_array($query);
 		    if ($query == 0){
@@ -218,8 +212,6 @@ class Schedule extends CI_Controller {
 			'start_time' => $schedule[0]['start_time'],
 			'finish_time' => $schedule[0]['finish_time'],
 			'day' => $schedule[0]['day'],
-			'jam_mulai' => $schedule[0]['jam_mulai'],
-			'jam_akhir' => $schedule[0]['jam_akhir'],
 			'note' => $schedule[0]['note'],
 			'guru_id' => $guru_id,
 			'guruname' => $guruname,
@@ -251,8 +243,6 @@ class Schedule extends CI_Controller {
 		$start_time = $_POST['start_time'];
 		$finish_time = $_POST['finish_time'];
 		$day = $_POST['day'];
-		$jam_mulai = $_POST['jam_mulai'];
-		$jam_akhir = $_POST['jam_akhir'];
 		$guru_id = $_POST['guru_id'];
 		$mapel_id = $_POST['mapel_id'];
 		$kelas_id = $kode_kelas;
@@ -264,8 +254,6 @@ class Schedule extends CI_Controller {
 			'start_time' => $start_time,
 			'finish_time' => $finish_time,
 			'day' => $day,
-			'jam_mulai' => $jam_mulai,
-			'jam_akhir' => $jam_akhir,
 			'note' => $note,
 			'guru_id' => $guru_id,
 			'mapel_id' => $mapel_id,

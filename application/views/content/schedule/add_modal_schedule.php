@@ -117,20 +117,8 @@ function submit_data() {
                   <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                            <label>Day</label>
+                            <label>Hari</label>
                             <input type="text" readonly required id="day" class="form-control border-input" placeholder="day" name="day" value="<?php echo $day; ?>">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Jam Mulai</label>
-                            <input type="number" min="0" max="10" required id="jam_mulai" class="form-control border-input" placeholder="jam ke- (awal)" name="jam_mulai" value="">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Jam Akhir</label>
-                            <input type="number" min="0" max="10" required id="jam_akhir" class="form-control border-input" placeholder="jam ke- (akhir)" name="jam_akhir" value="">
                         </div>
                       </div>
                   </div>
@@ -159,7 +147,7 @@ function submit_data() {
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
-                            <label>Room</label>
+                            <label>Ruangan</label>
                             <select id="room_id" name="room_id" class="form-control border-input select-room">
                               <option value="">---</option>
                             <?php foreach ($data_room as $value) { //print_r($value);?>

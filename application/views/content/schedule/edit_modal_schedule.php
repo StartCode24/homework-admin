@@ -119,20 +119,8 @@ function submit_updated_data() {
                   <div class="row">
                       <div class="col-md-4">
                         <div class="form-group">
-                            <label>Day</label>
+                            <label>Hari</label>
                             <input type="text" readonly required id="day_edit" class="form-control border-input" placeholder="day" name="day_edit" value="<?php echo $day; ?>">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Jam Mulai</label>
-                            <input type="number" min="0" max="10" required id="jam_mulai_edit" class="form-control border-input" placeholder="jam ke- (awal)" name="jam_mulai_edit" value="<?php echo $jam_mulai; ?>">
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Jam Akhir</label>
-                            <input type="number" min="0" max="10" required id="jam_akhir_edit" class="form-control border-input" placeholder="jam ke- (akhir)" name="jam_akhir_edit" value="<?php echo $jam_akhir; ?>">
                         </div>
                       </div>
                   </div>
@@ -163,7 +151,7 @@ function submit_updated_data() {
                       </div>
                       <div class="col-md-3">
                         <div class="form-group">
-                            <label>Room</label>
+                            <label>Ruangan</label>
                             <select id="room_id_edit" name="room_id_edit" class="form-control border-input select-room_edit">
                               <option value="<?php echo $room_id; ?>" selected><?php echo $roomname; ?></option>
                               <option value="">---</option>
