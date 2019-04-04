@@ -286,14 +286,37 @@ class content extends CI_Controller {
 								// if($tahun==$schedule_dateYear&&$bulan==$schedule_dateMont){
 									// print_r($dayofweek);exit;
 									
-									for($i=1;$i<=$LengthWeek;$i++){
-										if($i>$dayofweekLast){
-											$month=date('m');
-											$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateNow)));
-										}else{
-											$month=$bulanLast;
+									for($i=1;$i<=10;$i++){
+										if($i==5){
 											$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+											if($dayDate>10){
+												$month=$bulanLast;
+												$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+											}else{
+												$month=date('m');
+												$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+											}
+											
+										}elseif($i==10){
+											$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+											if($dayDate>10){
+												$month=$bulanLast;
+												$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+											}else{
+												$month=date('m',strtotime('+1 month'));
+												$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+											}
 										}
+										else{
+											if($i>$dayofweekLast){
+												$month=date('m');
+												$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+											}else{
+												$month=$bulanLast;
+												$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+											}
+										}
+										
 										
 										
 									$data[]=array(
