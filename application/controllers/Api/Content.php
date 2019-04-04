@@ -187,11 +187,15 @@ class content extends CI_Controller {
 		
 		date_default_timezone_set('Asia/Jakarta');
 		$bulan=date("m");
+		$bulanLast=date("m",strtotime('last month'));
 		$tahun=date("Y");
-		$date=date('Y-m');
+		$dateLast=date('Y-m',strtotime('last month'));
+		$dateNow=date('Y-m');
+		
 		// print_r($date);exit;
+		$dayofweekLast = date('w', strtotime($bulanLast));
 		$dayofweek = date('w', strtotime($bulan));
-		// print_r($dayofweek);exit;
+		$LengthWeek=$dayofweekLast+$dayofweek;
 		
 			header('Content-Type:application/json');
 			header('Accept:application/json');
@@ -281,9 +285,16 @@ class content extends CI_Controller {
 								
 								// if($tahun==$schedule_dateYear&&$bulan==$schedule_dateMont){
 									// print_r($dayofweek);exit;
-									$month=date('m');
-									for($i=1;$i<=$dayofweek;$i++){
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($date)));
+									
+									for($i=1;$i<=$LengthWeek;$i++){
+										if($i>$dayofweekLast){
+											$month=date('m');
+											$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateNow)));
+										}else{
+											$month=$bulanLast;
+											$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+										}
+										
 										
 									$data[]=array(
 										'schedule_id'=>$schedule->schedule_id,
