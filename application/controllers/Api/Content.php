@@ -290,7 +290,7 @@ class content extends CI_Controller {
 												$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
 											}
 											
-										}elseif($i==10){
+										}elseif($i==9||$i==10){
 											$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
 											if($dayDate>10){
 												$month=$bulanLast;
@@ -338,116 +338,117 @@ class content extends CI_Controller {
 							}
 							// data untuk hari libur pada hari minggu
 							
-							for($i=1;$i<=10;$i++){
-								$dayName='Sunday';
-								if($i==5){
+						for($i=1;$i<=10;$i++){
+							$dayName='Sunday';
+							if($i==5){
+								$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+								if($dayDate>10){
+									$month=$bulanLast;
 									$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									if($dayDate>10){
-										$month=$bulanLast;
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									}else{
-										$month=date('m');
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									}
-									
-								}elseif($i==10){
+								}else{
+									$month=date('m');
 									$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									if($dayDate>10){
-										$month=$bulanLast;
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									}else{
-										$month=date('m',strtotime('+1 month'));
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									}
 								}
-								else{
-									if($i>$dayofweekLast){
-										$month=date('m');
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									}else{
-										$month=$bulanLast;
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									}
+								
+							}elseif($i==9||$i==10){
+								$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+								if($dayDate>10){
+									$month=$bulanLast;
+									$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+								}else{
+									$month=date('m',strtotime('+1 month'));
+									$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
 								}
-								$idDummy=900000+$i;
-								$data[]=array(
-									'schedule_id'=>$idDummy,
-									'month'=>$month,
-									'start_time'=>'01:00:00',
-									'finish_time'=>'24:00:00',
-									'day_name'=>$dayName,
-									'day_date'=>$dayDate,
-									'note'=>'Libur',
-									'guru_id'=>$idDummy,
-									'guru_name'=>'',
-									'mapel_id'=>$idDummy,
-									'mapel_name'=>'Libur',
-									'kelas_id'=>$idDummy,
-									'kelas_name'=>'',
-									'jurusan_id'=>$idDummy,
-									'jurusan_name'=>'',
-									'room_id'=>$idDummy,
-									'room_name'=>'',
-									'color_mapel'=>'grey'
-								);
-					
 							}
-							// data untuk hari libur pada hari Sabtu
-							for($i=1;$i<=10;$i++){
-								$dayName='Saturday';
-								if($i==5){
+							else{
+								if($i>$dayofweekLast){
+									$month=date('m');
 									$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									if($dayDate>10){
-										$month=$bulanLast;
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									}else{
-										$month=date('m');
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									}
-									
-								}elseif($i==10){
+								}else{
+									$month=$bulanLast;
 									$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									if($dayDate>10){
-										$month=$bulanLast;
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									}else{
-										$month=date('m',strtotime('+1 month'));
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									}
 								}
-								else{
-									if($i>$dayofweekLast){
-										$month=date('m');
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									}else{
-										$month=$bulanLast;
-										$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
-									}
-								}
-								$idDummy=1040000+$i;
-								$data[]=array(
-									'schedule_id'=>$idDummy,
-									'month'=>$month,
-									'start_time'=>'00:00:00',
-									'finish_time'=>'24:00:00',
-									'day_name'=>$dayName,
-									'day_date'=>$dayDate,
-									'note'=>'Libur',
-									'guru_id'=>$idDummy,
-									'guru_name'=>'',
-									'mapel_id'=>$idDummy,
-									'mapel_name'=>'Libur',
-									'kelas_id'=>$idDummy,
-									'kelas_name'=>'',
-									'jurusan_id'=>$idDummy,
-									'jurusan_name'=>'',
-									'room_id'=>$idDummy,
-									'room_name'=>'',
-									'color_mapel'=>'grey'
-								);
-					
 							}
+							$idDummy=900000+$i;
+							$data[]=array(
+								'schedule_id'=>$idDummy,
+								'month'=>$month,
+								'start_time'=>'01:00:00',
+								'finish_time'=>'24:00:00',
+								'day_name'=>$dayName,
+								'day_date'=>$dayDate,
+								'note'=>'Libur',
+								'guru_id'=>$idDummy,
+								'guru_name'=>'',
+								'mapel_id'=>$idDummy,
+								'mapel_name'=>'Libur',
+								'kelas_id'=>$idDummy,
+								'kelas_name'=>'',
+								'jurusan_id'=>$idDummy,
+								'jurusan_name'=>'',
+								'room_id'=>$idDummy,
+								'room_name'=>'',
+								'color_mapel'=>'grey'
+							);
+				
+						}
+						// data untuk hari libur pada hari Sabtu
+						for($i=1;$i<=10;$i++){
+							$dayName='Saturday';
+							if($i==5){
+								$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+								if($dayDate>10){
+									$month=$bulanLast;
+									$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+								}else{
+									$month=date('m');
+									$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+								}
+								
+							}elseif($i==9||$i==10){
+								$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+								if($dayDate>10){
+									$month=$bulanLast;
+									$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+								}else{
+									$month=date('m',strtotime('+1 month'));
+									$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+								}
+							}
+							else{
+								if($i>$dayofweekLast){
+									$month=date('m');
+									$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+								}else{
+									$month=$bulanLast;
+									$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
+								}
+							}
+							$idDummy=1040000+$i;
+							$data[]=array(
+								'schedule_id'=>$idDummy,
+								'month'=>$month,
+								'start_time'=>'00:00:00',
+								'finish_time'=>'24:00:00',
+								'day_name'=>$dayName,
+								'day_date'=>$dayDate,
+								'note'=>'Libur',
+								'guru_id'=>$idDummy,
+								'guru_name'=>'',
+								'mapel_id'=>$idDummy,
+								'mapel_name'=>'Libur',
+								'kelas_id'=>$idDummy,
+								'kelas_name'=>'',
+								'jurusan_id'=>$idDummy,
+								'jurusan_name'=>'',
+								'room_id'=>$idDummy,
+								'room_name'=>'',
+								'color_mapel'=>'grey'
+							);
+				
+						}
 						
+							
 							 $message =['auth_Schedule'=> [
 									 'status' => 200,
 									 'data' =>array( 
@@ -460,6 +461,8 @@ class content extends CI_Controller {
 							echo json_encode($message);
 					 } else
 					 {
+						
+
 							 // Login Error
 							 $message = ['auth_Schedule'=> [
 									 'status' => FALSE,
