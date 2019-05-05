@@ -290,7 +290,7 @@ class content extends CI_Controller {
 												$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
 											}
 											
-										}elseif($i==9||$i==10){
+										}elseif($i==10){
 											$dayDate= date('d', strtotime(($dayofweek - ($dayofweek-$i)).$dayName, strtotime($dateLast)));
 											if($dayDate>10){
 												$month=$bulanLast;
